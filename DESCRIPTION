@@ -7,5 +7,5 @@ Maintainer: <fabian.leuthold@fhsg.ch>
 Description: Applikation für den Vereinbarkeits Simulator
 License: What license is it under?
 Encoding: UTF-8
-Suggests: testthat, shiny
+Suggests: testthat, shiny, wesanderson
 LazyData: true

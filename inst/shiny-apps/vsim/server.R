@@ -30,7 +30,7 @@ choices <- c(
 
 function(input, output, session) {
   # declare Session Variables
-  # part 1: declaration and initialization 
+  # part 1: declaration and initialization
   # collection to collect the different overall-survey results
   result_coll <- list()
   # Create an empty vector to hold survey results
@@ -38,14 +38,14 @@ function(input, output, session) {
   # Name each element of the vector based on the
   # second column of the Qlist_1
   names(results)  <- Qlist_1[,2]
-  # initialize Qlist_2a with initial (unreal) data. Only needed for realistic 
+  # initialize Qlist_2a with initial (unreal) data. Only needed for realistic
   # quesiton-number estimation (question-id's / progressbar tracking; content
   # is irrelevant). But var must be declared on session-level, since data will
   # be replaced with user-input:
   Qlist_2a <- read.csv("data/Qlist_Teil2a.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
   Qlist_2a[is.na(Qlist_2a)] <- ""
-  
-  # part 2..n: declaration 
+
+  # part 2..n: declaration
   relevant_gaps <- NULL
   results2 <- NULL
   kommentare2 <- NULL
@@ -53,21 +53,21 @@ function(input, output, session) {
   kommentare2b <- NULL
   results2c <- NULL
   kommentare2c <- NULL
-  
-  # initialize question_id  
+
+  # initialize question_id
   question_id <- 0
-  
+
   # prepare section-variables for question-id's
   calc_survey_question_ids <- function() {
     Survey_Sections <- list(Teil1_intro = 0,
-                            Teil1_first_question = 1, 
-                            Teil1_last_question = nrow(Qlist_1), 
+                            Teil1_first_question = 1,
+                            Teil1_last_question = nrow(Qlist_1),
                             Teil1_end_statement = nrow(Qlist_1) + 1,
-                            Teil1_summary = nrow(Qlist_1) + 2,                            
+                            Teil1_summary = nrow(Qlist_1) + 2,
                             Teil2a_intro = nrow(Qlist_1) + 3,
                             Teil2a_first_question = nrow(Qlist_1) + 4,
                             Teil2a_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + 3,
-                            Teil2a_end_statement = nrow(Qlist_1) + nrow(Qlist_2a) + 4, 
+                            Teil2a_end_statement = nrow(Qlist_1) + nrow(Qlist_2a) + 4,
                             Teil2b_intro = nrow(Qlist_1) + nrow(Qlist_2a) + 5,
                             Teil2b_first_question = nrow(Qlist_1) + nrow(Qlist_2a) + 6,
                             Teil2b_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + 6,
@@ -78,18 +78,18 @@ function(input, output, session) {
                             Teil2c_end_statement =  nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 9,
                             Teil3_final_evaluation =  nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 10)
   }
-    
+
   Survey_Sections <- calc_survey_question_ids()
-  
+
   # if previous-button is clicked, decrement question-id and re-render mainpanel / progressbar panel
   observeEvent(input$prev_button, {question_id <<- max(Survey_Sections$Teil1_intro, question_id - 1); renderMainPanel(); renderProgressbar()})
   # if previous-button is clicked, increment question-id and re-render mainpanel / progressbar panel
   observeEvent(input$next_button, {question_id <<- question_id + 1; renderMainPanel(); renderProgressbar()})
-    
+
   # TODO:
-  # beim zurück clicken müssten die result-arrays wieder initialisiert werden 
+  # beim zurück clicken müssten die result-arrays wieder initialisiert werden
   # anhand der overall arrays, falls fragebogen-grenzen überschritten werden (sollen)
-  
+
   renderMainPanel <- function() {
     if (question_id <= Survey_Sections$Teil1_summary) {
       source("render_main_panel_1.R", encoding = file_encoding, local = TRUE)[1]
@@ -119,13 +119,14 @@ function(input, output, session) {
       envir = r_env,
       options = "",
       stylesheet = "",
-      encoding = file_encoding
+      encoding = file_encoding,
+      quiet = TRUE
     ) %>%
     gsub("&lt;!--/html_preserve--&gt;","",.) %>%  ## knitr adds this
     gsub("&lt;!--html_preserve--&gt;","",.) %>%   ## knitr adds this
     HTML
   }
-  
+
   renderProgressbar <- function() {
       output$progressbar <- renderUI({
         if (question_id <= Survey_Sections$Teil1_summary) {
@@ -175,5 +176,5 @@ function(input, output, session) {
   # render page for the first time
   renderMainPanel()
   renderProgressbar()
-  
+
 }

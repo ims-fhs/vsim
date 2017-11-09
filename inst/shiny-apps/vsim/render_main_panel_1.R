@@ -1,7 +1,7 @@
 # Dynamic UI is the interface which changes as the survey
-# progresses.  
+# progresses.
 
-# this function is called in order to prepare variables for the next questionary 
+# this function is called in order to prepare variables for the next questionary
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
   source("part2a_simulator.R", encoding = file_encoding, local = TRUE)[1]
@@ -20,21 +20,21 @@ questionaryPostProcessing <- function() {
 }
 
 output$mainPanel <- renderUI({
-  # Initially it shows a welcome message. 
+  # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
-    return(list(h3("Willkommen zum Vereinbarkeitssimulator - Teil 1. Im ersten Teil des Simulators geht es darum ihre momentane Lebenssituation zu erfassen."))) 
-  } else if (question_id > Survey_Sections$Teil1_intro & question_id <= Survey_Sections$Teil1_last_question) { 
+    return(list(h3("Willkommen zum Vereinbarkeitssimulator - Teil 1. Im ersten Teil des Simulators geht es darum Ihre momentane Lebenslage zu erfassen.")))
+  } else if (question_id > Survey_Sections$Teil1_intro & question_id <= Survey_Sections$Teil1_last_question) {
     # Once the next button has been clicked once we see each question
     # of the survey.
     # memorize last answer to set answer correct for redisplaying the question
-    selected <- strsplit(results[question_id], '\n')[[1]]
+    selected <- get_selected_options(results[question_id])
     selected <- ifelse(length(selected) == 0, "weiss nicht", selected)
     return(list(
         shiny::img(src = "warning.png", width="20%", height="20%"),
         h4(textOutput("question")),
         h4(
         radioButtons("survey", "", c(option_list(), "weiss nicht"), selected = selected))
-      )) 
+      ))
   } else if (question_id == Survey_Sections$Teil1_end_statement) {
     return(list(
         h3("Teil 1 ist nun fertig. Klicken Sie auf 'weiter', um den  Teil 1 auszuwerten.")
@@ -76,7 +76,7 @@ output$save_results <- renderText({
 option_list <- reactive({
   qlist <- Qlist_1[question_id,3:ncol(Qlist_1)]
   # Remove items from the qlist if the option is empty.
-  # Also, convert the option list to matrix. 
+  # Also, convert the option list to matrix.
   as.matrix(qlist[qlist != ""])
 })
 
@@ -84,7 +84,7 @@ option_list <- reactive({
 # Followed by the question text.
 output$question <- renderText({
   paste0(
-    "Frage ", question_id,": ", 
+    "Frage ", question_id,": ",
     Qlist_1[question_id,2]
   )
 })

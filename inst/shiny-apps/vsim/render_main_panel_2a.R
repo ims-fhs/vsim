@@ -1,7 +1,7 @@
 # Dynamic UI is the interface which changes as the survey
-# progresses.  
+# progresses.
 
-# this function is called in order to prepare variables for the next questionary 
+# this function is called in order to prepare variables for the next questionary
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
   source("part2b_simulator.R", encoding = file_encoding, local = TRUE)[1]
@@ -19,7 +19,7 @@ questionaryPostProcessing <- function() {
 # survey area.
 output$mainPanel <- renderUI( {
   # print(paste0("Rendering Question ", question_id))
-  # Initially it shows a welcome message. 
+  # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil2a_intro) {
     return(
       list(
@@ -31,12 +31,8 @@ output$mainPanel <- renderUI( {
     # of the survey.
 
     # memorize last answer to set answer correct for redisplaying the question
-    tmp_str <- strsplit(strsplit(results2[question_id - Survey_Sections$Teil2a_intro], '\n')[[1]], ",")
-    if (length(tmp_str) > 0) {
-      selected <- trimws(strsplit(strsplit(results2[question_id - Survey_Sections$Teil2a_intro], '\n')[[1]], ",")[[1]])
-    } else {
-      selected <- ""
-    }
+    selected <- get_selected_options(results2[question_id - Survey_Sections$Teil2a_intro])
+
     kommentar <- kommentare2[question_id - Survey_Sections$Teil2a_intro]
 
     return(
@@ -51,7 +47,7 @@ output$mainPanel <- renderUI( {
       list(
         h3("Teil 2a ist nun fertig. Klicken Sie auf 'weiter', um fortzufahren.")
       )
-    ) 
+    )
   }
 })
 
@@ -65,7 +61,7 @@ output$save_results <- renderText({
   }
   # try is used because there is a brief moment in which
   # the if condition is true but input$survey = NULL
-  
+
   # If the user has clicked through all of the survey questions
   # then R saves the results to the survey file.
   if (question_id == Survey_Sections$Teil2a_end_statement) {
@@ -91,7 +87,7 @@ output$save_results <- renderText({
 option_list <- reactive({
   qlist <- Qlist_2a[question_id - Survey_Sections$Teil2a_intro,3:ncol(Qlist_2a)]
   # Remove items from the qlist if the option is empty.
-  # Also, convert the option list to matrix. 
+  # Also, convert the option list to matrix.
   as.matrix(qlist[qlist != ""])
 })
 
@@ -99,7 +95,7 @@ option_list <- reactive({
 # Followed by the question text.
 output$question <- renderText({
   paste0(
-    "Frage ", (question_id - (Survey_Sections$Teil2a_first_question - Survey_Sections$Teil1_last_question - 1)),": ", 
+    "Frage ", (question_id - (Survey_Sections$Teil2a_first_question - Survey_Sections$Teil1_last_question - 1)),": ",
     Qlist_2a[question_id - Survey_Sections$Teil2a_intro, 2]
   )
 })
