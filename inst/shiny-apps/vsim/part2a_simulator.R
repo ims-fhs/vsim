@@ -11,11 +11,7 @@ relevant_questions <- logical(length = 12)
 gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
 gaps_user <- unique(Glist[gaps_user, 3])
 
-if (length(gaps_user[grepl("Belastung", gaps_user)]) > 0 ) {
-  belastungen <- gaps_user[grepl("Belastung", gaps_user)]
-} else {
-  belastungen <- "Aktuell keine Belastungen" 
-}
+belastungen <- rule_identify_belastungen(gaps_user)
 
 if (length(gaps_user[grepl("Unzufrieden", gaps_user) | grepl("Differenz", gaps_user)]) > 0) {
   gaps <- gaps_user[grepl("Unzufrieden", gaps_user) | grepl("Differenz", gaps_user)]
@@ -42,8 +38,8 @@ if(use_measure & problem)
   relevant_questions[c(3,4)] <- TRUE
   Qlist_Teil2a[3, ] <- c(QInputlist_Teil2a[3, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
   Qlist_Teil2a[4, ] <- c(QInputlist_Teil2a[4, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
-} 
-  
+}
+
 #2. Home Office
 use_measure <- any(grepl("Vereinbarkeitstätigkeit Home Office wird angewandt", gaps_user))#oft, selten
 problem <- any(grepl("Belastung durch Flexibilisierung", gaps_user))
