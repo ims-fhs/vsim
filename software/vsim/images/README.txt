@@ -1,1 +1,0 @@
-Dieses Verzeichnis enthält alle für den Betrieb des Simulators nötigen Bilddateien.
