@@ -1,0 +1,85 @@
+---
+title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
+output: html_document
+---
+<h1>
+Auswertung Lebenslage
+</h1>
+
+Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 3 Kategorien eingeteilt:
+
+1. Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln 
+1. Vereinbarkeitstätigkeiten, welche aktuell angewandt werden  
+1. Belastungsfaktoren  
+
+```{r results='asis', echo=FALSE}
+if (sqrt(2)> 2) {
+  cat("![Caption laus](warning.png){width=30%}")
+} else {
+  cat("![Caption maus](aorning.png){width=30%}")
+}
+```
+
+
+```{r setup, include=FALSE}
+library(shiny)
+knitr::opts_chunk$set(echo = FALSE)
+
+display_warning <- function() {
+knitr::asis_output(htmltools::htmlPreserve("
+<div>
+    <div><img src='warning.png' alt='some_text' style='width:60px;height:60px;'>
+    </div>
+</div>
+"))
+}
+```
+
+```{r load}
+Alist <- result_coll$Alist
+Glist <- read.csv('data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
+```
+
+```{r gaps}
+gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
+df <- as.data.frame(Glist[,3][gaps_user], stringsAsFactors = FALSE)
+names(df) <- "Gaps"
+df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
+names(df) <- "Gaps"
+```
+
+
+
+## Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln
+```{r differences}
+rows <- grepl("Differenz", df$Gaps) | grepl("Unzufrieden", df$Gaps)
+if (any(rows)) {
+  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+} else {
+  kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+}
+
+if (any(rows)) {
+  display_warning()
+}
+```
+
+## Aktuell angewandte Vereinbarkeitstätigkeiten
+```{r usemeasures}
+rows <- grepl("Vereinbarkeitstätigkeit", df$Gaps)
+if (any(rows)) {
+  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+} else {
+  kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+}
+```
+
+## Belastungsfaktoren
+```{r belastung}
+rows <- grepl("Belastung", df$Gaps)
+if (any(rows)) {
+  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+} else {
+  kable(as.data.frame("Aktuell keine Belastungsfaktoren"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+}
+```

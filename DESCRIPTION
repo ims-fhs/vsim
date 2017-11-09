@@ -1,0 +1,11 @@
+Package: vsim
+Type: Package
+Title: Vereinbarkeits Simulator (vsim)
+Version: 0.1.0
+Author: Fabian Leuthold
+Maintainer: <fabian.leuthold@fhsg.ch>
+Description: Applikation für den Vereinbarkeits Simulator
+License: What license is it under?
+Encoding: UTF-8
+Suggests: testthat, shiny
+LazyData: true
