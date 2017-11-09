@@ -131,64 +131,82 @@ function(input, output, session) {
       output$progressbar <- renderUI({
         if (question_id <= Survey_Sections$Teil1_end_statement) {
             tagList(
-                img(src="icon_lebenslage.png", width="50%"),
+                div(style=paste0("background-color:", col_lebenslage()),
+                br(),
+                div(align="center",
+                img(src="icon_lebenslage.png", width="50%")),
                 h4("Teil 1:"),
                 h4("Lebenslage"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
                   paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                )))
+                ))))
         } else if (question_id <= Survey_Sections$Teil1_summary) {
             tagList(
-                img(src="icon_lebenslage_auswertung.png", width="50%"),
+                div(style=paste0("background-color:", col_lebenslage()),
+                br(),
+                div(align="center",
+                img(src="icon_lebenslage_auswertung.png", width="50%")),
                 h4("Teil 1:"),
                 h4("Lebenslage"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
                   paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                )))
+                ))))
         } else if (question_id <= Survey_Sections$Teil2a_end_statement) {
           tagList(
-                img(src="icon_vereinbarung.png", width="50%"),
+                div(style=paste0("background-color:", col_vereinbarung()),
+                br(),
+                div(align="center",
+                img(src="icon_vereinbarung.png", width="50%")),
                 h4("Teil 2a:"),
                 h4("Vereinbarkeits-Tätigkeiten"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
                   paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                )))
+                ))))
         } else if (question_id <= Survey_Sections$Teil2b_end_statement) {
           tagList(
-                img(src="icon_zeitverwendung.png", width="50%"),
+                div(style=paste0("background-color:", col_zeitverwendung()),
+                br(),
+                div(align="center",
+                img(src="icon_zeitverwendung.png", width="50%")),
                 h4("Teil 2b:"),
                 h4("Anpassung Zeitverwendung"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
                   paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                )))
+                ))))
         } else if (question_id <= Survey_Sections$Teil2c_end_statement) {
           tagList(
-                img(src="icon_unterstuetzung_und_entlastung.png", width="50%"),
+                div(style=paste0("background-color:", col_unterstuetzung_und_entlastung()),
+                br(),
+                div(align="center",
+                img(src="icon_unterstuetzung_und_entlastung.png", width="50%")),
                 h4("Teil 2c:"),
                 h4("Ressourcen & Entlastung"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
                   paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                )))
+                ))))
         } else {
           tagList(
-                img(src="icon_plan.png", width="50%"),
+                div(style=paste0("background-color:", col_plan()),
+                br(),
+                div(align="center",
+                img(src="icon_plan.png", width="50%")),
                 h4("Teil 3:"),
                 h4("Auswertung"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
                   paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                )))
+                ))))
         }
       })
   }
