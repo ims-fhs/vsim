@@ -30,7 +30,7 @@ output$mainPanel <- renderUI({
     selected <- results[question_id]
     selected <- ifelse(length(selected) == 0, "weiss nicht", selected)
     return(list(
-        shiny::img(src = "warning.png", width="20%", height="20%"),
+        shiny::img(src = "icon_achtung.png", width="20%", height="20%"),
         h4(textOutput("question")),
         h4(
         radioButtons("survey", "", c(option_list(), "weiss nicht"), selected = selected))

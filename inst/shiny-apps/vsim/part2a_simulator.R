@@ -3,7 +3,8 @@
 Alist <- result_coll$Alist
 Glist <- read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
 QInputlist_Teil2a <- read.csv('./data/QInputlist_Teil2a.csv', sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
-Qlist_Teil2a <- data.frame(Qnum = integer(),Question = character(), Answer1 = character(),Answer2 = character(),Answer3 = character(),Answer4 = character(),Answer5 = character(),stringsAsFactors=FALSE)
+Qlist_Teil2a <- data.frame(Qnum = integer(),Question = character(), Massnahme = character(), Answer1 = character(),Answer2 = character(),Answer3 = character(),Answer4 = character(),Answer5 = character(),stringsAsFactors=FALSE)
+
 
 relevant_questions <- logical(length = 12)
 
@@ -23,16 +24,16 @@ problem <- any(grepl("Belastung durch Switchen", gaps_user))
 if(!use_measure & !problem)
 {#Gap
   relevant_questions[c(1,2)] <- TRUE
-  Qlist_Teil2a[1, ] <- c(QInputlist_Teil2a[1, c(1,2)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
-  Qlist_Teil2a[2, ] <- c(QInputlist_Teil2a[2, c(1,2)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[1, ] <- c(QInputlist_Teil2a[1, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[2, ] <- c(QInputlist_Teil2a[2, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
 }
 
 #Problem Switchen
 if(use_measure & problem)
 {#Gap
   relevant_questions[c(3,4)] <- TRUE
-  Qlist_Teil2a[3, ] <- c(QInputlist_Teil2a[3, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
-  Qlist_Teil2a[4, ] <- c(QInputlist_Teil2a[4, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[3, ] <- c(QInputlist_Teil2a[3, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[4, ] <- c(QInputlist_Teil2a[4, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
 }
 
 #2. Home Office
@@ -43,8 +44,8 @@ problem <- any(grepl("Belastung durch Flexibilisierung", gaps_user))
 if(!use_measure & !problem)
 {#Gap
   relevant_questions[c(5,6)] <- TRUE
-  Qlist_Teil2a[5, ] <- c(QInputlist_Teil2a[5, c(1,2)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
-  Qlist_Teil2a[6, ] <- c(QInputlist_Teil2a[6, c(1,2)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[5, ] <- c(QInputlist_Teil2a[5, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[6, ] <- c(QInputlist_Teil2a[6, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
 }
 
 
@@ -52,8 +53,8 @@ if(!use_measure & !problem)
 if(use_measure & problem)
 {#Gap
     relevant_questions[c(7,8)] <- TRUE
-    Qlist_Teil2a[7, ] <- c(QInputlist_Teil2a[7, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
-    Qlist_Teil2a[8, ] <- c(QInputlist_Teil2a[8, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
+    Qlist_Teil2a[7, ] <- c(QInputlist_Teil2a[7, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
+    Qlist_Teil2a[8, ] <- c(QInputlist_Teil2a[8, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
 }
 
 
@@ -65,16 +66,16 @@ problem <- any(grepl("Belastung durch Flexibilisierung", gaps_user))
 if(!use_measure & !problem)
 {#Gap
   relevant_questions[c(9,10)] <- TRUE
-  Qlist_Teil2a[9, ] <- c(QInputlist_Teil2a[9, c(1,2)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
-  Qlist_Teil2a[10, ] <- c(QInputlist_Teil2a[10, c(1,2)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[9, ] <- c(QInputlist_Teil2a[9, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[10, ] <- c(QInputlist_Teil2a[10, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
 }
 
 #Problem flexible Zeiten
 if(use_measure & problem)
 {#Gap
   relevant_questions[c(11,12)] <- TRUE
-  Qlist_Teil2a[11, ] <- c(QInputlist_Teil2a[11, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
-  Qlist_Teil2a[12, ] <- c(QInputlist_Teil2a[12, c(1,2)], c(belastungen), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[11, ] <- c(QInputlist_Teil2a[11, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
+  Qlist_Teil2a[12, ] <- c(QInputlist_Teil2a[12, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
 }
 
 Qlist_Teil2a <- Qlist_Teil2a[relevant_questions, ]
