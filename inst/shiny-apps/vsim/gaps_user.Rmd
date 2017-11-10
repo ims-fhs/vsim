@@ -53,7 +53,7 @@ names(df) <- "Gaps"
 <h2 class="nextsteps">Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln</h2>
 
 ```{r differences}
-rows <- grepl("Differenz", df$Gaps) | grepl("Unzufrieden", df$Gaps)
+rows <- rule_identify_unzufriedenheiten(df$Gaps)
 if (any(rows)) {
   kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover")) %>% row_spec(1, background = "#ffeeee")
 } else {
@@ -73,7 +73,7 @@ if (any(rows)) {
 
 ## Belastungsfaktoren
 ```{r belastung}
-rows <- grepl("Belastung", df$Gaps)
+rows <- rule_identify_belastungen(df$Gaps)
 if (any(rows)) {
   kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
 } else {
