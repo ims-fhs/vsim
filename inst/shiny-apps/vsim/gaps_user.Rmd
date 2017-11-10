@@ -7,22 +7,12 @@ output: html_document:
 Auswertung Lebenslage
 </h1>
 
-<style>
-div.blue pre { background-color:#ffeeee; }
-.nextsteps {
-  color: blue;
-}
-</style>
 
 ```{r, echo=FALSE, results='asis'}
-if (FALSE){
-cat("<div style='background-color:#ffeeee'>")
-} else {
-cat("<div style='background-color:#eeeeff'>")
-}
+rmd_display_icon(icon = icon_belastung, align = "right", width = "10%", height = "10%")
 ```
+
 Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 3 Kategorien eingeteilt:
-</div>
 
 1. Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln 
 1. Vereinbarkeitstätigkeiten, welche aktuell angewandt werden  

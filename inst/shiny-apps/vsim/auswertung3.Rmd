@@ -12,26 +12,10 @@ Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslag
 1. Vereinbarkeitstätigkeiten, welche aktuell angewandt werden  
 1. Belastungsfaktoren  
 
-```{r results='asis', echo=FALSE}
-# example for conditional image
-if (sqrt(2)< 2) {
-  cat("![Caption laus](icon_achtung.png){width=30%}")
-}
-```
-
 
 ```{r setup, include=FALSE}
 library(shiny)
 knitr::opts_chunk$set(echo = FALSE)
-
-display_warning <- function() {
-knitr::asis_output(htmltools::htmlPreserve("
-<div>
-    <div><img src='icon_achtung.png' alt='some_text' style='width:60px;height:60px;'>
-    </div>
-</div>
-"))
-}
 ```
 
 ```{r load}
@@ -47,8 +31,6 @@ df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 ```
 
-
-
 ## Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln
 ```{r differences}
 rows <- grepl("Differenz", df$Gaps) | grepl("Unzufrieden", df$Gaps)
@@ -57,9 +39,12 @@ if (any(rows)) {
 } else {
   kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
 }
+```
 
+```{r show=FALSE, results='asis'}
+# show conditional warning image
 if (any(rows)) {
-  display_warning()
+  rmd_display_icon(icon = icon_achtung, align = "center", width = "10%", height = "10%")
 }
 ```
 

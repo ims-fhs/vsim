@@ -102,9 +102,7 @@ output$save_results <- renderText({
   if (question_id == Survey_Sections$Teil2b_end_statement) {
     Alist <- Qlist_2b
     Alist[,3] <- results2b
-    # BUG: <-.data.frame: new columns would leave holes after existing columns
-    # pattern of occurrence not yet determined. :/
-    Alist[,4] <- kommentare2b
+    Alist[,4] <- ifelse(is.null(kommentare2b) || is.na(kommentare2b), "", kommentare2b)
     names(Alist)[3] <- "Antwort"
     names(Alist)[4] <- "Kommentar"
     result_coll$Alist_2b <<- Alist
@@ -116,21 +114,3 @@ output$save_results <- renderText({
   # of this funciton.
   ""
 })
-
-# # The option list is a reactive list of elements that
-# # updates itself when the click counter is advanced.
-# option_list <- reactive({
-#   qlist <- Qlist_2b[question_id - Survey_Sections$Teil2b_intro,3:ncol(Qlist_2b)]
-#   # Remove items from the qlist if the option is empty.
-#   # Also, convert the option list to matrix.
-#   as.matrix(qlist[qlist != ""])
-# })
-#
-# # This function show the question number (Q:)
-# # Followed by the question text.
-# output$question <- renderText({
-#   paste0(
-#     "Frage ", (question_id - (Survey_Sections$Teil2b_first_question - Survey_Sections$Teil2a_last_question - 1)),": ",
-#     Qlist_2b[question_id - Survey_Sections$Teil2b_intro, 2]
-#   )
-# })

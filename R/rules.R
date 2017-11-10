@@ -31,7 +31,6 @@ rule_extract_unzufriedenheiten <- function(gaps) {
   return(unzufriedenheiten)
 }
 
-
 rule_identify_belastungen <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
   gaps <- grepl("Belastung", gaps)
