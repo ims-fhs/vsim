@@ -1,4 +1,4 @@
-#' rule_identify_belastungen: Identifiziert die aktuellen Belastungen
+#' rule_identify_belastungen: Extrahiert die aktuellen Belastungen
 #'
 #' @param gaps A character vector
 #'
@@ -20,6 +20,14 @@ rule_extract_belastungen <- function(gaps) {
   return(belastungen)
 }
 
+#' rule_extract_unzufriedenheiten: Extrahiert die aktuellen Unzufriedenheiten
+#'
+#' @param gaps A character vector
+#'
+#' @return belastungen A character vector
+#' @export
+#'
+#' @examples rule_extract_unzufriedenheiten(c("Differenz im Haus", "Unzufrieden mit Laus"))
 rule_extract_unzufriedenheiten <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
 
@@ -31,6 +39,15 @@ rule_extract_unzufriedenheiten <- function(gaps) {
   return(unzufriedenheiten)
 }
 
+#' rule_identify_belastungen: Identifiziert, ob Belastungen vorhanden sind und
+#' gibt einen logischen vektor zurück.
+#'
+#' @param gaps A character vector
+#'
+#' @return logical vector
+#' @export
+#'
+#' @examples rule_identify_belastungen(c("nix", "eine Belastung"))
 rule_identify_belastungen <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
   gaps <- grepl("Belastung", gaps)
@@ -38,6 +55,15 @@ rule_identify_belastungen <- function(gaps) {
   return(gaps)
 }
 
+#' rule_identify_unzufriedenheiten: Identifiziert, ob Unzufriedenheiten vorhanden
+#' sind und gibt einen logischen vektor zurück.
+#'
+#' @param gaps A character vector
+#'
+#' @return logical vector
+#' @export
+#'
+#' @examples rule_identify_unzufriedenheiten(c("nix", "Unzufrieden mit Laus"))
 rule_identify_unzufriedenheiten <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
   gaps <- grepl("Unzufrieden", gaps) | grepl("Differenz", gaps)
@@ -45,6 +71,15 @@ rule_identify_unzufriedenheiten <- function(gaps) {
   return(gaps)
 }
 
+#' rule_identify_vereinbarkeitstaetigkeiten: Identifiziert, ob Vereinbarkeitstaetigkeiten
+#' vorhanden genutzt werden und gibt einen logischen vektor zurück.
+#'
+#' @param gaps A character vector
+#'
+#' @return logical vector
+#' @export
+#'
+#' @examples rule_identify_vereinbarkeitstaetigkeiten(c("nix", "Vereinbarkeitstätigkeit mit Maus"))
 rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
   gaps <- grepl("Vereinbarkeitstätigkeit", gaps)
@@ -52,3 +87,68 @@ rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
   return(gaps)
 }
 
+#' rule_identify_situation_switchen: Identifiziert abhängig vom Parameter situation,
+#' ob switchen Chancen haben könnte oder bereits Probleme bietet und gibt einen
+#' logischen skalaren wert zurück.
+#'
+#' @param gaps A character vector
+#'
+#' @return logical scalar value
+#' @export
+#'
+#' @examples rule_identify_situation_switchen(c("Alles im Grünen", "nix"), "chance")
+rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
+  assertthat::assert_that(situation %in% c("chance", "problem"))
+  use_measure <- any(grepl("Vereinbarkeitstätigkeit Switchen wird angewandt", gaps))#oft, selten
+  problem <- any(grepl("Belastung durch Switchen", gaps))
+  if (situation == "chance") {
+    retval <- !use_measure & !problem
+  } else {
+    retval <- use_measure & problem
+  }
+  return(retval)
+}
+
+#' rule_identify_situation_homeoffice: Identifiziert abhängig vom Parameter situation,
+#' ob Homeoffice Chancen haben könnte oder bereits Probleme bietet und gibt einen
+#' logischen skalaren wert zurück.
+#'
+#' @param gaps A character vector
+#'
+#' @return logical scalar value
+#' @export
+#'
+#' @examples rule_identify_situation_homeoffice(c("Belastung durch Flexibilisierung", "Vereinbarkeitstätigkeit Home Office wird angewandt"), "problem")
+rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
+  assertthat::assert_that(situation %in% c("chance", "problem"))
+  use_measure <- any(grepl("Vereinbarkeitstätigkeit Home Office wird angewandt", gaps))#oft, selten
+  problem <- any(grepl("Belastung durch Flexibilisierung", gaps))
+  if (situation == "chance") {
+    retval <- !use_measure & !problem
+  } else {
+    retval <- use_measure & problem
+  }
+  return(retval)
+}
+
+#' rule_identify_situation_flexibilisierung: Identifiziert abhängig vom Parameter situation,
+#' ob Flexibilisierung Chancen haben könnte oder bereits Probleme bietet und
+#' gibt einen logischen skalaren Wert zurück.
+#'
+#' @param gaps A character vector
+#'
+#' @return logical scalar value
+#' @export
+#'
+#' @examples rule_identify_situation_flexibilisierung(c("alles im Grünen", "nix"), "chance")
+rule_identify_situation_flexibilisierung <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
+  assertthat::assert_that(situation %in% c("chance", "problem"))
+  use_measure <- any(grepl("Vereinbarkeitstätigkeit Flexible Arbeitszeiten wird angewandt", gaps))#oft, selten
+  problem <- any(grepl("Belastung durch Flexibilisierung", gaps))
+  if (situation == "chance") {
+    retval <- !use_measure & !problem
+  } else {
+    retval <- use_measure & problem
+  }
+  return(retval)
+}

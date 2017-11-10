@@ -17,11 +17,9 @@ unzufriedenheiten <- rule_extract_unzufriedenheiten(gaps_user)
 
 #Sensibilisierungstypen für Fragen Teil2a bestimmen;Typen = Problematik; nichts; Chance
 #Massnahme 1: Switchen
-use_measure <- any(grepl("Vereinbarkeitstätigkeit Switchen wird angewandt", gaps_user))#oft, selten
-problem <- any(grepl("Belastung durch Switchen", gaps_user))
 
 #Chancen SWITCHEN
-if(!use_measure & !problem)
+if(rule_identify_situation_switchen(gaps_user, "chance"))
 {#Gap
   relevant_questions[c(1,2)] <- TRUE
   Qlist_Teil2a[1, ] <- c(QInputlist_Teil2a[1, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
@@ -29,7 +27,7 @@ if(!use_measure & !problem)
 }
 
 #Problem Switchen
-if(use_measure & problem)
+if(rule_identify_situation_switchen(gaps_user, "problem"))
 {#Gap
   relevant_questions[c(3,4)] <- TRUE
   Qlist_Teil2a[3, ] <- c(QInputlist_Teil2a[3, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
@@ -37,33 +35,27 @@ if(use_measure & problem)
 }
 
 #2. Home Office
-use_measure <- any(grepl("Vereinbarkeitstätigkeit Home Office wird angewandt", gaps_user))#oft, selten
-problem <- any(grepl("Belastung durch Flexibilisierung", gaps_user))
 
 #Chancen HOME OFFICE
-if(!use_measure & !problem)
+if(rule_identify_situation_homeoffice(gaps_user, "chance"))
 {#Gap
   relevant_questions[c(5,6)] <- TRUE
   Qlist_Teil2a[5, ] <- c(QInputlist_Teil2a[5, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
   Qlist_Teil2a[6, ] <- c(QInputlist_Teil2a[6, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
 }
 
-
 #Problem HOME OFFICE
-if(use_measure & problem)
+if(rule_identify_situation_homeoffice(gaps_user, "problem"))
 {#Gap
     relevant_questions[c(7,8)] <- TRUE
     Qlist_Teil2a[7, ] <- c(QInputlist_Teil2a[7, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
     Qlist_Teil2a[8, ] <- c(QInputlist_Teil2a[8, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]
 }
 
-
 #3. Flexible Zeiten
-use_measure <- any(grepl("Vereinbarkeitstätigkeit Flexible Arbeitszeiten wird angewandt", gaps_user))#oft, selten
-problem <- any(grepl("Belastung durch Flexibilisierung", gaps_user))
 
 #Chancen flexible Zeiten
-if(!use_measure & !problem)
+if(rule_identify_situation_flexibilisierung(gaps_user, "chance"))
 {#Gap
   relevant_questions[c(9,10)] <- TRUE
   Qlist_Teil2a[9, ] <- c(QInputlist_Teil2a[9, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:7]
@@ -71,7 +63,7 @@ if(!use_measure & !problem)
 }
 
 #Problem flexible Zeiten
-if(use_measure & problem)
+if(rule_identify_situation_flexibilisierung(gaps_user, "problem"))
 {#Gap
   relevant_questions[c(11,12)] <- TRUE
   Qlist_Teil2a[11, ] <- c(QInputlist_Teil2a[11, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:7]

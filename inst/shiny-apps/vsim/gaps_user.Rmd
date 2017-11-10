@@ -3,14 +3,15 @@ title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
 output: html_document:
           css: styles.css
 ---
-<h1>
+<table width="100%">
+<tr><td width="*"><h1>
 Auswertung Lebenslage
-</h1>
-
-
+</h1></td><td align="right">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_belastung, align = "right", width = "10%", height = "10%")
+rmd_display_icon(icon = icon_belastung, align = "right", width = "20%", height = "20%")
 ```
+</td></tr>
+</table>
 
 Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 3 Kategorien eingeteilt:
 
