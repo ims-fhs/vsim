@@ -1,11 +1,11 @@
 # Dynamic UI is the interface which changes as the survey
-# progresses.  
+# progresses.
 
-# this function is called in order to prepare variables for the next questionary 
+# this function is called in order to prepare variables for the next questionary
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
   calc_survey_question_ids()
-  
+
   # ****** Data part 2c
   if (is.null(results2c)) {
     results2c <<- rep("", nrow(Qlist_2c))
@@ -19,7 +19,7 @@ questionaryPostProcessing <- function() {
 # This renderUI function holds the primary actions of the
 # survey area.
 output$mainPanel <- renderUI( {
-  # Initially it shows a welcome message. 
+  # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil2b_intro) {
     return(
       list(
@@ -78,8 +78,8 @@ output$mainPanel <- renderUI( {
       list(
         h3("Teil 2b ist nun fertig. Klicken Sie auf 'weiter', um zum letzten Teil der Befragung zu gelangen.")
       )
-    ) 
-  } 
+    )
+  }
 })
 
 
@@ -87,28 +87,30 @@ output$mainPanel <- renderUI( {
 # saving the results of the survey for this individual.
 output$save_results <- renderText({
   if (question_id >= Survey_Sections$Teil2b_first_question & question_id <= Survey_Sections$Teil2b_last_question) {
-    results2b <<- c(input$select1, 
-                 input$select2, 
-                 input$select3, 
-                 input$select4, 
+    results2b <<- c(input$select1,
+                 input$select2,
+                 input$select3,
+                 input$select4,
                  input$select5)
-    kommentare2b <<- c(input$kommentar1, 
-                    input$kommentar2, 
-                    input$kommentar3, 
-                    input$kommentar4, 
+    kommentare2b <<- c(input$kommentar1,
+                    input$kommentar2,
+                    input$kommentar3,
+                    input$kommentar4,
                     input$kommentar5)
   }
-  
+
   if (question_id == Survey_Sections$Teil2b_end_statement) {
     Alist <- Qlist_2b
     Alist[,3] <- results2b
+    # BUG: <-.data.frame: new columns would leave holes after existing columns
+    # pattern of occurrence not yet determined. :/
     Alist[,4] <- kommentare2b
     names(Alist)[3] <- "Antwort"
     names(Alist)[4] <- "Kommentar"
     result_coll$Alist_2b <<- Alist
     questionaryPostProcessing();
   }
-  
+
   # Because there has to be a UI object to call this
   # function I set up render text that distplays the content
   # of this funciton.
@@ -120,15 +122,15 @@ output$save_results <- renderText({
 # option_list <- reactive({
 #   qlist <- Qlist_2b[question_id - Survey_Sections$Teil2b_intro,3:ncol(Qlist_2b)]
 #   # Remove items from the qlist if the option is empty.
-#   # Also, convert the option list to matrix. 
+#   # Also, convert the option list to matrix.
 #   as.matrix(qlist[qlist != ""])
 # })
-# 
+#
 # # This function show the question number (Q:)
 # # Followed by the question text.
 # output$question <- renderText({
 #   paste0(
-#     "Frage ", (question_id - (Survey_Sections$Teil2b_first_question - Survey_Sections$Teil2a_last_question - 1)),": ", 
+#     "Frage ", (question_id - (Survey_Sections$Teil2b_first_question - Survey_Sections$Teil2a_last_question - 1)),": ",
 #     Qlist_2b[question_id - Survey_Sections$Teil2b_intro, 2]
 #   )
 # })

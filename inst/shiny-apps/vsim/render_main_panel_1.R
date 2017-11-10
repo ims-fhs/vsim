@@ -27,7 +27,7 @@ output$mainPanel <- renderUI({
     # Once the next button has been clicked once we see each question
     # of the survey.
     # memorize last answer to set answer correct for redisplaying the question
-    selected <- get_selected_options(results[question_id])
+    selected <- results[question_id]
     selected <- ifelse(length(selected) == 0, "weiss nicht", selected)
     return(list(
         shiny::img(src = "warning.png", width="20%", height="20%"),

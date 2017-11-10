@@ -18,8 +18,7 @@ output$mainPanel <- renderUI( {
       )
     )
   } else if (question_id > Survey_Sections$Teil2c_intro & question_id <= Survey_Sections$Teil2c_last_question) {
-    selected <- strsplit(results2c[question_id - Survey_Sections$Teil2c_intro], '\n')[[1]]
-    selected <- ifelse(length(selected) == 0, "weiss nicht", selected)
+    selected <- get_selected_radio_value(results2c[question_id - Survey_Sections$Teil2c_intro], "weiss nicht")
     return(
       list(
         h4(textOutput("question")),

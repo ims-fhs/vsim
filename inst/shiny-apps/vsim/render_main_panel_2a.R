@@ -31,8 +31,7 @@ output$mainPanel <- renderUI( {
     # of the survey.
 
     # memorize last answer to set answer correct for redisplaying the question
-    selected <- get_selected_options(results2[question_id - Survey_Sections$Teil2a_intro])
-
+    selected <- get_selected_checkbox_values(results2[question_id - Survey_Sections$Teil2a_intro])
     kommentar <- kommentare2[question_id - Survey_Sections$Teil2a_intro]
 
     return(
