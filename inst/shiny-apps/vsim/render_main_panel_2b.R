@@ -40,35 +40,35 @@ output$mainPanel <- renderUI( {
         fluidRow(
           column(2, h4("für den Job (Erwerbsarbeit)")),
           column(4, h4(relevant_gaps[1])),
-          column(4, h4(selectInput('select1', '', choices = choices, selected = ifelse(length(results2b[1])>0, results2b[1], "gleich viel wie bisher")))),
+          column(4, h4(selectInput('select1', '', choices = choices, selected = get_selected_value(results2b[1], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar1", "", value = ifelse(length(kommentare2b[1])>0, kommentare2b[1], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für Hausarbeiten")),
           column(4, h4(relevant_gaps[2])),
-          column(4, h4(selectInput('select2', '', choices = choices, selected = ifelse(length(results2b[2])>0, results2b[1], "gleich viel wie bisher")))),
+          column(4, h4(selectInput('select2', '', choices = choices, selected = get_selected_value(results2b[2], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar2", "", value = ifelse(length(kommentare2b[2])>0, kommentare2b[2], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2,h4("für Kinderbetreuung")),
           column(4, h4(relevant_gaps[3])),
-          column(4, h4(selectInput('select3', '', choices = choices, selected = ifelse(length(results2b[3])>0, results2b[3], "gleich viel wie bisher")))),
+          column(4, h4(selectInput('select3', '', choices = choices, selected = get_selected_value(results2b[3], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar3", "", value = ifelse(length(kommentare2b[3])>0, kommentare2b[3], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für soziale Kontakte")),
           column(4, h4(relevant_gaps[4])),
-          column(4, h4(selectInput('select4', '', choices = choices, selected = ifelse(length(results2b[4])>0, results2b[4], "gleich viel wie bisher")))),
+          column(4, h4(selectInput('select4', '', choices = choices, selected = get_selected_value(results2b[4], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar4", "", value = ifelse(length(kommentare2b[4])>0, kommentare2b[4], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für Sie selbst")),
           column(4, h4(relevant_gaps[5])),
-          column(4, h4(selectInput('select5', '', choices = choices, selected = ifelse(length(results2b[5])>0, results2b[5], "gleich viel wie bisher")))),
+          column(4, h4(selectInput('select5', '', choices = choices, selected = get_selected_value(results2b[5], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar5", "", value = ifelse(length(kommentare2b[5])>0, kommentare2b[5], ""))))
         )
       )

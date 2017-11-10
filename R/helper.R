@@ -29,34 +29,34 @@ testthat::test_that("get_selected_checkbox_values works", {
   testthat::expect_equal(result, expected_result)
 })
 
-#' determines the selected radio value based on the current radio-value and a
-#' given default value.
+#' determines the selected radio or select-box value based on the current
+#' radio- or selectbox-value and a given default value.
 #'
-#' @param selected_radio_value
+#' @param selected_value
 #' @param default_value
 #'
 #' @return
 #' @export
 #'
-#' @examples
-get_selected_radio_value <- function(selected_radio_value, default_value = "") {
-  cond_empty <- is.null(selected_radio_value) || is.na(selected_radio_value) || selected_radio_value == ""
-  retval <- ifelse(cond_empty, default_value, selected_radio_value)
+#' @examples get_selected_value("", "weiss nicht")
+get_selected_value <- function(selected_value, default_value = "") {
+  cond_empty <- is.null(selected_value) || is.na(selected_value) || selected_value == ""
+  retval <- ifelse(cond_empty, default_value, selected_value)
   return(retval)
 }
 
-testthat::test_that("get_selected_radio_value works", {
+testthat::test_that("get_selected_value works", {
   # 1) test empty radio selection / check if default value works
   sample <- ""
   default <- "default"
   expected <- default
-  result <- get_selected_radio_value(sample, default)
+  result <- get_selected_value(sample, default)
   testthat::expect_equal(result, expected)
 
   # 2) test given radio selection / check if default value works
   sample <- "Nein, das hat keinen Einfluss auf die Umsetzung des Plans"
   default <- "weiss nicht"
   expected <- sample
-  result <- get_selected_radio_value(sample, default)
+  result <- get_selected_value(sample, default)
   testthat::expect_equal(result, expected)
 })

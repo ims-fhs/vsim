@@ -45,3 +45,11 @@ rule_identify_unzufriedenheiten <- function(gaps) {
   assertthat::assert_that(is.logical(gaps))
   return(gaps)
 }
+
+rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
+  assertthat::assert_that(is.character(gaps))
+  gaps <- grepl("Vereinbarkeitstätigkeit", gaps)
+  assertthat::assert_that(is.logical(gaps))
+  return(gaps)
+}
+

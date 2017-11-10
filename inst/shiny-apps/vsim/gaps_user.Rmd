@@ -7,7 +7,6 @@ output: html_document:
 Auswertung Lebenslage
 </h1>
 
-
 <style>
 div.blue pre { background-color:#ffeeee; }
 .nextsteps {
@@ -44,39 +43,24 @@ df <- as.data.frame(Glist[,3][gaps_user], stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
 names(df) <- "Gaps"
-# DT::datatable(df, rownames = F, colnames = "", options = list(dom='t',ordering=F, pageLength = 20))
 ```
 
 
 ## Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln
 
-<h2 class="nextsteps">Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln</h2>
-
 ```{r differences}
 rows <- rule_identify_unzufriedenheiten(df$Gaps)
-if (any(rows)) {
-  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover")) %>% row_spec(1, background = "#ffeeee")
-} else {
-  kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover")) %>% row_spec(1, background = "#ffeeee")
-}
+rmd_display_table(df, rows, "Keine Differenzen im Zeithandeln und keine Unzufriedenheiten", color="#ffeeee")
 ```
 
 ## Aktuell angewandte Vereinbarkeitstätigkeiten
 ```{r usemeasures}
-rows <- grepl("Vereinbarkeitstätigkeit", df$Gaps)
-if (any(rows)) {
-  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-} else {
-  kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-}
+rows <- rule_identify_vereinbarkeitstaetigkeiten(df$Gaps)
+rmd_display_table(df, rows, "Keine aktuell angewandten Vereinbarkeitstätigkeiten", color="#ffeeee")
 ```
 
 ## Belastungsfaktoren
 ```{r belastung}
 rows <- rule_identify_belastungen(df$Gaps)
-if (any(rows)) {
-  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-} else {
-  kable(as.data.frame("Aktuell keine Belastungsfaktoren"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-}
+rmd_display_table(df, rows, "Aktuell keine Belastungsfaktoren", color="#ffeeee")
 ```
