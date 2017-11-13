@@ -1,3 +1,15 @@
+rule_extract_gaps <- function(Alist, Glist) {
+  assertthat::assert_that(class(Alist) == "data.frame")
+  assertthat::assert_that(class(Glist) == "data.frame")
+  assertthat::assert_that(nrow(Alist) == nrow(Glist))
+
+  gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
+  gaps_user <- unique(Glist[gaps_user, 3])
+  assertthat::is.string(gaps_user)
+  return(gaps_user)
+}
+
+
 #' rule_extract_belastungen: Extrahiert die aktuellen Belastungen
 #'
 #' @param gaps A character vector
