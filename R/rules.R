@@ -1,13 +1,13 @@
-#' rule_identify_belastungen: Extrahiert die aktuellen Belastungen
+#' rule_extract_belastungen: Extrahiert die aktuellen Belastungen
 #'
 #' @param gaps A character vector
 #'
 #' @return belastungen A character vector
 #' @export
 #'
-#' @examples rule_identify_belastungen(c("nix", "eine Belastung"))
+#' @examples rule_extract_belastungen(c("nix", "eine Belastung"))
 #' # [1] "eine Belastung"
-#' rule_identify_belastungen(c("nix", "eine Belastung"))
+#' rule_extract_belastungen(c("nix", "eine Belastung"))
 #' # [1] "Aktuell keine Belastungen"
 rule_extract_belastungen <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
@@ -101,11 +101,7 @@ rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'cha
   assertthat::assert_that(situation %in% c("chance", "problem"))
   use_measure <- any(grepl("Vereinbarkeitstätigkeit Switchen wird angewandt", gaps))#oft, selten
   problem <- any(grepl("Belastung durch Switchen", gaps))
-  if (situation == "chance") {
-    retval <- !use_measure & !problem
-  } else {
-    retval <- use_measure & problem
-  }
+  retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
 }
 
@@ -123,11 +119,7 @@ rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'c
   assertthat::assert_that(situation %in% c("chance", "problem"))
   use_measure <- any(grepl("Vereinbarkeitstätigkeit Home Office wird angewandt", gaps))#oft, selten
   problem <- any(grepl("Belastung durch Flexibilisierung", gaps))
-  if (situation == "chance") {
-    retval <- !use_measure & !problem
-  } else {
-    retval <- use_measure & problem
-  }
+  retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
 }
 
@@ -145,6 +137,25 @@ rule_identify_situation_flexibilisierung <- function(gaps, situation = stop("One
   assertthat::assert_that(situation %in% c("chance", "problem"))
   use_measure <- any(grepl("Vereinbarkeitstätigkeit Flexible Arbeitszeiten wird angewandt", gaps))#oft, selten
   problem <- any(grepl("Belastung durch Flexibilisierung", gaps))
+  retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
+  return(retval)
+}
+
+
+
+#' rule_identify_chance_or_problem: Identifiziert, ob eine Vereinbarkeitstätigkeit eine Chance bietet, oder, ob
+#' bereits Probleme damit bestehen. Eine Chance besteht dann, wenn die Massnahme nicht angewandt wird und es noch
+#' keine Probleme damit gibt. Ein Problem besteht dann, wenn die Massnahme angewandt wird und es damit Probleme gibt.
+#'
+#' @param use_measure A boolean
+#' @param problem A boolean
+#' @param situation A character, one of 'chance' or 'problem'
+#'
+#' @return retval A boolean
+rule_identify_chance_or_problem <- function(use_measure, problem, situation = stop("One of 'chance', 'problem'")) {
+  assertthat::assert_that(situation %in% c("chance", "problem"))
+  assertthat::assert_that(class(use_measure) == "logical")
+  assertthat::assert_that(class(problem) == "logical")
   if (situation == "chance") {
     retval <- !use_measure & !problem
   } else {
@@ -152,3 +163,4 @@ rule_identify_situation_flexibilisierung <- function(gaps, situation = stop("One
   }
   return(retval)
 }
+

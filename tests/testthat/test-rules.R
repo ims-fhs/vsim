@@ -33,3 +33,28 @@ test_that("rule_identify_unzufriedenheiten", {
   expect_error(rule_identify_unzufriedenheiten(1))
 })
 
+test_that("rule_identify_situation_switchen", {
+  c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung durch Switchen")
+  expect_false(rule_identify_situation_switchen(c(""), "problem"))
+  expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt"), "problem"))
+  expect_true(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung durch Switchen")
+                                                , "problem"))
+  expect_true(rule_identify_situation_switchen(c(""), "chance"))
+  expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt"), "chance"))
+  expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung durch Switchen")
+                                               , "chance"))
+})
+
+
+test_that("rule_identify_chance_or_problem", {
+  expect_error(rule_identify_chance_or_problem(TRUE, TRUE, "Nicht 'chance' oder 'problem'"))
+  expect_is(rule_identify_chance_or_problem(TRUE, TRUE, "chance"), "logical")
+  expect_true(rule_identify_chance_or_problem(FALSE, FALSE, "chance"))
+  expect_false(rule_identify_chance_or_problem(TRUE, FALSE, "chance"))
+  expect_false(rule_identify_chance_or_problem(FALSE, TRUE, "chance"))
+  expect_false(rule_identify_chance_or_problem(TRUE, TRUE, "chance"))
+  expect_false(rule_identify_chance_or_problem(FALSE, FALSE, "problem"))
+  expect_false(rule_identify_chance_or_problem(TRUE, FALSE, "problem"))
+  expect_false(rule_identify_chance_or_problem(FALSE, TRUE, "problem"))
+  expect_true(rule_identify_chance_or_problem(TRUE, TRUE, "problem"))
+})
