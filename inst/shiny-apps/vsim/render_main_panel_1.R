@@ -27,8 +27,8 @@ output$mainPanel <- renderUI({
     # Once the next button has been clicked once we see each question
     # of the survey.
     # memorize last answer to set answer correct for redisplaying the question
-    selected <- results[question_id]
-    selected <- ifelse(length(selected) == 0, "weiss nicht", selected)
+      selected <- results[[question_id]]
+    selected <- ifelse(selected == "", "weiss nicht", selected)
     return(list(
         shiny_display_icon(icon_belastung, width = "10%", height = "10%"),
         h4(textOutput("question")),
