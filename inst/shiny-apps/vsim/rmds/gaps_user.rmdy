@@ -13,11 +13,10 @@ rmd_display_icon(icon = icon_belastung, align = "right", width = "20%", height =
 </td></tr>
 </table>
 
-Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 3 Kategorien eingeteilt:
+Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 2 Kategorien eingeteilt:
 
-1. Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln 
-1. Vereinbarkeitstätigkeiten, welche aktuell angewandt werden  
-1. Belastungsfaktoren  
+1. Belastungsfaktoren
+1. Unzufriedenheiten
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -29,29 +28,20 @@ Glist <- read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE,
 ```
 
 ```{r gaps}
-gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
-df <- as.data.frame(Glist[,3][gaps_user], stringsAsFactors = FALSE)
+gaps_user <- rule_extract_gaps(Alist, Glist)
+df <- as.data.frame(gaps_user, stringsAsFactors = FALSE)
 names(df) <- "Gaps"
-df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
-names(df) <- "Gaps"
-```
-
-
-## Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln
-
-```{r differences}
-rows <- rule_identify_unzufriedenheiten(df$Gaps)
-rmd_display_table(df, rows, "Keine Differenzen im Zeithandeln und keine Unzufriedenheiten", color="#ffeeee")
-```
-
-## Aktuell angewandte Vereinbarkeitstätigkeiten
-```{r usemeasures}
-rows <- rule_identify_vereinbarkeitstaetigkeiten(df$Gaps)
-rmd_display_table(df, rows, "Keine aktuell angewandten Vereinbarkeitstätigkeiten", color="#ffeeee")
 ```
 
 ## Belastungsfaktoren
 ```{r belastung}
 rows <- rule_identify_belastungen(df$Gaps)
 rmd_display_table(df, rows, "Aktuell keine Belastungsfaktoren", color="#ffeeee")
+```
+
+## Unzufriedenheiten
+
+```{r differences}
+rows <- rule_identify_unzufriedenheiten(df$Gaps)
+rmd_display_table(df, rows, "Keine Differenzen im Zeithandeln und keine Unzufriedenheiten", color="#ffeeee")
 ```
