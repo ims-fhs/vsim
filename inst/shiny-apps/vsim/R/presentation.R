@@ -19,7 +19,7 @@ rmd_display_table <- function(df, rows, empty_message, color = "") {
     if (color != "") {
       kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html")%>%
         kable_styling(bootstrap_options = c("striped", "hover")) %>%
-        row_spec(1, background = color)
+        row_spec(1:nrow(as.data.frame(df[rows, ])), background = color, color = "white")
     } else {
       kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html")%>%
         kable_styling(bootstrap_options = c("striped", "hover"))
@@ -28,7 +28,7 @@ rmd_display_table <- function(df, rows, empty_message, color = "") {
     if (color != "") {
       kable(as.data.frame(empty_message),row.names = FALSE, col.names = "", format = "html") %>%
         kable_styling(bootstrap_options = c("striped", "hover")) %>%
-        row_spec(1, background = color)
+        row_spec(1:nrow(as.data.frame(df[rows, ])), background = color, color = "white")
     } else {
       kable(as.data.frame(empty_message),row.names = FALSE, col.names = "", format = "html") %>%
         kable_styling(bootstrap_options = c("striped", "hover"))

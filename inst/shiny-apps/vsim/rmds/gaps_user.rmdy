@@ -36,12 +36,12 @@ names(df) <- "Gaps"
 ## Belastungsfaktoren
 ```{r belastung}
 rows <- rule_identify_belastungen(df$Gaps)
-rmd_display_table(df, rows, "Aktuell keine Belastungsfaktoren", color="#ffeeee")
+rmd_display_table(df, rows, "Aktuell keine Belastungsfaktoren", color = col_belastung())
 ```
 
 ## Unzufriedenheiten
 
 ```{r differences}
 rows <- rule_identify_unzufriedenheiten(df$Gaps)
-rmd_display_table(df, rows, "Keine Differenzen im Zeithandeln und keine Unzufriedenheiten", color="#ffeeee")
+rmd_display_table(df, rows, "Keine Differenzen im Zeithandeln und keine Unzufriedenheiten", color = col_unzufriedenheit())
 ```
