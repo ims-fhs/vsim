@@ -5,6 +5,12 @@ library(kableExtra)
 
 # define encoding settings
 file_encoding <- getOption("shiny.site.encoding", default = "UTF-8")
+# source R scripts
+source("R/colors.R", encoding = file_encoding, local = TRUE)
+source("R/helper.R", encoding = file_encoding, local = TRUE)
+source("R/icons.R", encoding = file_encoding, local = TRUE)
+source("R/presentation.R", encoding = file_encoding, local = TRUE)
+source("R/rules.R", encoding = file_encoding, local = TRUE)
 
 # read the survey questions
 Qlist_1 <- read.csv("data/Qlist_Teil1.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)

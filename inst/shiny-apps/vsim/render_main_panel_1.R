@@ -40,7 +40,7 @@ output$mainPanel <- renderUI({
         h3("Teil 1 ist nun fertig. Klicken Sie auf 'weiter', um den  Teil 1 auszuwerten.")
     ))
   } else if (question_id == Survey_Sections$Teil1_summary) {
-    a <- inclRmd("gaps_user.Rmd")
+    a <- inclRmd("rmds/gaps_user.rmdy")
     output$mainPanel <- renderUI(HTML(a))
     questionaryPostProcessing();
   }
