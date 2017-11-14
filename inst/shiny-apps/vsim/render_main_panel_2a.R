@@ -84,7 +84,7 @@ output$save_results <- renderText({
 # The option list is a reactive list of elements that
 # updates itself when the click counter is advanced.
 option_list <- reactive({
-  qlist <- Qlist_2a[question_id - Survey_Sections$Teil2a_intro,3:ncol(Qlist_2a)]
+  qlist <- Qlist_2a[question_id - Survey_Sections$Teil2a_intro,4:ncol(Qlist_2a)]
   # Remove items from the qlist if the option is empty.
   # Also, convert the option list to matrix.
   as.matrix(qlist[qlist != ""])
