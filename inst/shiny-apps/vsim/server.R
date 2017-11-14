@@ -10,7 +10,7 @@ file_encoding <- getOption("shiny.site.encoding", default = "UTF-8")
 Qlist_1 <- read.csv("data/Qlist_Teil1.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
 Qlist_1[is.na(Qlist_1)] <- ""
 
-Qlist_2b <- read.csv("data/Qinputlist_Teil2b.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
+Qlist_2b <- read.csv("data/QInputlist_Teil2b.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
 Qlist_2b[is.na(Qlist_2b)] <- ""
 
 Qlist_2c <- read.csv("data/Qlist_Teil2c.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
