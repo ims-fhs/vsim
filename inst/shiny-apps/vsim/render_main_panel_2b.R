@@ -23,7 +23,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2b_intro) {
     return(
       list(
-        h3("Willkommen zum Vereinbarkeitssimulator - Teil 2b. In diesem Teil geht es darum, Anpassungen an der Zeitverwendung vorzunehmen.")
+        h3("")
       )
     )
   } else if (question_id == Survey_Sections$Teil2b_first_question) {
@@ -76,7 +76,7 @@ output$mainPanel <- renderUI( {
   } else if (question_id == Survey_Sections$Teil2b_end_statement) {
     return(
       list(
-        h3("Teil 2b ist nun fertig. Klicken Sie auf 'weiter', um zum letzten Teil der Befragung zu gelangen.")
+        h3("Die Planung der Zeitverwendung ist nun fertig, klicke auf 'weiter', um zur Planung 'Unterstützung und Entlastung' zu kommen.")
       )
     )
   }

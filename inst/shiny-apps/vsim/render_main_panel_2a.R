@@ -23,7 +23,8 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2a_intro) {
     return(
       list(
-        h3("Willkommen zum Vereinbarkeitssimulator - Teil 2a. In Teil 2a geht es darum, Belastungen und Bedürfnisse in Beruf und Familie mit Vorgesetzten und Partnern/Kindern zu erfassen und verbindliche Vereinbarungen zu treffen. Aufgrund Ihrer Antworten in Teil 1 schlägt Ihnen der Simulator Massnahmen und Strategien vor.")
+        p("Nach dieser Selbsteinschätzung überlegt sich der Vater in den drei Handlungsfelder Vereinbarkeitstätigkeiten, Zeitverwendung und Ressourcen und Entlastung, welche Massnahmen es ihm erlauben würden, bestehende Konflikte zu vermindern oder aufzulö-sen. Dabei hilft ihm auch der Leitfaden Vereinbarkeitsmassnahmen.
+          Der Simulator hilft dem Vater bei der Planung, indem er dem Vater konkrete Fragen in den drei Handlungsfeldern stellt und diese mit bestehenden Konflikten verknüpft.")
       )
     )
   } else if (question_id > Survey_Sections$Teil2a_intro & question_id <= Survey_Sections$Teil2a_last_question) {
@@ -44,7 +45,7 @@ output$mainPanel <- renderUI( {
   } else if (question_id == Survey_Sections$Teil2a_end_statement) {
     return(
       list(
-        h3("Teil 2a ist nun fertig. Klicken Sie auf 'weiter', um fortzufahren.")
+        h3("Die Planung der 'Vereinbarungen' ist nun fertig. Klicke auf 'weiter', um zur Planung 'Zeitverwendung' zu kommen.")
       )
     )
   }

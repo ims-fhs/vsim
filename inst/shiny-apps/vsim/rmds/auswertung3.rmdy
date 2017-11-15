@@ -1,17 +1,20 @@
 ---
-title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
+title: "Plan"
 output: html_document
 ---
 <h1>
-Auswertung Lebenslage
+Plan
 </h1>
 
-Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 3 Kategorien eingeteilt:
+Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt.
 
-1. Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln 
-1. Vereinbarkeitstätigkeiten, welche aktuell angewandt werden  
-1. Belastungsfaktoren  
+1. Vereinbarungen
+1. Zeitverwendung
+1. Unterstützung und Entlastung
 
+In den drei Teilen werden deine geplanten Massnahmen, welche du im Planungsteil für dich identifiziert hast nochmals gezeigt und du siehst, welche Belastungen und Unzufriedenheiten du mit diesen geplanten Massnahmen im nächsten Jahr angehen willst.
+
+Zur Umsetzung der Massnahmen musst du dich nun mit deinen Angehörigen und Vorgesetzten abstimmen.
 
 ```{r setup, include=FALSE}
 library(shiny)
@@ -31,39 +34,35 @@ df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 ```
 
-## Konflikte und Schieflagen: Unzufriedenheiten und Differenzen im aktuellen Zeithandeln
-```{r differences}
-rows <- grepl("Differenz", df$Gaps) | grepl("Unzufrieden", df$Gaps)
-if (any(rows)) {
-  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-} else {
-  kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-}
+## Vereinbarungen
+```{r}
+Alist_2a <- result_coll$Alist_2a
+Alist_2a <- Alist_2a[!grepl("denn nützen?", Alist_2a[, 3]), ]
+Alist_2a <- Alist_2a[!grepl("weiss nicht", Alist_2a[, 3]), ]
+Alist_2a <- Alist_2a[, -1]
+names(Alist_2a)[names(Alist_2a) == "Question"] <- "Frage"
+kable(Alist_2a)
 ```
 
-```{r show=FALSE, results='asis'}
-# show conditional warning image
-if (any(rows)) {
-  rmd_display_icon(icon = icon_achtung, align = "center", width = "10%", height = "10%")
-}
+
+## Zeitbalance
+Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen.
+```{r}
+Alist_2b <- result_coll$Alist_2b
+Alist_2b <- Alist_2b[!grepl("gleich", Alist_2b[, 3]), ]
+Alist_2b <- Alist_2b[, -1]
+names(Alist_2b)[names(Alist_2b) == "Question"] <- "Frage"
+kable(Alist_2b)
 ```
 
-## Aktuell angewandte Vereinbarkeitstätigkeiten
-```{r usemeasures}
-rows <- grepl("Vereinbarkeitstätigkeit", df$Gaps)
-if (any(rows)) {
-  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-} else {
-  kable(as.data.frame("Keine Differenzen im Zeithandeln und keine Unzufriedenheiten"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-}
+## Unterstützung und Entlastung
+Im Teil "Unterstützung und Entlastung" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas verändern wollen.
+```{r}
+Alist_2c <- result_coll$Alist_2c
+Alist_2c <- Alist_2c[grepl("Ja", Alist_2c[, 3]), ]
+Alist_2c <- Alist_2c[, -1]
+names(Alist_2c)[names(Alist_2c) == "Question"] <- "Frage"
+names(Alist_2c)[names(Alist_2c) == "Answer"] <- "Antwort"
+kable(Alist_2c)
 ```
 
-## Belastungsfaktoren
-```{r belastung}
-rows <- grepl("Belastung", df$Gaps)
-if (any(rows)) {
-  kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-} else {
-  kable(as.data.frame("Aktuell keine Belastungsfaktoren"),row.names = FALSE, col.names = "",  format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover"))
-}
-```

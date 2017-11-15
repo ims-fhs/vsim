@@ -14,7 +14,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2c_intro) {
     return(
       list(
-        h3("Willkommen zum Vereinbarkeitssimulator - Teil 2c. Hier haben Sie die Möglichkeit, die vorgeschlagenen Massnahmen und Strategien zu überprüfen und anzupassen, indem Sie Unterstützung und Entlastung in Haushalt und Familie planen.")
+        h3("")
       )
     )
   } else if (question_id > Survey_Sections$Teil2c_intro & question_id <= Survey_Sections$Teil2c_last_question) {
@@ -30,7 +30,7 @@ output$mainPanel <- renderUI( {
   } else if (question_id == Survey_Sections$Teil2c_end_statement) {
     return(
       list(
-        h3("Teil 2c ist nun fertig. Klicken Sie auf 'weiter', um den Fragebogen auszuwerten.")
+        h3("Die Planung 'Unterstützung und Entlastung' ist nun abgeschlossen. Somit hast du in den drei Handlungsfeldern 'Vereinbarungen', 'Zeitverwendung' und 'Unterstützung und Entlastung' Massnahmen identifizieren können, welche dir helfen deine Belastungen und Unzufriedenheiten anzugehen. Klicke auf 'weiter', um deinen Plan im Überblick anzuzeigen.")
       )
     )
   }
