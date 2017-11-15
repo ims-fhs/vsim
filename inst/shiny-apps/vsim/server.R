@@ -47,9 +47,8 @@ function(input, output, session) {
   # initialize Qlist_2a with initial (unreal) data. Only needed for realistic
   # quesiton-number estimation (question-id's / progressbar tracking; content
   # is irrelevant). But var must be declared on session-level, since data will
-  # be replaced with user-input:
-  Qlist_2a <- read.csv("data/Qlist_Teil2a.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
-  Qlist_2a[is.na(Qlist_2a)] <- ""
+  # be replaced with user-input. Use dummy data, so that Qlist_Teil2a.csv can be deleted.
+  Qlist_2a <- data.frame(a = rep("", 6))
 
   # part 2..n: declaration
   relevant_gaps <- NULL
