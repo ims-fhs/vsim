@@ -22,13 +22,9 @@ Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslag
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r load}
-Alist <- result_coll$Alist
-Glist <- read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
-```
-
 ```{r gaps}
-gaps_user <- rule_extract_gaps(Alist, Glist)
+gaps_user <- rule_extract_gaps(result_coll$Alist,
+    read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8"))
 df <- as.data.frame(gaps_user, stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 ```
