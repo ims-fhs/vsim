@@ -154,7 +154,7 @@ function(input, output, session) {
                 div(align="center",
                 img(src="icon_lebenslage_auswertung.png", width="50%")),
                 h4("Teil 1:"),
-                h4("Lebenslage"),
+                h4("Erfassung 'Lebenslage'"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
@@ -167,7 +167,7 @@ function(input, output, session) {
                 div(align="center",
                 img(src="icon_vereinbarung.png", width="50%")),
                 h4("Teil 2a:"),
-                h4("Vereinbarkeits-Tätigkeiten"),
+                h4("Planung 'Vereinbarungen'"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
@@ -180,7 +180,7 @@ function(input, output, session) {
                 div(align="center",
                 img(src="icon_zeitverwendung.png", width="50%")),
                 h4("Teil 2b:"),
-                h4("Anpassung Zeitverwendung"),
+                h4("Planung 'Zeitverwendung'"),
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(

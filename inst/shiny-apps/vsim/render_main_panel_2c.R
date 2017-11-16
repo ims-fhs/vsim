@@ -14,7 +14,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2c_intro) {
     return(
       list(
-        h3("")
+        h3("..Erklärungstext für Teil 2c... TBD oder komplett entfernen")
       )
     )
   } else if (question_id > Survey_Sections$Teil2c_intro & question_id <= Survey_Sections$Teil2c_last_question) {

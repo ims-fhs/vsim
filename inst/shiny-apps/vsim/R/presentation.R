@@ -57,7 +57,7 @@ rmd_display_icon <- function(icon, align = stop("one of 'center', 'left' or 'rig
                              bgcolor = "#ffffff") {
   html <- paste0("<div style='background-color:", bgcolor,
                    "' align='", align, "'><img src='", icon,
-                   "' width='", width, "%' height='", height,"'></div>")
+                   "' width='", width, "' height='", height,"'></div>")
   cat(html)
 }
 

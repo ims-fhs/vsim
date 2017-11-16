@@ -23,7 +23,6 @@ test_that("rule_extract_unzufriedenheiten", {
   expect_error(rule_extract_unzufriedenheiten(1))
 })
 
-
 context("rules_identify")
 
 test_that("rule_identify_belastungen", {

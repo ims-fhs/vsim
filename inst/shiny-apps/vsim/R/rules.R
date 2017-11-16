@@ -1,3 +1,12 @@
+#' rule_extract_gaps: Extrahiert die aktuellen Gaps aus Alist und Glist
+#'
+#' @param Alist aktuelle Alist
+#' @param Glist aktuelle Glist
+#'
+#' @return gaps
+#' @export
+#'
+#' @examples
 rule_extract_gaps <- function(Alist, Glist) {
   assertthat::assert_that(class(Alist) == "data.frame")
   assertthat::assert_that(class(Glist) == "data.frame")
@@ -8,7 +17,6 @@ rule_extract_gaps <- function(Alist, Glist) {
   assertthat::is.string(gaps_user)
   return(gaps_user)
 }
-
 
 #' rule_extract_belastungen: Extrahiert die aktuellen Belastungen
 #'
@@ -153,8 +161,6 @@ rule_identify_situation_flexibilisierung <- function(gaps, situation = stop("One
   return(retval)
 }
 
-
-
 #' rule_identify_chance_or_problem: Identifiziert, ob eine Vereinbarkeitstätigkeit eine Chance bietet, oder, ob
 #' bereits Probleme damit bestehen. Eine Chance besteht dann, wenn die Massnahme nicht angewandt wird und es noch
 #' keine Probleme damit gibt. Ein Problem besteht dann, wenn die Massnahme angewandt wird und es damit Probleme gibt.
@@ -176,3 +182,15 @@ rule_identify_chance_or_problem <- function(use_measure, problem, situation = st
   return(retval)
 }
 
+#' Identifiziert, ob psychische Belastungen existieren.
+#'
+#' @return A boolean
+#' @export
+#'
+#' @examples rule_identify_belastungen_psychische_gesundheit("Belastung psychische..")
+rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
+  assertthat::assert_that(is.character(gaps))
+  retval <- length(gaps) > 0 && grepl("psychische", gaps)
+  assertthat::assert_that(is.logical(retval))
+  return(retval)
+}
