@@ -1,6 +1,5 @@
-#' places a kable-table in the rmd-output based on the passed dataframe df an
-#' the selected rows based on an external filter. if no rows are selected,
-#' the empty_message is displayed.
+#' places a kable-table in the rmd-output based on the passed rows of text and
+#' in the given color.
 #'
 #' HINT:
 #' the "rmd_"-prefix indicates, that this method is intended to be called from
@@ -8,31 +7,19 @@
 #' dynamic r-code generating dynamic shiny-output). the rmd-chunk must be
 #' marked with "results='asis'" in order to render correctly!
 #'
-#' @param df the dataframe
-#' @param rows the dataframe-related row-filter
-#' @param empty_message the message to be displayed when no rows are selected
+#' @param rows the textrows (character) to be displayed
 #' @param color the hex-color-code to color the table-lines
 #'
 #' @export
-rmd_display_table <- function(df, rows, empty_message, color = "") {
-  if (any(rows)) {
-    if (color != "") {
-      kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html")%>%
-        kable_styling(bootstrap_options = c("striped", "hover")) %>%
-        row_spec(1:nrow(as.data.frame(df[rows, ])), background = color, color = "white")
-    } else {
-      kable(as.data.frame(df[rows, ]),row.names = FALSE, col.names = "",  format = "html")%>%
-        kable_styling(bootstrap_options = c("striped", "hover"))
-    }
+rmd_display_table <- function(rows, color = "") {
+  if (color != "") {
+    # print(paste0("rows: ", rows, " class:", class(rows), ", length: ", length(rows), ", nrow: ", nrow(rows), "."))
+    kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
+      kable_styling(bootstrap_options = c("striped", "hover")) %>%
+      row_spec(1:length(rows), background = color, color = "white")
   } else {
-    if (color != "") {
-      kable(as.data.frame(empty_message),row.names = FALSE, col.names = "", format = "html") %>%
-        kable_styling(bootstrap_options = c("striped", "hover")) %>%
-        row_spec(1:nrow(as.data.frame(df[rows, ])), background = color, color = "white")
-    } else {
-      kable(as.data.frame(empty_message),row.names = FALSE, col.names = "", format = "html") %>%
-        kable_styling(bootstrap_options = c("striped", "hover"))
-    }
+    kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
+      kable_styling(bootstrap_options = c("striped", "hover"))
   }
 }
 
