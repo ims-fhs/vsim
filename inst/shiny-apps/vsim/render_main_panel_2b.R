@@ -92,11 +92,11 @@ output$save_results <- renderText({
                  input$select3,
                  input$select4,
                  input$select5)
-    kommentare2b <<- c(input$kommentar1,
-                    input$kommentar2,
-                    input$kommentar3,
-                    input$kommentar4,
-                    input$kommentar5)
+    kommentare2b <<- c(as.character(input$kommentar1),
+                    as.character(input$kommentar2),
+                    as.character(input$kommentar3),
+                    as.character(input$kommentar4),
+                    as.character(input$kommentar5))
   }
 
   if (question_id == Survey_Sections$Teil2b_end_statement) {

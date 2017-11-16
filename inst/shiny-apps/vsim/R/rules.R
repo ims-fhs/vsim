@@ -7,13 +7,16 @@
 #' @export
 #'
 #' @examples
-rule_extract_gaps <- function(Alist, Glist) {
+rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
   assertthat::assert_that(class(Alist) == "data.frame")
   assertthat::assert_that(class(Glist) == "data.frame")
   assertthat::assert_that(nrow(Alist) == nrow(Glist))
 
   gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
-  gaps_user <- unique(Glist[gaps_user, 3])
+  gaps_user <- Glist[gaps_user, 3]
+  if (unique_only) {
+    gaps_user <- unique(gaps_user)
+  }
   assertthat::is.string(gaps_user)
   return(gaps_user)
 }
@@ -182,15 +185,16 @@ rule_identify_chance_or_problem <- function(use_measure, problem, situation = st
   return(retval)
 }
 
-#' Identifiziert, ob psychische Belastungen existieren.
+#' rule_identify_belastungen_psychische_gesundheit: Identifiziert, ob psychische
+#' Belastungen existieren.
 #'
 #' @return A boolean
 #' @export
 #'
-#' @examples rule_identify_belastungen_psychische_gesundheit("Belastung psychische..")
+#' @examples rule_identify_belastungen_psychische_gesundheit(c("Belastung switchen", "Belastung psychische Gesundheit"))
 rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
-  retval <- length(gaps) > 0 && grepl("psychische", gaps)
+  retval <- length(gaps) > 0 && sum(grepl("psychische", gaps)) > 1
   assertthat::assert_that(is.logical(retval))
   return(retval)
 }

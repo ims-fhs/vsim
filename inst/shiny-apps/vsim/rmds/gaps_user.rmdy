@@ -27,6 +27,10 @@ gaps_user <- rule_extract_gaps(result_coll$Alist,
     read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8"))
 df <- as.data.frame(gaps_user, stringsAsFactors = FALSE)
 names(df) <- "Gaps"
+
+gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist,
+    read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8"),
+    unique_only = FALSE)
 ```
 
 ## Belastungsfaktoren
@@ -39,7 +43,7 @@ rmd_display_table(belastungen, color = col_belastung())
 <tr>
 <td width="20%">
 ```{r belastung_psychische_gesundheit, echo = FALSE, results = 'asis'}
-show_warning <- rule_identify_belastungen_psychische_gesundheit(df$Gaps)
+show_warning <- rule_identify_belastungen_psychische_gesundheit(gaps_user_non_unique)
 if (show_warning) {
   rmd_display_icon(icon_achtung, width="20%", height="20%", align="center")
 }
