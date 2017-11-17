@@ -24,18 +24,21 @@ rmd_display_table <- function(rows, color = "") {
 
 rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
-
+  html <- "<table cellpadding='10' cellspacing='10' width='100%' style='border: 3px solid #CCCCCC'><tr><th width='40%'>Geplante Vereinbarung</th><th width='*'>Chancen</th></tr>"
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
-      print(paste0("vereinbarung: ", vereinbarung))
+      html <- paste0(html, "<tr><td><div style='border-radius: 15px;background: ", col_vereinbarung(), ";padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>", vereinbarung, "</div></td><td>")
       chancen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a)
       for (j in 1:length(chancen)) {
         chance <- chancen[j]
-        print(paste0("chance: ", chance))
+        html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ", col_unzufriedenheit(), ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>", chance, "</div>&nbsp;")
       }
+      html <- paste0(html, "</td></tr>")
     }
   }
+  html <- paste0(html, "</table>")
+  cat(html)
 }
 
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
