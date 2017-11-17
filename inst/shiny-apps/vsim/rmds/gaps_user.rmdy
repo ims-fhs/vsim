@@ -8,7 +8,7 @@ output: html_document:
 Auswertung Lebenslage
 </h1></td><td align="right">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_belastung, align = "right", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_lebenslage_auswertung, align = "right", width = "30%", height = "30%")
 ```
 </td></tr>
 </table>
@@ -41,7 +41,7 @@ rmd_display_table(belastungen, color = col_belastung())
 <center>
 <table width="100%">
 <tr>
-<td width="20%">
+<td width="20%" align="center">
 ```{r belastung_psychische_gesundheit, echo = FALSE, results = 'asis'}
 show_warning <- rule_identify_belastungen_psychische_gesundheit(gaps_user_non_unique)
 if (show_warning) {

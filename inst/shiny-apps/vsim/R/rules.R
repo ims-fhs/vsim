@@ -230,3 +230,21 @@ rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
   assertthat::assert_that(is.logical(retval))
   return(retval)
 }
+
+#' rule_identify_vereinbarungen_chancen: ermittelt, ob die alist_2a chancen enthält,
+#' welche vom typ type sind.
+#'
+#' @param alist_2a antworten aus teil 2a
+#' @param type chancen typ
+#'
+#' @return boolean
+#'
+#' @examples rule_identify_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a, "Differenz")
+rule_identify_vereinbarungen_chancen <- function(alist_2a,
+              type = stop(c("Belastung", "Unzufriedenheit", "Differenz"))) {
+  assertthat::assert_that(type %in% c("Belastung", "Unzufriedenheit", "Differenz"))
+  assertthat::assert_that("Antwort" %in% names(alist_2a))
+  chancen <- unique(unlist(strsplit(paste(alist_2a$Antwort[complete.cases(alist_2a$Antwort)],
+                                          collapse = ", "), ", ")))
+  return (any(grepl(type, chancen)))
+}

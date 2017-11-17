@@ -32,7 +32,7 @@ test_that("rule_extract_vereinbarungen", {
 test_that("rule_extract_chancen_per_vereinbarung", {
   alist_2a <- test_vereinbarungen_chancen_alist_2a
   vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
-  chancen <- rule_extract_chancen_per_vereinbarung(vereinbarungen[1], alist_2a)
+  chancen <- rule_extract_chancen_per_vereinbarung(vereinbarungen[1], alist_2a, "Belastung")
   testthat::expect_equal(chancen, test_vereinbarungen_chancen_expected)
 })
 
@@ -65,7 +65,6 @@ test_that("rule_identify_situation_switchen", {
                                                , "chance"))
 })
 
-
 test_that("rule_identify_chance_or_problem", {
   expect_error(rule_identify_chance_or_problem(TRUE, TRUE, "Nicht 'chance' oder 'problem'"))
   expect_is(rule_identify_chance_or_problem(TRUE, TRUE, "chance"), "logical")
@@ -77,4 +76,9 @@ test_that("rule_identify_chance_or_problem", {
   expect_false(rule_identify_chance_or_problem(TRUE, FALSE, "problem"))
   expect_false(rule_identify_chance_or_problem(FALSE, TRUE, "problem"))
   expect_true(rule_identify_chance_or_problem(TRUE, TRUE, "problem"))
+})
+
+test_that("rule_identify_vereinbarungen_chancen", {
+  retval <- rule_identify_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a, "Belastung")
+  expect_true(retval)
 })

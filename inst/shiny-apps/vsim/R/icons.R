@@ -2,6 +2,8 @@ icon_achtung <- "icon_achtung.png"
 
 icon_belastung <- "icon_belastung.png"
 
+icon_differenz <- "icon_differenz.png"
+
 icon_lebenslage <- "icon_lebenslage.png"
 
 icon_lebenslage_auswertung <- "icon_lebenslage_auswertung.png"

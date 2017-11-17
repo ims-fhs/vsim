@@ -41,6 +41,23 @@ Alist_2a <- Alist_2a[!grepl("denn nützen?", Alist_2a[, 3]), ]
 Alist_2a <- Alist_2a[!grepl("weiss nicht", Alist_2a[, 3]), ]
 Alist_2a <- Alist_2a[, -1]
 names(Alist_2a)[names(Alist_2a) == "Question"] <- "Frage"
+
+chancen_belastungen <- rule_identify_vereinbarungen_chancen(Alist_2a, "Belastung")
+chancen_unzufriedenheiten <- rule_identify_vereinbarungen_chancen(Alist_2a, "Unzufriedenheit")
+chancen_differenzen <- rule_identify_vereinbarungen_chancen(Alist_2a, "Differenz")
+
+cat("<table width='100%'><tr><td>")
+if (chancen_belastungen) {
+  rmd_display_icon(icon_belastung, "center", "30%", "30%", col_belastung(), "Vereinbarungen zur Reduktion von Belastungen geplant")
+}
+if (chancen_unzufriedenheiten) {
+ rmd_display_icon(icon_unzufriedenheit, "center", "30%", "30%", col_unzufriedenheit(), "Vereinbarungen zur Reduktion von Unzufriedenheiten geplant")
+}
+if (chancen_differenzen) {
+ rmd_display_icon(icon_differenz, "center", "30%", "30%", col_differenz(), "Vereinbarungen zur Reduktion von Differenzen geplant")
+}
+cat("</td></tr></table>")
+
 rmd_display_vereinbarungen_chancen(Alist_2a)
 ```
 

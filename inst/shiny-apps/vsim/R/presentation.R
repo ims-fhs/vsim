@@ -110,12 +110,14 @@ shiny_display_icon <- function(icon, width = "100%", height = "100%") {
 #' @param bgcolor the hex-background-color (i.e. '#ffffff)
 #'
 #' @example rmd_display_icon(icon_belastung, "right")
-rmd_display_icon <- function(icon, align = stop("one of 'center', 'left' or 'right'"),
+rmd_display_icon <- function(icon, align = stop(c("center", "left", "right")),
                              width = "100%", height = "100%",
-                             bgcolor = "#ffffff") {
+                             bgcolor = "#ffffff", tooltip = "") {
   html <- paste0("<div style='background-color:", bgcolor,
-                   "' align='", align, "'><img src='", icon,
-                   "' width='", width, "' height='", height,"'></div>")
+                   "; align: ", align,
+                   "; float: left; border: 2px solid #FFFFFF; border-radius: 15px;display:table-cell; vertical-align:middle; text-align:center'><img src='",
+                   icon, "' width='", width, "' height='", height,"' title='",
+                   tooltip,"'></div>")
   cat(html)
 }
 
