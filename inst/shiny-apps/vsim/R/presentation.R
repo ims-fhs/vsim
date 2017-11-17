@@ -23,6 +23,24 @@ rmd_display_table <- function(rows, color = "") {
   }
 }
 
+
+rmd_display_vereinbarungen_chancen <- function(alist_2a) {
+  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
+
+  if (length(vereinbarungen) > 0) {
+    for (i in 1:length(vereinbarungen)) {
+      vereinbarung <- vereinbarungen[i]
+      print(paste0("vereinbarung: ", vereinbarung))
+      chancen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a)
+      for (j in 1:length(chancen)) {
+        chance <- chancen[j]
+        print("chance: ", chance)
+      }
+    }
+  }
+}
+
+
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
 #' HINT: call this function within shiny-render-functions to add dynamic html-
 #' content (don't call this function from within an rmd-file).
