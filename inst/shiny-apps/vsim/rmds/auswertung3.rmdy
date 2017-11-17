@@ -48,7 +48,6 @@ kable(Alist_2a)
 rmd_display_vereinbarungen_chancen(Alist_2a)
 ```
 
-
 ## Zeitbalance
 Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen.
 ```{r}

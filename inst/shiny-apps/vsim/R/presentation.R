@@ -22,7 +22,6 @@ rmd_display_table <- function(rows, color = "") {
   }
 }
 
-
 rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
 
@@ -38,7 +37,6 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
     }
   }
 }
-
 
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
 #' HINT: call this function within shiny-render-functions to add dynamic html-
