@@ -64,7 +64,7 @@ function(input, output, session) {
 
   # prepare section-variables for question-id's
   calc_survey_question_ids <- function() {
-    Survey_Sections <- list(Teil1_intro = 0,
+    Survey_Sections <<- list(Teil1_intro = 0,
                             Teil1_first_question = 1,
                             Teil1_last_question = nrow(Qlist_1),
                             Teil1_end_statement = nrow(Qlist_1) + 1,

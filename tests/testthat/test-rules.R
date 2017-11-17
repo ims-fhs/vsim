@@ -23,6 +23,19 @@ test_that("rule_extract_unzufriedenheiten", {
   expect_error(rule_extract_unzufriedenheiten(1))
 })
 
+test_that("rule_extract_vereinbarungen", {
+  alist_2a <- test_vereinbarungen_chancen_alist_2a
+  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
+  testthat::expect_equal(vereinbarungen, alist_2a$Frage)
+})
+
+test_that("rule_extract_chancen_per_vereinbarung", {
+  alist_2a <- test_vereinbarungen_chancen_alist_2a
+  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
+  chancen <- rule_extract_chancen_per_vereinbarung(vereinbarungen[1], alist_2a)
+  testthat::expect_equal(chancen, test_vereinbarungen_chancen_expected)
+})
+
 context("rules_identify")
 
 test_that("rule_identify_belastungen", {

@@ -6,7 +6,6 @@
 questionaryPostProcessing <- function() {
   source("part2a_simulator.R", encoding = file_encoding, local = TRUE)[1]
   Qlist_2a <<- result_coll$Qlist_2a
-  Qlist_2a[is.na(Qlist_2a)] <- ""
   calc_survey_question_ids()
   # ****** Data part 2a
   # Create an empty vector to hold survey results

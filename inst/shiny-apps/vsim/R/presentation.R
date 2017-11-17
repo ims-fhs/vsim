@@ -13,7 +13,6 @@
 #' @export
 rmd_display_table <- function(rows, color = "") {
   if (color != "") {
-    # print(paste0("rows: ", rows, " class:", class(rows), ", length: ", length(rows), ", nrow: ", nrow(rows), "."))
     kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
       kable_styling(bootstrap_options = c("striped", "hover")) %>%
       row_spec(1:length(rows), background = color, color = "white")
@@ -22,6 +21,24 @@ rmd_display_table <- function(rows, color = "") {
       kable_styling(bootstrap_options = c("striped", "hover"))
   }
 }
+
+
+rmd_display_vereinbarungen_chancen <- function(alist_2a) {
+  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
+
+  if (length(vereinbarungen) > 0) {
+    for (i in 1:length(vereinbarungen)) {
+      vereinbarung <- vereinbarungen[i]
+      print(paste0("vereinbarung: ", vereinbarung))
+      chancen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a)
+      for (j in 1:length(chancen)) {
+        chance <- chancen[j]
+        print(paste0("chance: ", chance))
+      }
+    }
+  }
+}
+
 
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
 #' HINT: call this function within shiny-render-functions to add dynamic html-

@@ -4,7 +4,6 @@
 #' @param Glist aktuelle Glist
 #'
 #' @return gaps
-#' @export
 #'
 #' @examples
 rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
@@ -26,7 +25,6 @@ rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
 #' @param gaps A character vector
 #'
 #' @return belastungen A character vector
-#' @export
 #'
 #' @examples rule_extract_belastungen(c("nix", "eine Belastung"))
 #' # [1] "eine Belastung"
@@ -48,7 +46,6 @@ rule_extract_belastungen <- function(gaps) {
 #' @param gaps A character vector
 #'
 #' @return belastungen A character vector
-#' @export
 #'
 #' @examples rule_extract_unzufriedenheiten(c("Differenz im Haus", "Unzufrieden mit Laus"))
 rule_extract_unzufriedenheiten <- function(gaps) {
@@ -62,13 +59,51 @@ rule_extract_unzufriedenheiten <- function(gaps) {
   return(unzufriedenheiten)
 }
 
+#' rule_extract_vereinbarungen: ermittelt die getroffenen Vereinbarungen, welchen
+#' Chancen zugewiesen wurden.
+#'
+#' @param alist_2a
+#'
+#' @return vereinbarungen
+#'
+#' @examples rule_extract_vereinbarungen(test_vereinbarungen_chancen_alist_2a)
+rule_extract_vereinbarungen <- function(alist_2a) {
+  assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
+                                                        "Kommentar")))
+  answered <- which(!is.na(alist_2a$Antwort))
+  assertthat::assert_that(is.numeric(answered))
+  retval <- character()
+  if (length(answered) > 0) {
+    retval <- alist_2a[answered, ]$Frage
+  }
+  return(retval)
+}
+
+#' rule_extract_chancen_per_vereinbarung: ermittelt für eine getroffene Vereinbarung
+#' die zugewiesenen Chancen.
+#'
+#' @param vereinbarung
+#' @param alist_2a
+#'
+#' @return die Chancen, welche der Vereinbarung zugewiesen wurden
+#'
+#' @examples rule_extract_chancen_per_vereinbarung(test_vereinbarungen_chancen_alist_2a$Frage[1],
+#'                                                 test_vereinbarungen_chancen_alist_2a)
+rule_extract_chancen_per_vereinbarung <- function(vereinbarung, alist_2a) {
+  assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
+                                                        "Kommentar")))
+  vereinbarung_id <- which(alist_2a$Frage == vereinbarung)
+  assertthat::assert_that(is.numeric(vereinbarung_id) && vereinbarung_id > 0)
+  retval <- unlist(strsplit(alist_2a$Antwort[vereinbarung_id], ", "))
+  return (retval)
+}
+
 #' rule_identify_belastungen: Identifiziert, ob Belastungen vorhanden sind und
 #' gibt einen logischen vektor zurück.
 #'
 #' @param gaps A character vector
 #'
 #' @return logical vector
-#' @export
 #'
 #' @examples rule_identify_belastungen(c("nix", "eine Belastung"))
 rule_identify_belastungen <- function(gaps) {
@@ -84,7 +119,6 @@ rule_identify_belastungen <- function(gaps) {
 #' @param gaps A character vector
 #'
 #' @return logical vector
-#' @export
 #'
 #' @examples rule_identify_unzufriedenheiten(c("nix", "Unzufrieden mit Laus"))
 rule_identify_unzufriedenheiten <- function(gaps) {
@@ -100,7 +134,6 @@ rule_identify_unzufriedenheiten <- function(gaps) {
 #' @param gaps A character vector
 #'
 #' @return logical vector
-#' @export
 #'
 #' @examples rule_identify_vereinbarkeitstaetigkeiten(c("nix", "Vereinbarkeitstätigkeit mit Maus"))
 rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
@@ -117,7 +150,6 @@ rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
 #' @param gaps A character vector
 #'
 #' @return logical scalar value
-#' @export
 #'
 #' @examples rule_identify_situation_switchen(c("Alles im Grünen", "nix"), "chance")
 rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
@@ -135,7 +167,6 @@ rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'cha
 #' @param gaps A character vector
 #'
 #' @return logical scalar value
-#' @export
 #'
 #' @examples rule_identify_situation_homeoffice(c("Belastung durch Flexibilisierung", "Vereinbarkeitstätigkeit Home Office wird angewandt"), "problem")
 rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
@@ -153,7 +184,6 @@ rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'c
 #' @param gaps A character vector
 #'
 #' @return logical scalar value
-#' @export
 #'
 #' @examples rule_identify_situation_flexibilisierung(c("alles im Grünen", "nix"), "chance")
 rule_identify_situation_flexibilisierung <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
@@ -189,7 +219,6 @@ rule_identify_chance_or_problem <- function(use_measure, problem, situation = st
 #' Belastungen existieren.
 #'
 #' @return A boolean
-#' @export
 #'
 #' @examples rule_identify_belastungen_psychische_gesundheit(c("Belastung switchen", "Belastung psychische Gesundheit"))
 rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
