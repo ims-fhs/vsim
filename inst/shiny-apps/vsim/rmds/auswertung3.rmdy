@@ -35,16 +35,12 @@ names(df) <- "Gaps"
 ```
 
 ## Vereinbarungen
-```{r}
+```{r echo = FALSE, results = 'asis'}
 Alist_2a <- result_coll$Alist_2a
 Alist_2a <- Alist_2a[!grepl("denn nützen?", Alist_2a[, 3]), ]
 Alist_2a <- Alist_2a[!grepl("weiss nicht", Alist_2a[, 3]), ]
 Alist_2a <- Alist_2a[, -1]
 names(Alist_2a)[names(Alist_2a) == "Question"] <- "Frage"
-kable(Alist_2a)
-```
-## Vereinbarungen Refactored
-```{r echo = FALSE, results = 'asis'}
 rmd_display_vereinbarungen_chancen(Alist_2a)
 ```
 

@@ -89,13 +89,16 @@ rule_extract_vereinbarungen <- function(alist_2a) {
 #'
 #' @examples rule_extract_chancen_per_vereinbarung(test_vereinbarungen_chancen_alist_2a$Frage[1],
 #'                                                 test_vereinbarungen_chancen_alist_2a)
-rule_extract_chancen_per_vereinbarung <- function(vereinbarung, alist_2a) {
+rule_extract_chancen_per_vereinbarung <- function(vereinbarung, alist_2a,
+                                                  type=stop(c("Differenz","Unzufriedenheit","Belastung"))) {
   assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
                                                         "Kommentar")))
+  assertthat::assert_that(type %in% c("Differenz","Unzufriedenheit","Belastung"))
   vereinbarung_id <- which(alist_2a$Frage == vereinbarung)
   assertthat::assert_that(is.numeric(vereinbarung_id) && vereinbarung_id > 0)
   retval <- unlist(strsplit(alist_2a$Antwort[vereinbarung_id], ", "))
-  return (retval)
+  retval <- retval[grepl(type, retval)]
+  return(retval)
 }
 
 #' rule_identify_belastungen: Identifiziert, ob Belastungen vorhanden sind und

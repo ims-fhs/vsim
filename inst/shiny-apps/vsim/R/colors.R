@@ -14,6 +14,7 @@ cp <- function() {
 col_lebenslage <- function() {return(cp()[1])}
 col_belastung <- function() {return(cp()[6])}
 col_unzufriedenheit <- function() {return(cp()[5])}
+col_differenz <- function() {return(cp()[5])}
 col_vereinbarung <- function() {return(cp()[4])}
 col_zeitverwendung <- function() {return(cp()[3])}
 col_unterstuetzung_und_entlastung <- function() {return(cp()[2])}

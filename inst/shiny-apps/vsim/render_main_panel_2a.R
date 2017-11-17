@@ -70,6 +70,7 @@ output$save_results <- renderText({
     Alist[,3] <- results2
     Alist[,4] <- kommentare2
     names(Alist)[3] <- "Antwort"
+    # BUG: sometimes 'Warning: Error in <-: 'names' attribute [4] must be the same length as the vector [3]' in the following row!
     names(Alist)[4] <- "Kommentar"
     # write.table(Alist, file = "../../data/Alist_Teil2a.csv",quote = FALSE, row.names = FALSE, na = "", sep = ";", fileEncoding = "UTF-8")
     # instead of writing a file we store the data in the memory for later access

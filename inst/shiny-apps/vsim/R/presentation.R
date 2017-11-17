@@ -10,7 +10,6 @@
 #' @param rows the textrows (character) to be displayed
 #' @param color the hex-color-code to color the table-lines
 #'
-#' @export
 rmd_display_table <- function(rows, color = "") {
   if (color != "") {
     kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
@@ -22,18 +21,60 @@ rmd_display_table <- function(rows, color = "") {
   }
 }
 
+#' rmd_display_vereinbarungen_chancen: renders the vereinbarungen table based
+#' on the alist_2a provided
+#'
+#' HINT:
+#' the "rmd_"-prefix indicates, that this method is intended to be called from
+#' rmd-files (where as "shiny_"-prefixed methods are intended to be called from
+#' dynamic r-code generating dynamic shiny-output). the rmd-chunk must be
+#' marked with "results='asis'" in order to render correctly!
+#'
+#' @param alist_2a the Alist containing the Questions and the user's Answers
+#' from part 2a
+#'
+#' @examples rmd_display_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a)
 rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
-  html <- "<table cellpadding='10' cellspacing='10' width='100%' style='border: 3px solid #CCCCCC'><tr><th width='40%'>Geplante Vereinbarung</th><th width='*'>Chancen</th></tr>"
+  html <- "<table cellpadding='10' cellspacing='10' width='100%'><tr><th width='40%'>Geplante Vereinbarung</th><th width='*'>Chancen</th></tr>"
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
-      html <- paste0(html, "<tr><td><div style='border-radius: 15px;background: ", col_vereinbarung(), ";padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>", vereinbarung, "</div></td><td>")
-      chancen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a)
-      for (j in 1:length(chancen)) {
-        chance <- chancen[j]
-        html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ", col_unzufriedenheit(), ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>", chance, "</div>&nbsp;")
+      html <- paste0(html, "<tr><td><div style='border-radius: 15px;background: ",
+                     col_vereinbarung(),
+                     ";padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>",
+                     vereinbarung, "</div></td><td>")
+      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Belastung")
+      chancen_unzufriedenheiten <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Unzufriedenheit")
+      chancen_differenzen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Differenz")
+      if (length(chancen_belastungen) > 0) {
+        for (j in 1:length(chancen_belastungen)) {
+          chance <- chancen_belastungen[j]
+          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
+                         col_belastung(),
+                         ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>",
+                         chance, "</div>&nbsp;")
+        }
       }
+      if (length(chancen_unzufriedenheiten) > 0) {
+        for (j in 1:length(chancen_unzufriedenheiten)) {
+          chance <- chancen_unzufriedenheiten[j]
+          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
+                         col_unzufriedenheit(),
+                         ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>",
+                         chance, "</div>&nbsp;")
+        }
+      }
+      if (length(chancen_differenzen) > 0) {
+        for (j in 1:length(chancen_differenzen)) {
+          chance <- chancen_differenzen[j]
+          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
+                         col_differenz(),
+                         ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>",
+                         chance, "</div>&nbsp;")
+        }
+      }
+
       html <- paste0(html, "</td></tr>")
     }
   }
@@ -50,7 +91,6 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
 #' @param height the icon's rendered height
 #'
 #' @return the shiny image-object
-#' @export
 shiny_display_icon <- function(icon, width = "100%", height = "100%") {
   retval <- shiny::img(src = icon, width = width, height = height)
   return(retval)
@@ -69,7 +109,7 @@ shiny_display_icon <- function(icon, width = "100%", height = "100%") {
 #' @param height the icon's rendered height
 #' @param bgcolor the hex-background-color (i.e. '#ffffff)
 #'
-#' @export rmd_display_icon(icon_belastung, "right")
+#' @example rmd_display_icon(icon_belastung, "right")
 rmd_display_icon <- function(icon, align = stop("one of 'center', 'left' or 'right'"),
                              width = "100%", height = "100%",
                              bgcolor = "#ffffff") {
@@ -79,3 +119,27 @@ rmd_display_icon <- function(icon, align = stop("one of 'center', 'left' or 'rig
   cat(html)
 }
 
+#' render a navbarentry and return the according shiny::tagList.
+#'
+#' @param background_color the navbar's background color
+#' @param icon_name the icon to be shown
+#' @param title_main the main title
+#' @param title_sub the subtitle
+#' @param question_id the current question_id (needed for progressbar indicator)
+#'
+#' @return the tagList
+shiny_render_navbar_entry <- function(background_color, icon_name, title_main, title_sub, question_id) {
+  retval <- tagList(
+                div(style=paste0("background-color:", background_color),
+                br(),
+                div(align="center",
+                img(src=icon_name, width="50%")),
+                h4(title_main),
+                h4(title_sub),
+                br(),
+                h5("Fortschritt"),
+                tags$div(HTML(
+                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
+                ))))
+  return (retval)
+}

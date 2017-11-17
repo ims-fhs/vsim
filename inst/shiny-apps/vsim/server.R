@@ -134,84 +134,21 @@ function(input, output, session) {
 
   renderProgressbar <- function() {
       output$progressbar <- renderUI({
-        if (question_id <= Survey_Sections$Teil1_end_statement) {
-            tagList(
-                div(style=paste0("background-color:", col_lebenslage()),
-                br(),
-                div(align="center",
-                img(src="icon_lebenslage.png", width="50%")),
-                h4("Teil 1:"),
-                h4("Lebenslage"),
-                br(),
-                h5("Fortschritt"),
-                tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                ))))
-        } else if (question_id <= Survey_Sections$Teil1_summary) {
-            tagList(
-                div(style=paste0("background-color:", col_lebenslage()),
-                br(),
-                div(align="center",
-                img(src="icon_lebenslage_auswertung.png", width="50%")),
-                h4("Teil 1:"),
-                h4("Erfassung 'Lebenslage'"),
-                br(),
-                h5("Fortschritt"),
-                tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                ))))
+        if (question_id <= Survey_Sections$Teil1_summary) {
+          shiny_render_navbar_entry(col_lebenslage(), icon_lebenslage,
+                                    "Teil 1:", "Lebenslage", question_id)
         } else if (question_id <= Survey_Sections$Teil2a_end_statement) {
-          tagList(
-                div(style=paste0("background-color:", col_vereinbarung()),
-                br(),
-                div(align="center",
-                img(src="icon_vereinbarung.png", width="50%")),
-                h4("Teil 2a:"),
-                h4("Planung 'Vereinbarungen'"),
-                br(),
-                h5("Fortschritt"),
-                tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                ))))
+          shiny_render_navbar_entry(col_lebenslage(), icon_vereinbarung,
+                                    "Teil 2a:", "Planung 'Vereinbarungen'", question_id)
         } else if (question_id <= Survey_Sections$Teil2b_end_statement) {
-          tagList(
-                div(style=paste0("background-color:", col_zeitverwendung()),
-                br(),
-                div(align="center",
-                img(src="icon_zeitverwendung.png", width="50%")),
-                h4("Teil 2b:"),
-                h4("Planung 'Zeitverwendung'"),
-                br(),
-                h5("Fortschritt"),
-                tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                ))))
+          shiny_render_navbar_entry(col_zeitverwendung(), icon_zeitverwendung,
+                                    "Teil 2b:", "Planung 'Zeitverwendung'", question_id)
         } else if (question_id <= Survey_Sections$Teil2c_end_statement) {
-          tagList(
-                div(style=paste0("background-color:", col_unterstuetzung_und_entlastung()),
-                br(),
-                div(align="center",
-                img(src="icon_unterstuetzung_und_entlastung.png", width="50%")),
-                h4("Teil 2c:"),
-                h4("Unterstützung & Entlastung"),
-                br(),
-                h5("Fortschritt"),
-                tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                ))))
+          shiny_render_navbar_entry(col_unterstuetzung_und_entlastung(), icon_unterstuetzung_und_entlastung,
+                                    "Teil 2c:", "Unterstützung & Entlastung", question_id)
         } else {
-          tagList(
-                div(style=paste0("background-color:", col_plan()),
-                br(),
-                div(align="center",
-                img(src="icon_plan.png", width="50%")),
-                h4("Teil 3:"),
-                h4("Auswertung"),
-                br(),
-                h5("Fortschritt"),
-                tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
-                ))))
+          shiny_render_navbar_entry(col_plan(), icon_plan,
+                                    "Teil 3:", "Auswertung", question_id)
         }
       })
   }
