@@ -52,7 +52,7 @@ if (show_warning) {
 
 ```{r belastung_psychische_gesundheit_text, echo = FALSE, results = 'asis'}
 if (show_warning) {
-  cat("Sie haben zwei oder mehr Fragen zu psychischen Belastungen positiv beantwortet. Für diesen Bereich kann Ihnen der Vereinbarkeitssimulator nur bedingt Hilfe anbieten. Bitte überprüfen Sie doch, ob Sie unter bestimmten Arbeitsbedingungen dazu neigen, Burnout-Symptome zu entwickeln. Wenn Sie wissen möchten, ob bereits Symptome eines Burnouts erkennbar sind, gibt es die Möglichkeit, dies durch einen empfehlenswerten und ausführlicheren <a target='_blank' href='https://www.hilfe-bei-burnout.de/burnout-test-lang/'>Burnout-Test</a> abzuklären. Weitere Informationen zu Burnout finden <a target='_blank' href='https://www.arbeitsmedizin.ch/'>hier</a>.")
+  cat("Sie haben zwei oder mehr Fragen zu psychischen Belastungen positiv beantwortet. Für diesen Bereich kann Ihnen der Vereinbarkeitssimulator nur bedingt Hilfe anbieten. Bitte überprüfen Sie doch, ob Sie unter bestimmten Arbeitsbedingungen dazu neigen, Burnout-Symptome zu entwickeln. Wenn Sie wissen möchten, ob bereits Symptome eines Burnouts erkennbar sind, gibt es die Möglichkeit, dies durch einen empfehlenswerten und ausführlicheren <a target='_blank' href='https://www.hilfe-bei-burnout.de/burnout-test-lang/'>Burnout-Test</a> abzuklären. Weitere Informationen zum Thema Burnout finden Sie <a target='_blank' href='https://www.burnout-info.ch/'>hier</a>.")
 }
 ```
 </td>
