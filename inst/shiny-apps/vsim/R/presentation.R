@@ -39,7 +39,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
-                 "style='font-size: 1.15em;'><tr style='border-bottom:1px solid #CCCCCC'>",
+                 "<tr style='border-bottom:1px solid #CCCCCC'>",
                  "<th width='40%'><b>Geplante Vereinbarung</b></th>",
                  "<th width='*'><b>Chancen</b></th><th><b>Kommentar</b></th></tr>")
   if (length(vereinbarungen) > 0) {

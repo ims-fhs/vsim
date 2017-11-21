@@ -6,15 +6,16 @@ output: html_document
 Plan
 </h1>
 
-<h4>
-Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt.
-
-1. Vereinbarungen
-1. Zeitverwendung
-1. Unterstützung und Entlastung
-
+<h4>Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt:
+</br></br>
+<ol>
+<li>Vereinbarungen</li>
+<li>Zeitverwendung</li>
+<li>Unterstützung und Entlastung</li>
+</ol>
+</br>
 In den drei Teilen werden deine geplanten Massnahmen, welche du im Planungsteil für dich identifiziert hast nochmals gezeigt und du siehst, welche Belastungen und Unzufriedenheiten du mit diesen geplanten Massnahmen im nächsten Jahr angehen willst.
-
+</br></br>
 Zur Umsetzung der Massnahmen musst du dich nun mit deinen Angehörigen und Vorgesetzten abstimmen.
 </h4>
 
