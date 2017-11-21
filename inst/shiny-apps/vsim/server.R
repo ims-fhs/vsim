@@ -104,10 +104,8 @@ function(input, output, session) {
       source("render_main_panel_2b.R", encoding = file_encoding, local = TRUE)[1]
     } else if (question_id <= Survey_Sections$Teil2c_end_statement) {
       source("render_main_panel_2c.R", encoding = file_encoding, local = TRUE)[1]
-    } else if (question_id <= Survey_Sections$Teil3_final_evaluation) {
-      source("render_main_panel_3.R", encoding = file_encoding, local = TRUE)[1]
     } else {
-      stopApp()
+      source("render_main_panel_3.R", encoding = file_encoding, local = TRUE)[1]
     }
   }
 

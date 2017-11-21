@@ -11,16 +11,9 @@ questionaryPostProcessing <- function() {
 # survey area.
 output$mainPanel <- renderUI( {
   # Initially it shows a welcome message.
-  if (question_id == Survey_Sections$Teil3_final_evaluation) {
+  if (question_id >= Survey_Sections$Teil3_final_evaluation) {
     a <- inclRmd("rmds/auswertung3.rmdy")
     output$mainPanel <- renderUI(HTML(a))
     questionaryPostProcessing();
-  } else {
-    stopApp()
-    return(
-      list(
-        h4("")
-      )
-    )
   }
 })
