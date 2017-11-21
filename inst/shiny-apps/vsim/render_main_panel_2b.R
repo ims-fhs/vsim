@@ -31,10 +31,10 @@ output$mainPanel <- renderUI( {
       fluidPage(
         fluidRow(p(h4("Möglicherweise ist für Sie beim Ausfüllen der Fragen klargeworden, dass Sie zufrieden damit sind, wofür Sie Ihre Zeit einsetzen. Möglicherweise möchten Sie Ihre Zeiteinteilung aber auch anpassen. Das kann mit Unterstützung Ihres Vorgesetzten, Ihres Teams, Ihrer Familie und Ihres Umfelds gelingen. Überlegen Sie sich, für welche Aktivitäten Sie im nächsten Jahr mehr oder weniger Zeit als bisher verwenden wollen.")), br(), br()),
         fluidRow(
-          column(2, h4("Zeit für was")),
-          column(4, h4("Relevante Angaben aus Teil 1")),
-          column(4, h4("Zeitmenge")),
-          column(2, h4("Kommentar"))
+          column(2, HTML("<h4><b>Zeit für was</b></h4>")),
+          column(4, HTML("<h4><b>Deine relevanten Belastungen und Unzufriedenheiten</b></h4>")),
+          column(4, HTML("<h4><b>Zeitmenge</b></h4>")),
+          column(2, HTML("<h4><b>Kommentar</b></h4>"))
         ),
         fluidRow(hr()),
         fluidRow(

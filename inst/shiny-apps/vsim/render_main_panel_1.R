@@ -21,7 +21,8 @@ questionaryPostProcessing <- function() {
 output$mainPanel <- renderUI({
   # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
-    return(list(h3("Willkommen zum Vereinbarkeitssimulator"), p("Vor dem jährlichen Mitarbeitergespräch (MAG) nutzen die Väter den Vereinbarkeitssimulator. Dieser befragt Sie nach Ihrer aktuellen Lebenslage und hilft den Vätern aktuell bestehende Belastungen, Unzufriedenheiten und Differenzen in der Zeitverwendung zu identifizieren.")))
+    return(list(h3("Willkommen zum Vereinbarkeitssimulator"),
+                h4("Vor dem jährlichen Mitarbeitergespräch (MAG) nutzen die Väter den Vereinbarkeitssimulator. Dieser befragt Sie nach Ihrer aktuellen Lebenslage und hilft den Vätern aktuell bestehende Belastungen, Unzufriedenheiten und Differenzen in der Zeitverwendung zu identifizieren.")))
   } else if (question_id > Survey_Sections$Teil1_intro & question_id <= Survey_Sections$Teil1_last_question) {
     # Once the next button has been clicked once we see each question
     # of the survey.
@@ -38,9 +39,8 @@ output$mainPanel <- renderUI({
         h3("Die Erfassung deiner Lebenslage ist nun fertig. Klicke auf 'weiter', um deine aktuelle Lebenslage auszuwerten.")
     ))
   } else if (question_id == Survey_Sections$Teil1_summary) {
-    a <- inclRmd("rmds/gaps_user.rmdy")
-    output$mainPanel <- renderUI(HTML(a))
     questionaryPostProcessing();
+    return(inclRmd("rmds/gaps_user.rmdy"))
   }
 })
 

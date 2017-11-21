@@ -6,6 +6,7 @@ output: html_document
 Plan
 </h1>
 
+<h4>
 Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt.
 
 1. Vereinbarungen
@@ -15,6 +16,7 @@ Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unter
 In den drei Teilen werden deine geplanten Massnahmen, welche du im Planungsteil für dich identifiziert hast nochmals gezeigt und du siehst, welche Belastungen und Unzufriedenheiten du mit diesen geplanten Massnahmen im nächsten Jahr angehen willst.
 
 Zur Umsetzung der Massnahmen musst du dich nun mit deinen Angehörigen und Vorgesetzten abstimmen.
+</h4>
 
 ```{r setup, include=FALSE}
 library(shiny)
@@ -59,7 +61,9 @@ rmd_display_vereinbarungen_chancen(Alist_2a)
 ```
 
 ## Zeitbalance
+<h4>
 Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen.
+</h4>
 ```{r}
 Alist_2b <- result_coll$Alist_2b
 Alist_2b <- Alist_2b[!grepl("gleich", Alist_2b[, 3]), ]
@@ -69,7 +73,9 @@ kable(Alist_2b)
 ```
 
 ## Unterstützung und Entlastung
+<h4>
 Im Teil "Unterstützung und Entlastung" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas verändern wollen.
+</h4>
 ```{r}
 Alist_2c <- result_coll$Alist_2c
 Alist_2c <- Alist_2c[grepl("Ja", Alist_2c[, 3]), ]
@@ -78,4 +84,3 @@ names(Alist_2c)[names(Alist_2c) == "Question"] <- "Frage"
 names(Alist_2c)[names(Alist_2c) == "Answer"] <- "Antwort"
 kable(Alist_2c)
 ```
-

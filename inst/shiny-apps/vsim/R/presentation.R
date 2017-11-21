@@ -38,14 +38,19 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
-  html <- "<table cellpadding='10' cellspacing='10' width='100%'><tr style='border-bottom:1px solid #CCCCCC'><th width='40%'>Geplante Vereinbarung</th><th width='*'>Chancen</th><th>Kommentar</th></tr>"
+  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
+                 "style='font-size: 1.15em;'><tr style='border-bottom:1px solid #CCCCCC'>",
+                 "<th width='40%'><b>Geplante Vereinbarung</b></th>",
+                 "<th width='*'><b>Chancen</b></th><th><b>Kommentar</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
       kommentar <- kommentare[i]
-      html <- paste0(html, "<tr style='border-bottom:1px solid #CCCCCC'><td><div style='border-radius: 15px;background: ",
+      html <- paste0(html, "<tr style='border-bottom:1px solid #CCCCCC'><td>",
+                     "<div style='border-radius: 15px;background: ",
                      col_vereinbarung(),
-                     ";padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>",
+                     ";padding: 12px; width: 400px; align: center; ",
+                     "border: 2px solid #FFFFFF;'>",
                      vereinbarung, "</div></td><td>")
       chancen_belastungen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Belastung")
       chancen_unzufriedenheiten <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Unzufriedenheit")
@@ -55,7 +60,8 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
           chance <- chancen_belastungen[j]
           html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
                          col_belastung(),
-                         ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>",
+                         ";padding: 12px; width: 200px; height: 60px; align: center;",
+                         " float: left;border: 2px solid #FFFFFF;'>",
                          chance, "</div>&nbsp;")
         }
       }

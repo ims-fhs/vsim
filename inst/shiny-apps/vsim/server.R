@@ -139,7 +139,7 @@ function(input, output, session) {
                                     "Teil 1:", "Lebenslage", question_id,
                                     Survey_Sections$Teil3_final_evaluation)
         } else if (question_id <= Survey_Sections$Teil2a_end_statement) {
-          shiny_render_navbar_entry(col_lebenslage(), icon_vereinbarung,
+          shiny_render_navbar_entry(col_vereinbarung(), icon_vereinbarung,
                                     "Teil 2a:", "Planung 'Vereinbarungen'",
                                     question_id, Survey_Sections$Teil3_final_evaluation)
         } else if (question_id <= Survey_Sections$Teil2b_end_statement) {

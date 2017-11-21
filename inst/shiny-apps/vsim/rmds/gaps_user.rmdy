@@ -3,20 +3,22 @@ title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
 output: html_document:
           css: styles.css
 ---
-<table width="100%">
-<tr><td width="*"><h1>
-Auswertung Lebenslage
-</h1></td><td align="right">
+<table>
+<tr><td style="white-space: nowrap"><h1>
+Auswertung Lebenslage&nbsp;&nbsp;
+</h1></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_lebenslage_auswertung, align = "right", width = "30%", height = "30%")
+rmd_display_icon(icon = icon_lebenslage_auswertung, align = "left", width = "20%", height = "20%")
 ```
 </td></tr>
 </table>
 
+<h4>
 Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 2 Kategorien eingeteilt:
 
 1. Belastungsfaktoren
 1. Unzufriedenheiten
+</h4>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

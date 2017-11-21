@@ -7,10 +7,13 @@ Qlist_Teil2a <- data.frame(Qnum = integer(),Question = character(), Massnahme = 
 
 
 relevant_questions <- logical(length = 12)
+# - start return funtion
 
 #Welche Gaps hat der User angegeben?
+# todo: rule_extract_gaps...
 gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
 gaps_user <- unique(Glist[gaps_user, 3])
+# todo: end rule_extract_gaps...
 
 belastungen <- rule_extract_belastungen(gaps_user)
 unzufriedenheiten <- rule_extract_unzufriedenheiten(gaps_user)
@@ -70,6 +73,7 @@ if(rule_identify_situation_flexibilisierung(gaps_user, "problem"))
   Qlist_Teil2a[12, ] <- c(QInputlist_Teil2a[12, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
 }
 
+# - end return funtion
 Qlist_Teil2a <- Qlist_Teil2a[relevant_questions, ]
 
 # write.table(Qlist_Teil2a,file = "data/Qlist_Teil2a.csv",quote = FALSE, row.names = FALSE, na = "", sep = ";", fileEncoding = "UTF-8")

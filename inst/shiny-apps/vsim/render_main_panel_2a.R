@@ -22,10 +22,7 @@ output$mainPanel <- renderUI( {
   # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil2a_intro) {
     return(
-      list(
-        p("Nach dieser Selbsteinschätzung überlegt sich der Vater in den drei Handlungsfelder Vereinbarkeitstätigkeiten, Zeitverwendung und Ressourcen und Entlastung, welche Massnahmen es ihm erlauben würden, bestehende Konflikte zu vermindern oder aufzulö-sen. Dabei hilft ihm auch der Leitfaden Vereinbarkeitsmassnahmen.
-          Der Simulator hilft dem Vater bei der Planung, indem er dem Vater konkrete Fragen in den drei Handlungsfeldern stellt und diese mit bestehenden Konflikten verknüpft.")
-      )
+      HTML("<h3>Nach dieser Selbsteinschätzung überlegt sich der Vater in den drei Handlungsfeldern 'Vereinbarkeits&shy;tätigkeiten', 'Zeitverwendung' und 'Ressourcen und Entlastung', welche Massnahmen es ihm erlauben würden, bestehende Konflikte zu vermindern oder aufzu&shy;lösen. Dabei hilft ihm auch der Leitfaden Vereinbarkeitsmassnahmen. Der Simulator hilft dem Vater bei der Planung, indem er ihm konkrete Fragen zu den drei Handlungsfeldern stellt und diese mit bestehenden Konflikten verknüpft.</h3>")
     )
   } else if (question_id > Survey_Sections$Teil2a_intro & question_id <= Survey_Sections$Teil2a_last_question) {
     # Once the next button has been clicked once we see each question
@@ -39,13 +36,13 @@ output$mainPanel <- renderUI( {
       list(
         h4(textOutput("question")),
         h4(checkboxGroupInput("survey", "", choices = c(option_list(), "Was soll das denn nützen?"), selected = selected, width = "600")),
-        textInput("kommentar", "Kommentar", kommentar)
+        h4(textInput("kommentar", "Kommentar", kommentar))
       )
     )
   } else if (question_id == Survey_Sections$Teil2a_end_statement) {
     return(
       list(
-        h3("Die Planung der 'Vereinbarungen' ist nun fertig. Klicke auf 'weiter', um zur Planung 'Zeitverwendung' zu kommen.")
+        h3("Die Planung der 'Vereinbarungen' ist nun fertig. Klicke auf 'Weiter', um zur Planung 'Zeitverwendung' zu kommen.")
       )
     )
   }
