@@ -23,17 +23,30 @@ test_that("rule_extract_unzufriedenheiten", {
   expect_error(rule_extract_unzufriedenheiten(1))
 })
 
-test_that("rule_extract_vereinbarungen", {
+test_that("rule_extract_vereinbarungen_fragen", {
   alist_2a <- test_vereinbarungen_chancen_alist_2a
-  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
+  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
   testthat::expect_equal(vereinbarungen, alist_2a$Frage)
 })
 
 test_that("rule_extract_chancen_per_vereinbarung", {
   alist_2a <- test_vereinbarungen_chancen_alist_2a
-  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
+  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
   chancen <- rule_extract_chancen_per_vereinbarung(vereinbarungen[1], alist_2a, "Belastung")
   testthat::expect_equal(chancen, test_vereinbarungen_chancen_expected)
+})
+
+test_that("rule_extract_vereinbarungen", {
+  result <- rule_extract_vereinbarungen(test_vereinbarungen_chancen_alist_2a)
+  testthat::expect_equal(nrow(result), 6)
+  testthat::expect_equal(ncol(result), 2)
+})
+
+test_that("rule_extract_vereinbarungen_kommentare", {
+  expected <- c("2a kommentar 29", "2a kommentar 30", "2a kommentar 31", "2a kommentar 32",
+                "2a kommentar 33", "2a kommentar 34")
+  result <- rule_extract_vereinbarungen_kommentare(test_vereinbarungen_chancen_alist_2a)
+  testthat::expect_equal(result, expected)
 })
 
 context("rules_identify")

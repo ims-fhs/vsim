@@ -67,10 +67,13 @@ output$save_results <- renderText({
   if (question_id == Survey_Sections$Teil2a_end_statement) {
     Alist <- Qlist_2a
     Alist <- Alist[, 1:4]
-    Alist[,3] <- results2
-    Alist[,4] <- kommentare2
+    if (!is.null(results2)) {
+      Alist[,3] <- results2
+    }
+    if (!is.null(kommentare2)) {
+      Alist[,4] <- kommentare2
+    }
     names(Alist)[3] <- "Antwort"
-    # BUG: sometimes 'Warning: Error in <-: 'names' attribute [4] must be the same length as the vector [3]' in the following row!
     names(Alist)[4] <- "Kommentar"
     # write.table(Alist, file = "../../data/Alist_Teil2a.csv",quote = FALSE, row.names = FALSE, na = "", sep = ";", fileEncoding = "UTF-8")
     # instead of writing a file we store the data in the memory for later access

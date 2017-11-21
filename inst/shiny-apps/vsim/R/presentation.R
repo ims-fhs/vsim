@@ -35,12 +35,15 @@ rmd_display_table <- function(rows, color = "") {
 #'
 #' @examples rmd_display_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a)
 rmd_display_vereinbarungen_chancen <- function(alist_2a) {
-  vereinbarungen <- rule_extract_vereinbarungen(alist_2a)
-  html <- "<table cellpadding='10' cellspacing='10' width='100%'><tr><th width='40%'>Geplante Vereinbarung</th><th width='*'>Chancen</th></tr>"
+  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
+  kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
+  assertthat::are_equal(length(vereinbarungen), length(kommentare))
+  html <- "<table cellpadding='10' cellspacing='10' width='100%'><tr style='border-bottom:1px solid #CCCCCC'><th width='40%'>Geplante Vereinbarung</th><th width='*'>Chancen</th><th>Kommentar</th></tr>"
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
-      html <- paste0(html, "<tr><td><div style='border-radius: 15px;background: ",
+      kommentar <- kommentare[i]
+      html <- paste0(html, "<tr style='border-bottom:1px solid #CCCCCC'><td><div style='border-radius: 15px;background: ",
                      col_vereinbarung(),
                      ";padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>",
                      vereinbarung, "</div></td><td>")
@@ -74,9 +77,12 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
                          chance, "</div>&nbsp;")
         }
       }
-
+      # Add comment, if available
+      html <- paste0(html, "<td>",kommentar , "</td>")
       html <- paste0(html, "</td></tr>")
     }
+  } else {
+      html <- paste0(html, "<tr style='border-bottom:1px solid #CCCCCC'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr>")
   }
   html <- paste0(html, "</table>")
   cat(html)
@@ -128,9 +134,11 @@ rmd_display_icon <- function(icon, align = stop(c("center", "left", "right")),
 #' @param title_main the main title
 #' @param title_sub the subtitle
 #' @param question_id the current question_id (needed for progressbar indicator)
+#' @param last_id the id of the last 'question' / 'screen' to be shown
 #'
 #' @return the tagList
-shiny_render_navbar_entry <- function(background_color, icon_name, title_main, title_sub, question_id) {
+shiny_render_navbar_entry <- function(background_color, icon_name, title_main, title_sub,
+                                      question_id, last_id) {
   retval <- tagList(
                 div(style=paste0("background-color:", background_color),
                 br(),
@@ -141,7 +149,8 @@ shiny_render_navbar_entry <- function(background_color, icon_name, title_main, t
                 br(),
                 h5("Fortschritt"),
                 tags$div(HTML(
-                  paste0("<progress value=", question_id * 2, " max='100' ></progress>")
+                  paste0("<progress value=", question_id * 2, " max='", last_id * 2
+                         ,"' ></progress>")
                 ))))
   return (retval)
 }

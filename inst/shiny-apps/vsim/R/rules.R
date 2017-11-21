@@ -59,15 +59,32 @@ rule_extract_unzufriedenheiten <- function(gaps) {
   return(unzufriedenheiten)
 }
 
-#' rule_extract_vereinbarungen: ermittelt die getroffenen Vereinbarungen, welchen
-#' Chancen zugewiesen wurden.
+#' rule_extract_vereinbarungen: bereitet die Vereinbarungen auf, indem nicht
+#' verwertbare antwort-optionen ausgeschlossen werden und gibt ein verwertbares
+#' dataframe zurück
+#'
+#' @param alist_2a
+#'
+#' @return dataframe mit alist_2a
+#'
+#' @examples rule_extract_vereinbarungen(test_vereinbarungen_chancen_alist_2a)
+rule_extract_vereinbarungen <- function(alist_2a ) {
+  alist_2a  <- alist_2a [!grepl("denn nützen?", alist_2a [, 3]), ]
+  alist_2a  <- alist_2a [!grepl("weiss nicht", alist_2a [, 3]), ]
+  alist_2a  <- alist_2a [, -1]
+  names(alist_2a )[names(alist_2a ) == "Question"] <- "Frage"
+  return(alist_2a)
+}
+
+#' rule_extract_vereinbarungen_fragen: ermittelt die Fragen für getroffene
+#' Vereinbarungen, welchen Chancen zugewiesen wurden.
 #'
 #' @param alist_2a
 #'
 #' @return vereinbarungen
 #'
-#' @examples rule_extract_vereinbarungen(test_vereinbarungen_chancen_alist_2a)
-rule_extract_vereinbarungen <- function(alist_2a) {
+#' @examples rule_extract_vereinbarungen_fragen(test_vereinbarungen_chancen_alist_2a)
+rule_extract_vereinbarungen_fragen <- function(alist_2a) {
   assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
                                                         "Kommentar")))
   answered <- which(!is.na(alist_2a$Antwort))
@@ -75,6 +92,26 @@ rule_extract_vereinbarungen <- function(alist_2a) {
   retval <- character()
   if (length(answered) > 0) {
     retval <- alist_2a[answered, ]$Frage
+  }
+  return(retval)
+}
+
+#' rule_extract_vereinbarungen_fragen: ermittelt die Fragen für getroffene
+#' Vereinbarungen, welchen Chancen zugewiesen wurden.
+#'
+#' @param alist_2a
+#'
+#' @return abgegebene kommentare zu beantworteten fragen
+#'
+#' @examples rule_extract_vereinbarungen_kommentare(test_vereinbarungen_chancen_alist_2a)
+rule_extract_vereinbarungen_kommentare <- function(alist_2a) {
+  assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
+                                                        "Kommentar")))
+  answered <- which(!is.na(alist_2a$Antwort))
+  assertthat::assert_that(is.numeric(answered))
+  retval <- character()
+  if (length(answered) > 0) {
+    retval <- alist_2a[answered, ]$Kommentar
   }
   return(retval)
 }

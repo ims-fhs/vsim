@@ -136,19 +136,24 @@ function(input, output, session) {
       output$progressbar <- renderUI({
         if (question_id <= Survey_Sections$Teil1_summary) {
           shiny_render_navbar_entry(col_lebenslage(), icon_lebenslage,
-                                    "Teil 1:", "Lebenslage", question_id)
+                                    "Teil 1:", "Lebenslage", question_id,
+                                    Survey_Sections$Teil3_final_evaluation)
         } else if (question_id <= Survey_Sections$Teil2a_end_statement) {
           shiny_render_navbar_entry(col_lebenslage(), icon_vereinbarung,
-                                    "Teil 2a:", "Planung 'Vereinbarungen'", question_id)
+                                    "Teil 2a:", "Planung 'Vereinbarungen'",
+                                    question_id, Survey_Sections$Teil3_final_evaluation)
         } else if (question_id <= Survey_Sections$Teil2b_end_statement) {
           shiny_render_navbar_entry(col_zeitverwendung(), icon_zeitverwendung,
-                                    "Teil 2b:", "Planung 'Zeitverwendung'", question_id)
+                                    "Teil 2b:", "Planung 'Zeitverwendung'", question_id,
+                                    Survey_Sections$Teil3_final_evaluation)
         } else if (question_id <= Survey_Sections$Teil2c_end_statement) {
           shiny_render_navbar_entry(col_unterstuetzung_und_entlastung(), icon_unterstuetzung_und_entlastung,
-                                    "Teil 2c:", "Unterstützung & Entlastung", question_id)
+                                    "Teil 2c:", "Unterstützung & Entlastung",
+                                    question_id, Survey_Sections$Teil3_final_evaluation)
         } else {
           shiny_render_navbar_entry(col_plan(), icon_plan,
-                                    "Teil 3:", "Auswertung", question_id)
+                                    "Teil 3:", "Auswertung", question_id,
+                                    Survey_Sections$Teil3_final_evaluation)
         }
       })
   }
