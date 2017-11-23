@@ -78,14 +78,14 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
-                 "<tr style='border-bottom:1px solid #CCCCCC'>",
+                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;' >",
                  "<th width='40%'><b>Geplante Vereinbarung</b></th>",
                  "<th width='*'><b>Chancen</b></th><th><b>Kommentar</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
       kommentar <- kommentare[i]
-      html <- paste0(html, "<tr style='border-bottom:1px solid #CCCCCC'><td>",
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td>",
                      "<div style='border-radius: 15px;background: ",
                      col_vereinbarung(),
                      ";padding: 12px; width: 400px; align: center; ",
@@ -127,7 +127,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
       html <- paste0(html, "</td></tr>")
     }
   } else {
-      html <- paste0(html, "<tr style='border-bottom:1px solid #CCCCCC'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr>")
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr>")
   }
   html <- paste0(html, "</table>")
   cat(html)

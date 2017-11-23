@@ -35,7 +35,17 @@ gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist,
     unique_only = FALSE)
 ```
 
-## Belastungsfaktoren
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Belastungsfaktoren&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_belastung, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
+
+
 ```{r belastung}
 belastungen <- rule_extract_belastungen(df$Gaps)
 rmd_display_table(belastungen, color = col_belastung())
@@ -62,7 +72,18 @@ if (show_warning) {
 </table>
 </center>
 
-## Unzufriedenheiten
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Unzufriedenheiten&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unzufriedenheit, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
+
+
+
 ```{r differences}
 unzufriedenheiten <- rule_extract_unzufriedenheiten(df$Gaps)
 rmd_display_table(unzufriedenheiten, color = col_unzufriedenheit())

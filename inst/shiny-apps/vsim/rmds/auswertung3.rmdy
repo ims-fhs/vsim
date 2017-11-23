@@ -2,9 +2,16 @@
 title: "Plan"
 output: html_document
 ---
-<h1>
-Plan
-</h1>
+
+<table>
+<tr><td style="white-space: nowrap"><h1>
+Plan&nbsp;&nbsp;
+</h1></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_plan, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
 
 <h4>Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt:
 </br></br>
@@ -36,8 +43,16 @@ names(df) <- "Gaps"
 df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 ```
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Vereinbarungen&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_massnahme_vereinbarung_belastung, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
 
-## Vereinbarungen
 ```{r echo = FALSE, results = 'asis'}
 Alist_2a <- result_coll$Alist_2a
 Alist_2a <- rule_extract_vereinbarungen(Alist_2a)
@@ -61,7 +76,16 @@ cat("</td></tr></table>")
 rmd_display_vereinbarungen_chancen(Alist_2a)
 ```
 
-## Zeitbalance
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Zeitbalance&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
+
 <h4>
 Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen.
 </h4>
@@ -73,7 +97,16 @@ names(Alist_2b)[names(Alist_2b) == "Question"] <- "Frage"
 kable(Alist_2b)
 ```
 
-## Unterstützung und Entlastung
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Unterstützung und Entlastung&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
+
 <h4>
 Im Teil "Unterstützung und Entlastung" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas verändern wollen.
 </h4>
@@ -84,4 +117,6 @@ Alist_2c <- Alist_2c[, -1]
 names(Alist_2c)[names(Alist_2c) == "Question"] <- "Frage"
 names(Alist_2c)[names(Alist_2c) == "Answer"] <- "Antwort"
 kable(Alist_2c)
+
+browser()
 ```
