@@ -4,8 +4,9 @@
 # this function is called in order to prepare variables for the next questionary
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
-  source("part2b_simulator.R", encoding = file_encoding, local = TRUE)[1]
-  relevant_gaps <<- result_coll$relevant_gaps
+  Alist <- result_coll$Alist
+  relevant_gaps <<- calc_relevant_gaps_2b(Alist)
+  result_coll$relevant_gaps <<- relevant_gaps
   calc_survey_question_ids()
 
   # ****** Data part 2b

@@ -80,3 +80,39 @@ calc_relevant_questions_2a <- function(Alist) {
   Qlist_Teil2a[is.na(Qlist_Teil2a)] <- ""
   return(Qlist_Teil2a)
 }
+
+#' calc_relevant_gaps_2b: takes the Alist (and the global Glist) and returns the
+#' Qlist_Teil2a with the relevant questions.
+#'
+#' @param Alist the Alist containing the answered questions from part 1
+#'
+#' @return the relevant_gaps containing the relevant questions for Teil2a
+#'
+#' @examples
+calc_relevant_gaps_2b <- function(Alist) {
+  #Welche Gaps hat der User angegeben?
+  gaps_user <- rule_extract_gaps(Alist, Glist, unique_only = TRUE)
+
+  relevant_gaps <- character(5)
+  relevant_gaps[1] <- ifelse(
+    length(gaps_user[grepl("Erwerb", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("Erwerb", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
+    "-")
+  relevant_gaps[2] <- ifelse(
+    length(gaps_user[grepl("Haus", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("Haus", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
+    "-")
+  relevant_gaps[3] <- ifelse(
+    length(gaps_user[grepl("Kind", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("Kind", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
+    "-")
+  relevant_gaps[4] <- ifelse(
+    length(gaps_user[grepl("Sozial", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("Sozial", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
+    "-")
+  relevant_gaps[5] <- ifelse(
+    length(gaps_user[grepl("selbst", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("selbst", gaps_user)]), collapse = ", "),
+    "-")
+  return(relevant_gaps)
+}

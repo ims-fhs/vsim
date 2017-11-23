@@ -69,7 +69,8 @@ rule_extract_unzufriedenheiten <- function(gaps) {
 #'
 #' @examples rule_extract_vereinbarungen(test_vereinbarungen_chancen_alist_2a)
 rule_extract_vereinbarungen <- function(alist_2a ) {
-  alist_2a  <- alist_2a [!grepl("denn nützen?", alist_2a [, 3]), ]
+  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
+  alist_2a  <- alist_2a [!grepl("denn n.+tzen?", alist_2a [, 3]), ]
   alist_2a  <- alist_2a [!grepl("weiss nicht", alist_2a [, 3]), ]
   alist_2a  <- alist_2a [, -1]
   names(alist_2a )[names(alist_2a ) == "Question"] <- "Frage"
@@ -178,7 +179,8 @@ rule_identify_unzufriedenheiten <- function(gaps) {
 #' @examples rule_identify_vereinbarkeitstaetigkeiten(c("nix", "Vereinbarkeitstätigkeit mit Maus"))
 rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
-  gaps <- grepl("Vereinbarkeitstätigkeit", gaps)
+  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
+  gaps <- grepl("Vereinbarkeitst.+tigkeit", gaps)
   assertthat::assert_that(is.logical(gaps))
   return(gaps)
 }
@@ -194,7 +196,8 @@ rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
 #' @examples rule_identify_situation_switchen(c("Alles im Grünen", "nix"), "chance")
 rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
   assertthat::assert_that(situation %in% c("chance", "problem"))
-  use_measure <- any(grepl("Vereinbarkeitstätigkeit Switchen wird angewandt", gaps))#oft, selten
+  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
+  use_measure <- any(grepl("Vereinbarkeitst.+tigkeit Switchen wird angewandt", gaps))#oft, selten
   problem <- any(grepl("Belastung durch Switchen", gaps))
   retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
@@ -211,7 +214,8 @@ rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'cha
 #' @examples rule_identify_situation_homeoffice(c("Belastung durch Flexibilisierung", "Vereinbarkeitstätigkeit Home Office wird angewandt"), "problem")
 rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
   assertthat::assert_that(situation %in% c("chance", "problem"))
-  use_measure <- any(grepl("Vereinbarkeitstätigkeit Home Office wird angewandt", gaps))#oft, selten
+  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
+  use_measure <- any(grepl("Vereinbarkeitst.+tigkeit Home Office wird angewandt", gaps))#oft, selten
   problem <- any(grepl("Belastung durch Flexibilisierung", gaps))
   retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
@@ -228,7 +232,8 @@ rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'c
 #' @examples rule_identify_situation_flexibilisierung(c("alles im Grünen", "nix"), "chance")
 rule_identify_situation_flexibilisierung <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
   assertthat::assert_that(situation %in% c("chance", "problem"))
-  use_measure <- any(grepl("Vereinbarkeitstätigkeit Flexible Arbeitszeiten wird angewandt", gaps))#oft, selten
+  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
+  use_measure <- any(grepl("Vereinbarkeitst.+tigkeit Flexible Arbeitszeiten wird angewandt", gaps))#oft, selten
   problem <- any(grepl("Belastung durch Flexibilisierung", gaps))
   retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
