@@ -77,10 +77,10 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
-  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
-                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;' >",
+  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
+                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th width='40%'><b>Geplante Massnahme</b></th>",
-                 "<th width='*'><b>Chancen</b></th><th><b>Kommentar</b></th></tr>")
+                 "<th width='*'><b>Chancen</b></th><th><b>Kommentar&nbsp;&nbsp;</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
@@ -133,6 +133,21 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   cat(html)
 }
 
+
+#' rmd_display_zeitverwendung: renders the zeitverwendung table based
+#' on the alist_2b provided
+#'
+#' HINT:
+#' the "rmd_"-prefix indicates, that this method is intended to be called from
+#' rmd-files (where as "shiny_"-prefixed methods are intended to be called from
+#' dynamic r-code generating dynamic shiny-output). the rmd-chunk must be
+#' marked with "results='asis'" in order to render correctly!
+#'
+#' @param alist_2b the Alist containing the Questions and the user's Answers
+#' from part 2a
+#' @param relevant_gaps the gaps identified
+#'
+#' @examples rmd_display_zeitverwendung
 rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
   alist_2b <- alist_2b[, -1]
   names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
@@ -141,8 +156,8 @@ rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
   # remove time-usage without changes
   alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
 
-  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
-                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;' >",
+  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
+                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Zeit für was</b></th>",
                  "<th><b>Bedürfnis</b></th><th><b>Deine relevanten Belastungen und Unzufriedenheiten</b></th>",
                  "<th><b>Kommentar</b></th></tr>")
@@ -180,12 +195,61 @@ rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
       html <- paste0(html, "</td></tr>")
     }
   } else {
-      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Anpassung der Zeitverwendung geplant.</td><td></td></tr>")
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='4'> Keine Anpassung der Zeitverwendung geplant.</td></tr>")
   }
   html <- paste0(html, "</table>")
   cat(html)
 }
 
+#' rmd_display_zeitverwendung: renders the zeitverwendung table based
+#' on the alist_2b provided
+#'
+#' HINT:
+#' the "rmd_"-prefix indicates, that this method is intended to be called from
+#' rmd-files (where as "shiny_"-prefixed methods are intended to be called from
+#' dynamic r-code generating dynamic shiny-output). the rmd-chunk must be
+#' marked with "results='asis'" in order to render correctly!
+#'
+#' @param alist_2c the Alist containing the Questions and the user's Answers
+#' from part 2c
+#'
+#' @examples rmd_display_unterstuetzung_entlastung
+rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
+  alist_2c <- alist_2c[grepl("Ja", alist_2c[, 3]), ]
+  alist_2c <- alist_2c[, -1]
+  names(alist_2c)[names(alist_2c) == "Question"] <- "Frage"
+  names(alist_2c)[names(alist_2c) == "Answer"] <- "Antwort"
+  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
+                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
+                 "<th><b>Frage</b></th>",
+                 "<th><b>Antwort</b></th>",
+                 "<th><b>Kommentar</b></th></tr>")
+
+  if (nrow(alist_2c) > 0) {
+    for (i in 1:nrow(alist_2c)) {
+      frage <- alist_2c[i, 1]
+      antwort <- alist_2c[i, 2]
+      kommentar <- alist_2c[i, 3]
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td>",
+                     "<div style='border-radius: 15px;background: ",
+                     col_unterstuetzung_und_entlastung(),
+                     ";padding: 12px; width: 500px; align: center; ",
+                     "border: 2px solid #FFFFFF;'>",
+                     frage, "</div></td><td>")
+      html <- paste0(html, "<div style='border-radius: 15px;background: ",
+                     col_unterstuetzung_und_entlastung(),
+                     ";padding: 12px; width: 300px; align: center; ",
+                     "border: 2px solid #FFFFFF;'>",
+                     antwort, "</div></td><td>")
+      html <- paste0(html, kommentar, "</td>")
+      html <- paste0(html, "</td></tr>")
+    }
+  } else {
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Unterstützungs- und/oder Entlastungsmassnahmen geplant.</td></tr>")
+  }
+  html <- paste0(html, "</table>")
+  cat(html)
+}
 
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
 #' HINT: call this function within shiny-render-functions to add dynamic html-
@@ -252,4 +316,27 @@ shiny_render_navbar_entry <- function(background_color, icon_name, title_main, t
                          ,"' ></progress>")
                 ))))
   return (retval)
+}
+
+rmd_display_weniger_ea <- function(alist_2b, relevant_gaps) {
+  alist_2b <- alist_2b[, -1]
+  names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
+  names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
+  alist_2b[, "Deine relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
+  alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
+
+  if (alist_2b[1, 4] == "-") {
+    grund <- "mehr Freiraum für andere Tätigkeiten zu schaffen."
+  } else {
+    grund <- paste0("der ", alist_2b[1, 4],
+               " entgegen zu wirken.")
+  }
+
+  if (grepl("weniger", alist_2b[1, 2])) {
+    cat(paste0("<center><table width='100%'><tr><td width='20%' align='center'><img src='",
+               icon_achtung,"', width = '40px', height = '40px' >",
+               "</td><td>Die für Erwerbsarbeit aufgewendete Zeit soll reduziert werden, um ",
+               grund,
+               "</td></tr></table></center>"))
+  }
 }

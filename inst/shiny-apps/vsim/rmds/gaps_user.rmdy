@@ -14,12 +14,12 @@ rmd_display_icon(icon = icon_lebenslage_auswertung, align = "left", width = "20%
 </table>
 
 <h4>
-Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Erfassung der Lebenslage". Diese sind in 2 Kategorien eingeteilt:
-
-1. Belastungsfaktoren
-1. Unzufriedenheiten
+Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Lebenslage" des Simulators. Diese lassen sich in die zwei folgenden Kategorien unterteilen:</br></br>
+<ol>
+<li>Belastungsfaktoren</li>
+<li>Unzufriedenheiten</li>
+</ol>
 </h4>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -44,6 +44,9 @@ rmd_display_icon(icon = icon_belastung, align = "left", width = "20%", height = 
 ```
 </td></tr>
 </table>
+<h4>
+Folgende Belastungsfaktoren konnten ermittelt werden:
+</h4>
 
 
 ```{r belastung}
@@ -81,7 +84,9 @@ rmd_display_icon(icon = icon_unzufriedenheit, align = "left", width = "20%", hei
 ```
 </td></tr>
 </table>
-
+<h4>
+Folgende Unzufriedenheiten konnten ermittelt werden:
+</h4>
 
 
 ```{r differences}

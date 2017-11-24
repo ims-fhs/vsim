@@ -77,7 +77,7 @@ rmd_display_icon(icon = icon_massnahme_vereinbarung_belastung, align = "left", w
 </table>
 
 <h4>
-Im Teil "Vereinbarungen" haben Sie für folgende Massnahmen angegeben, dass diese eine Verbesserung in den unter 'Chancen' genannten Punkten herbeiführen.
+Im Teil "Vereinbarungen" haben Sie für folgende Massnahmen angegeben, dass diese eine Verbesserung in den unter 'Chancen' genannten Punkten herbeiführen:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
@@ -96,13 +96,19 @@ rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", heig
 </table>
 
 <h4>
-Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen.
+Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
 Alist_2b <- result_coll$Alist_2b
 rmd_display_zeitverwendung(Alist_2b, result_coll$relevant_gaps)
+
 ```
+
+```{r, echo=FALSE, results='asis'}
+rmd_display_weniger_ea(Alist_2b, result_coll$relevant_gaps)
+```
+
 
 <table>
 <tr><td style="white-space: nowrap"><h2>
@@ -115,13 +121,12 @@ rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "left", widt
 </table>
 
 <h4>
-Im Teil "Unterstützung und Entlastung" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas verändern wollen.
+Im Teil "Unterstützung und Entlastung" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas verändern wollen:
 </h4>
-```{r}
+
+```{r, echo=FALSE, results='asis'}
 Alist_2c <- result_coll$Alist_2c
-Alist_2c <- Alist_2c[grepl("Ja", Alist_2c[, 3]), ]
-Alist_2c <- Alist_2c[, -1]
-names(Alist_2c)[names(Alist_2c) == "Question"] <- "Frage"
-names(Alist_2c)[names(Alist_2c) == "Answer"] <- "Antwort"
-kable(Alist_2c)
+rmd_display_unterstuetzung_entlastung(Alist_2c)
 ```
+
+</br></br></br>
