@@ -98,11 +98,14 @@ output$save_results <- renderText({
                     as.character(input$kommentar4),
                     as.character(input$kommentar5))
   }
-
   if (question_id == Survey_Sections$Teil2b_end_statement) {
     Alist <- Qlist_2b
     Alist[,3] <- results2b
-    Alist[,4] <- ifelse(is.null(kommentare2b) || is.na(kommentare2b), "", kommentare2b)
+    if (is.null(kommentare2b) || any(is.na(kommentare2b))) {
+      Alist[,4] <- ""
+    } else {
+      Alist[,4] <- kommentare2b
+    }
     names(Alist)[3] <- "Antwort"
     names(Alist)[4] <- "Kommentar"
     result_coll$Alist_2b <<- Alist

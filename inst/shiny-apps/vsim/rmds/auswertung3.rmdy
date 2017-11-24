@@ -43,15 +43,7 @@ names(df) <- "Gaps"
 df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 ```
-<table>
-<tr><td style="white-space: nowrap"><h2>
-Vereinbarungen&nbsp;&nbsp;
-</h2></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_massnahme_vereinbarung_belastung, align = "left", width = "20%", height = "20%")
-```
-</td></tr>
-</table>
+
 
 ```{r echo = FALSE, results = 'asis'}
 Alist_2a <- result_coll$Alist_2a
@@ -72,9 +64,26 @@ if (chancen_differenzen) {
  rmd_display_icon(icon_differenz, "center", "30%", "30%", col_differenz(), "Vereinbarungen zur Reduktion von Differenzen geplant")
 }
 cat("</td></tr></table>")
+```
 
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Vereinbarungen&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_massnahme_vereinbarung_belastung, align = "left", width = "20%", height = "20%")
+```
+</td></tr>
+</table>
+
+<h4>
+Im Teil "Vereinbarungen" haben Sie für folgende Massnahmen angegeben, dass diese eine Verbesserung in den unter 'Chancen' genannten Punkten herbeiführen.
+</h4>
+
+```{r, echo=FALSE, results='asis'}
 rmd_display_vereinbarungen_chancen(Alist_2a)
 ```
+
 
 <table>
 <tr><td style="white-space: nowrap"><h2>
@@ -89,12 +98,10 @@ rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", heig
 <h4>
 Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen.
 </h4>
-```{r}
+
+```{r, echo=FALSE, results='asis'}
 Alist_2b <- result_coll$Alist_2b
-Alist_2b <- Alist_2b[!grepl("gleich", Alist_2b[, 3]), ]
-Alist_2b <- Alist_2b[, -1]
-names(Alist_2b)[names(Alist_2b) == "Question"] <- "Frage"
-kable(Alist_2b)
+rmd_display_zeitverwendung(Alist_2b, result_coll$relevant_gaps)
 ```
 
 <table>
@@ -117,6 +124,4 @@ Alist_2c <- Alist_2c[, -1]
 names(Alist_2c)[names(Alist_2c) == "Question"] <- "Frage"
 names(Alist_2c)[names(Alist_2c) == "Answer"] <- "Antwort"
 kable(Alist_2c)
-
-browser()
 ```

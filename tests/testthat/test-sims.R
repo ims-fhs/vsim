@@ -29,4 +29,8 @@ test_that("calc_relevant_gaps_2b", {
   result <- calc_relevant_gaps_2b(test_calc_relevant_gaps_2b_02)
   expect_equal(result, test_calc_relevant_gaps_2b_expected_result_02)
 
+  # test3
+  result <- calc_relevant_gaps_2b(test_calc_relevant_gaps_2b_03)
+  expect_equal(result, test_calc_relevant_gaps_2b_expected_result_03)
+
 })

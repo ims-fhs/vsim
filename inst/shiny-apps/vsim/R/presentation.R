@@ -52,11 +52,11 @@ get_selected_value <- function(selected_value, default_value = "") {
 rmd_display_table <- function(rows, color = "") {
   if (color != "") {
     kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
-      kable_styling(bootstrap_options = c("striped", "hover")) %>%
+      kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left") %>%
       row_spec(1:length(rows), background = color, color = "white")
   } else {
     kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
-      kable_styling(bootstrap_options = c("striped", "hover"))
+      kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left")
   }
 }
 
@@ -79,7 +79,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;' >",
-                 "<th width='40%'><b>Geplante Vereinbarung</b></th>",
+                 "<th width='40%'><b>Geplante Massnahme</b></th>",
                  "<th width='*'><b>Chancen</b></th><th><b>Kommentar</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
@@ -132,6 +132,60 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   html <- paste0(html, "</table>")
   cat(html)
 }
+
+rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
+  alist_2b <- alist_2b[, -1]
+  names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
+  names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
+  alist_2b[, "Deine relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
+  # remove time-usage without changes
+  alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
+
+  html <- paste0("<table cellpadding='10' cellspacing='10' width='100%' ",
+                 "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;' >",
+                 "<th><b>Zeit für was</b></th>",
+                 "<th><b>Bedürfnis</b></th><th><b>Deine relevanten Belastungen und Unzufriedenheiten</b></th>",
+                 "<th><b>Kommentar</b></th></tr>")
+  if (nrow(alist_2b) > 0) {
+    for (i in 1:nrow(alist_2b)) {
+      zeitfuerwas <- alist_2b[i, 1]
+      beduerfnis <- alist_2b[i, 2]
+      kommentar <- alist_2b[i, 3]
+      belunz <- alist_2b[i, 4]
+      if (grepl("Differenz", belunz)) {
+        col <- col_differenz()
+      } else if (grepl("Belastung", belunz)) {
+        col <- col_belastung()
+      } else {
+        col <- col_unzufriedenheit()
+      }
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td>",
+                     "<div style='border-radius: 15px;background: ",
+                     col_zeitverwendung(),
+                     ";padding: 12px; width: 200px; align: center; ",
+                     "border: 2px solid #FFFFFF;'>",
+                     zeitfuerwas, "</div></td><td>")
+      html <- paste0(html, "<div style='border-radius: 15px;background: ",
+                     col_zeitverwendung(),
+                     ";padding: 12px; width: 200px; align: center; ",
+                     "border: 2px solid #FFFFFF;'>",
+                     beduerfnis, "</div></td><td>")
+      html <- ifelse (belunz != "-",
+                     paste0(html, "<div style='border-radius: 15px;background: ",
+                     col,
+                     ";padding: 12px; width: 200px; align: center; ",
+                     "border: 2px solid #FFFFFF;'>",
+                     belunz, "</div></td><td>"), paste0(html, "&nbsp;</td><td>"))
+      html <- paste0(html, kommentar, "</td>")
+      html <- paste0(html, "</td></tr>")
+    }
+  } else {
+      html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Anpassung der Zeitverwendung geplant.</td><td></td></tr>")
+  }
+  html <- paste0(html, "</table>")
+  cat(html)
+}
+
 
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
 #' HINT: call this function within shiny-render-functions to add dynamic html-

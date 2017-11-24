@@ -94,10 +94,6 @@ function(input, output, session) {
   # if previous-button is clicked, increment question-id and re-render mainpanel / progressbar panel
   observeEvent(input$next_button, {question_id <<- question_id + 1; renderMainPanel(); renderProgressbar()})
 
-  # TODO:
-  # beim zurück clicken müssten die result-arrays wieder initialisiert werden
-  # anhand der overall arrays, falls fragebogen-grenzen überschritten werden (sollen)
-
   renderMainPanel <- function() {
     if (question_id <= Survey_Sections$Teil1_summary) {
       source("render_main_panel_1.R", encoding = file_encoding, local = TRUE)[1]
