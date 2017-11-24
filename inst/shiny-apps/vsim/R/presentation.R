@@ -324,19 +324,20 @@ rmd_display_weniger_ea <- function(alist_2b, relevant_gaps) {
   names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
   alist_2b[, "Deine relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
   alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
+  if (nrow(alist_2b) > 0) {
+    if (alist_2b[1, 4] == "-") {
+      grund <- "mehr Freiraum für andere Tätigkeiten zu schaffen."
+    } else {
+      grund <- paste0("der ", alist_2b[1, 4],
+                 " entgegen zu wirken.")
+    }
 
-  if (alist_2b[1, 4] == "-") {
-    grund <- "mehr Freiraum für andere Tätigkeiten zu schaffen."
-  } else {
-    grund <- paste0("der ", alist_2b[1, 4],
-               " entgegen zu wirken.")
-  }
-
-  if (grepl("weniger", alist_2b[1, 2])) {
-    cat(paste0("<center><table width='100%'><tr><td width='20%' align='center'><img src='",
-               icon_achtung,"', width = '40px', height = '40px' >",
-               "</td><td>Die für Erwerbsarbeit aufgewendete Zeit soll reduziert werden, um ",
-               grund,
-               "</td></tr></table></center>"))
+    if (grepl("weniger", alist_2b[1, 2])) {
+      cat(paste0("<center><table width='100%'><tr><td width='20%' align='center'><img src='",
+                 icon_achtung,"', width = '40px', height = '40px' >",
+                 "</td><td>Die für Erwerbsarbeit aufgewendete Zeit soll reduziert werden, um ",
+                 grund,
+                 "</td></tr></table></center>"))
+    }
   }
 }
