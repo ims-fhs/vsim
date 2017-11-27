@@ -66,15 +66,14 @@ test_that("rule_identify_unzufriedenheiten", {
 })
 
 test_that("rule_identify_situation_switchen", {
-  c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung durch Switchen")
   expect_false(rule_identify_situation_switchen(c(""), "problem"))
   expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt"), "problem"))
-  expect_true(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung durch Switchen")
+  expect_true(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung: Häufiges Hin- und Herschalten zwischen Privatem und Beruflichem (Switchen)")
                                                 , "problem"))
-  expect_true(rule_identify_situation_switchen(c(""), "chance"))
-  expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt"), "chance"))
-  expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung durch Switchen")
-                                               , "chance"))
+  # expect_true(rule_identify_situation_switchen(c(""), "chance"))
+  # expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt"), "chance"))
+  # expect_false(rule_identify_situation_switchen(c("Vereinbarkeitstätigkeit Switchen wird angewandt", "Belastung: Häufiges Hin- und Herschalten zwischen Privatem und Beruflichem (Switchen)")
+  #                                              , "chance"))
 })
 
 test_that("rule_identify_chance_or_problem", {

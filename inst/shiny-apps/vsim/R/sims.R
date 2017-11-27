@@ -98,8 +98,8 @@ calc_relevant_gaps_2b <- function(Alist) {
     paste(c(gaps_user[grepl("Erwerb", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
     "-")
   relevant_gaps[2] <- ifelse(
-    length(gaps_user[grepl("Haus", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
-    paste(c(gaps_user[grepl("Haus", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
+    length(gaps_user[grepl("privaten Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("privaten Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
     "-")
   relevant_gaps[3] <- ifelse(
     length(gaps_user[grepl("Kind", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
