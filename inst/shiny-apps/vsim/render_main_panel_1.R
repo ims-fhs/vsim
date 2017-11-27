@@ -23,7 +23,14 @@ output$mainPanel <- renderUI({
   # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
     return(list(h3("Willkommen zum Vereinbarkeitssimulator"),
-                h4("Vor dem jährlichen Mitarbeitergespräch (MAG) nutzen die Väter den Vereinbarkeitssimulator. Dieser befragt Sie nach Ihrer aktuellen Lebenslage und hilft den Vätern aktuell bestehende Belastungen, Unzufriedenheiten und Differenzen in der Zeitverwendung zu identifizieren.")))
+                h4("Der Vereinbarkeitssimulator ist ein softwarebasiertes Instrument, welches die spezifischen Lebenslagen von Mitarbeitenden und ihre Wünsche an ihre zukünftige Work-Life-Balance erfasst. So soll ein Dialog zwischen der Unternehmensführung und den Mitarbeitenden inklusive ihrer Angehörigen ermöglicht und Entscheidungsgrundlagen für die Wahl von Arbeitsorganisationsmodellen geschaffen werden."),
+                h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre spezifische Lebenslage. Auf Grund der von Ihnen angegebenen Daten erfolgt dann eine Bewertung der momentanen Ausgangssituation (Ist-Zustand)."),
+                h4("Mit Blick auf den Ist-Zustand werden im ", strong("zweiten Schritt"), "Wünsche und Bedürfnisse festgelegt (Soll-Zustand). In diesem Teil des Vereinbarkeitssimulators können Ideen und Vorgaben erfasst werden, welche Ihnen als Hilfestellung zum Erreichen Ihrer angestrebten Ziele dienen."),
+                h4("Im", strong("dritten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit Ihnen zusammen Lösungsansätze. Hierbei werden Möglichkeiten zur Zielerreichung mittels betrieblicher Hilfen (unternehmensspezifische Angebote wie Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.), Wünsche zur Zeitverwendung sowie individuelle Unterstützungs- und Entlastungsmöglichkeiten aufgezeigt."),
+                h4("Zum Abschluss erhalten Sie eine Zusammenfassung ihrer Lebenslage, ihren Wünschen und Ideen."),
+                br(),
+                h4("Zum Starten des Vereinbarkeitssimulators klicken Sie bitte auf 'Weiter'. Durch das Anklicken von 'Zurück' haben Sie ausserdem die Möglichkeit, einen Schritt retour zu gehen.")
+                   ))
   } else if (question_id > Survey_Sections$Teil1_intro & question_id <= Survey_Sections$Teil1_last_question) {
     # Once the next button has been clicked once we see each question
     # of the survey.
@@ -37,7 +44,7 @@ output$mainPanel <- renderUI({
       ))
   } else if (question_id == Survey_Sections$Teil1_end_statement) {
     return(list(
-        h3("Die Erfassung deiner Lebenslage ist nun fertig. Klicke auf 'weiter', um deine aktuelle Lebenslage auszuwerten.")
+        h4("Die Erfassung Ihrer Lebenslage ist nun abgeschlossen. Klicken Sie bitte auf 'Weiter' um zur Auswertung Ihrer Angaben zu gelangen.")
     ))
   } else if (question_id == Survey_Sections$Teil1_summary) {
     questionaryPostProcessing();

@@ -14,11 +14,7 @@ rmd_display_icon(icon = icon_lebenslage_auswertung, align = "left", width = "20%
 </table>
 
 <h4>
-Diese Zwischenauswertung zeigt die Resultate von Teil 1 "Lebenslage" des Simulators. Diese lassen sich in die zwei folgenden Kategorien unterteilen:</br></br>
-<ol>
-<li>Belastungsfaktoren</li>
-<li>Unzufriedenheiten</li>
-</ol>
+Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende mögliche <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b> erkannt:</br></br>
 </h4>
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -93,3 +89,8 @@ Folgende Unzufriedenheiten konnten ermittelt werden:
 unzufriedenheiten <- rule_extract_unzufriedenheiten(df$Gaps)
 rmd_display_table(unzufriedenheiten, color = col_unzufriedenheit())
 ```
+<br>
+<br>
+<h4>
+Um mit Teil 2 des Vereinbarkeitssimulators weiterzufahren, klicken Sie bitte auf 'Weiter'.
+</h4>

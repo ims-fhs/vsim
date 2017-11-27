@@ -14,7 +14,10 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2c_intro) {
     return(
       list(
-        h3("..Erklärungstext für Teil 2c... TBD oder komplett entfernen")
+        h4("Im letzten Abschnitt des Vereinbarkeitssimulators werden Ihnen konkrete Massnahmen vorgeschlagen, mit welchen Sie vorhandene Belastungsfaktoren und/oder Unzufriedenheiten verändern können. Sie haben ausserdem die Möglichkeit, bei jeder Frage persönliche Anmerkungen anzubringen."),
+        br(),
+        br(),
+        h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'.")
       )
     )
   } else if (question_id > Survey_Sections$Teil2c_intro & question_id <= Survey_Sections$Teil2c_last_question) {
@@ -24,13 +27,16 @@ output$mainPanel <- renderUI( {
         h4(textOutput("question")),
         h4(radioButtons("survey", "",
                      c(option_list(), "weiss nicht"), selected = selected), width = "600"),
-        h4(textInput("kommentar", "Kommentar", value = ifelse(length(kommentare2c[question_id - Survey_Sections$Teil2c_intro])>0, kommentare2c[question_id - Survey_Sections$Teil2c_intro], "")))
+        h4(textInput("kommentar", "Persönliche Anmerkungen", value = ifelse(length(kommentare2c[question_id - Survey_Sections$Teil2c_intro])>0, kommentare2c[question_id - Survey_Sections$Teil2c_intro], "")))
       )
     )
   } else if (question_id == Survey_Sections$Teil2c_end_statement) {
     return(
       list(
-        h3("Die Planung 'Unterstützung und Entlastung' ist nun abgeschlossen. Somit hast du in den drei Handlungsfeldern 'Vereinbarungen', 'Zeitverwendung' und 'Unterstützung und Entlastung' Massnahmen identifizieren können, welche dir helfen deine Belastungen und Unzufriedenheiten anzugehen. Klicke auf 'weiter', um deinen Plan im Überblick anzuzeigen.")
+        h4("Die Erfassung der für Sie denkbaren Unterstützungs- und/oder Entlastungsmöglichkeiten ist nun abgeschlossen. Somit sind Sie beinahe schon am Ende des Vereinbarkeitssimulators angelangt."),
+        br(),
+        br(),
+        h4("Bitte klicken Sie auf 'Weiter' um zur zusammenfassenden Übersicht ihrer Planung für das nächste Jahr zu gelangen. ")
       )
     )
   }

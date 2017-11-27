@@ -45,6 +45,12 @@ names(df) <- "Gaps"
 ```
 
 
+
+
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Vereinbarungen&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
 ```{r echo = FALSE, results = 'asis'}
 Alist_2a <- result_coll$Alist_2a
 Alist_2a <- rule_extract_vereinbarungen(Alist_2a)
@@ -55,29 +61,21 @@ chancen_differenzen <- rule_identify_vereinbarungen_chancen(Alist_2a, "Differenz
 
 cat("<table width='100%'><tr><td>")
 if (chancen_belastungen) {
-  rmd_display_icon(icon_belastung, "center", "30%", "30%", col_belastung(), "Vereinbarungen zur Reduktion von Belastungen geplant")
+  rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_belastung(), "Vereinbarungen zur Reduktion von Belastungen geplant")
 }
 if (chancen_unzufriedenheiten) {
- rmd_display_icon(icon_unzufriedenheit, "center", "30%", "30%", col_unzufriedenheit(), "Vereinbarungen zur Reduktion von Unzufriedenheiten geplant")
+ rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_unzufriedenheit(), "Vereinbarungen zur Reduktion von Unzufriedenheiten geplant")
 }
 if (chancen_differenzen) {
- rmd_display_icon(icon_differenz, "center", "30%", "30%", col_differenz(), "Vereinbarungen zur Reduktion von Differenzen geplant")
+ rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_differenz(), "Vereinbarungen zur Reduktion von Differenzen geplant")
 }
 cat("</td></tr></table>")
-```
-
-<table>
-<tr><td style="white-space: nowrap"><h2>
-Vereinbarungen&nbsp;&nbsp;
-</h2></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_massnahme_vereinbarung_belastung, align = "left", width = "20%", height = "20%")
 ```
 </td></tr>
 </table>
 
 <h4>
-Im Teil "Vereinbarungen" haben Sie für folgende Massnahmen angegeben, dass diese eine Verbesserung in den unter 'Chancen' genannten Punkten herbeiführen:
+Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 folgende potentiellen Vereinbarungen als Lösungsansätze identifziert:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
@@ -96,7 +94,7 @@ rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", heig
 </table>
 
 <h4>
-Im Teil "Zeitbalance" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas an der Zeiteinteilung ändern wollen:
+Mit Blick auf ihre Zeitplanung für das kommende Jahr wollen Sie die folgenden Anpassungen vornehmen:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
@@ -121,7 +119,7 @@ rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "left", widt
 </table>
 
 <h4>
-Im Teil "Unterstützung und Entlastung" haben Sie bei den folgenden Fragen angegeben, dass Sie etwas verändern wollen:
+Mit Blick auf potentielle Unterstützungs- und Entlastungsmöglichkeiten haben Sie folgende Handlungsfelder identifiziert:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}

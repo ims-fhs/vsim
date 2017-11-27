@@ -79,8 +79,8 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
-                 "<th width='40%'><b>Geplante Massnahme</b></th>",
-                 "<th width='*'><b>Chancen</b></th><th><b>Kommentar&nbsp;&nbsp;</b></th></tr>")
+                 "<th width='40%'><b>Geplante Vereinbarung</b></th>",
+                 "<th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Persönliche Anmerkung&nbsp;&nbsp;</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
@@ -152,15 +152,15 @@ rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
   alist_2b <- alist_2b[, -1]
   names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
   names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
-  alist_2b[, "Deine relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
+  alist_2b[, "Ihre relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
   # remove time-usage without changes
   alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
 
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Zeit für was</b></th>",
-                 "<th><b>Bedürfnis</b></th><th><b>Deine relevanten Belastungen und Unzufriedenheiten</b></th>",
-                 "<th><b>Kommentar</b></th></tr>")
+                 "<th><b>Bedürfnis</b></th><th><b>Ihre relevanten Belastungen und Unzufriedenheiten</b></th>",
+                 "<th><b>Persönliche Anmerkung</b></th></tr>")
   if (nrow(alist_2b) > 0) {
     for (i in 1:nrow(alist_2b)) {
       zeitfuerwas <- alist_2b[i, 1]
@@ -223,7 +223,7 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Frage</b></th>",
                  "<th><b>Antwort</b></th>",
-                 "<th><b>Kommentar</b></th></tr>")
+                 "<th><b>Persönliche Anmerkung</b></th></tr>")
 
   if (nrow(alist_2c) > 0) {
     for (i in 1:nrow(alist_2c)) {
@@ -322,7 +322,7 @@ rmd_display_weniger_ea <- function(alist_2b, relevant_gaps) {
   alist_2b <- alist_2b[, -1]
   names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
   names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
-  alist_2b[, "Deine relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
+  alist_2b[, "Ihre relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
   alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
   if (nrow(alist_2b) > 0) {
     if (alist_2b[1, 4] == "-") {
