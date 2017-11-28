@@ -217,12 +217,12 @@ rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
 rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
   alist_2c <- alist_2c[grepl("Ja", alist_2c[, 3]), ]
   alist_2c <- alist_2c[, -1]
-  names(alist_2c)[names(alist_2c) == "Question"] <- "Frage"
-  names(alist_2c)[names(alist_2c) == "Answer"] <- "Antwort"
+  names(alist_2c)[names(alist_2c) == "Question"] <- "Handlungsfeld"
+  names(alist_2c)[names(alist_2c) == "Answer"] <- "Geplante Strategie"
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
-                 "<th><b>Frage</b></th>",
-                 "<th><b>Antwort</b></th>",
+                 "<th><b>Handlungsfeld</b></th>",
+                 "<th><b>Geplante Strategie</b></th>",
                  "<th><b>Persönliche Anmerkung</b></th></tr>")
 
   if (nrow(alist_2c) > 0) {
