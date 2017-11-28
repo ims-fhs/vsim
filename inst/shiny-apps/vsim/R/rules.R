@@ -268,7 +268,7 @@ rule_identify_chance_or_problem <- function(use_measure, problem, situation = st
 #' @examples rule_identify_belastungen_psychische_gesundheit(c("Belastung switchen", "Belastung psychische Gesundheit"))
 rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
-  retval <- length(gaps) > 0 && sum(grepl("psychische", gaps)) > 1
+  retval <- length(gaps) > 0 && sum(grepl("psychische", gaps, ignore.case = TRUE)) > 1
   assertthat::assert_that(is.logical(retval))
   return(retval)
 }
