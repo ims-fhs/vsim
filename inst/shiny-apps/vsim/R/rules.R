@@ -211,12 +211,12 @@ rule_identify_situation_switchen <- function(gaps, situation = stop("One of 'cha
 #'
 #' @return logical scalar value
 #'
-#' @examples rule_identify_situation_homeoffice(c("Belastung durch Flexibilisierung", "Vereinbarkeitstätigkeit Home Office wird angewandt"), "problem")
+#' @examples rule_identify_situation_homeoffice(c("Belastung durch Home Office", "Vereinbarkeitstätigkeit Home Office wird angewandt"), "problem")
 rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'chance', 'problem'")) {
   assertthat::assert_that(situation %in% c("chance", "problem"))
   # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
   use_measure <- any(grepl("Vereinbarkeitst.+tigkeit Home Office wird angewandt", gaps))#oft, selten
-  problem <- any(grepl("Flexibilisierung", gaps))
+  problem <- any(grepl("Belastung Home Office", gaps))
   retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
 }
