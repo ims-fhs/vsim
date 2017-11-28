@@ -44,7 +44,10 @@ output$mainPanel <- renderUI({
       ))
   } else if (question_id == Survey_Sections$Teil1_end_statement) {
     return(list(
-        h4("Die Erfassung Ihrer Lebenslage ist nun abgeschlossen. Klicken Sie bitte auf 'Weiter' um zur Auswertung Ihrer Angaben zu gelangen.")
+        h4("Die Erfassung Ihrer Lebenslage ist nun abgeschlossen."),
+        br(),
+        br(),
+        h4("Klicken Sie bitte auf 'Weiter' um zur Auswertung Ihrer Angaben zu gelangen.")
     ))
   } else if (question_id == Survey_Sections$Teil1_summary) {
     questionaryPostProcessing();

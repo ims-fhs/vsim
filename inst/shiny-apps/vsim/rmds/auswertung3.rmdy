@@ -22,9 +22,8 @@ rmd_display_icon(icon = icon_plan, align = "left", width = "20%", height = "20%"
 </ol>
 </br>
 In den drei Teilen werden deine geplanten Massnahmen, welche du im Planungsteil für dich identifiziert hast nochmals gezeigt und du siehst, welche Belastungen und Unzufriedenheiten du mit diesen geplanten Massnahmen im nächsten Jahr angehen willst.
-</br></br>
-Zur Umsetzung der Massnahmen musst du dich nun mit deinen Angehörigen und Vorgesetzten abstimmen.
-</h4>
+</br></br></h4>
+
 
 ```{r setup, include=FALSE}
 library(shiny)
@@ -73,7 +72,7 @@ cat("</td></tr></table>")
 ```
 </td></tr>
 </table>
-
+<br>
 <h4>
 Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 folgende potentiellen Vereinbarungen als Lösungsansätze identifziert:
 </h4>
@@ -92,7 +91,7 @@ rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", heig
 ```
 </td></tr>
 </table>
-
+<br>
 <h4>
 Mit Blick auf ihre Zeitplanung für das kommende Jahr wollen Sie die folgenden Anpassungen vornehmen:
 </h4>
@@ -117,7 +116,7 @@ rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "left", widt
 ```
 </td></tr>
 </table>
-
+<br>
 <h4>
 Mit Blick auf potentielle Unterstützungs- und Entlastungsmöglichkeiten haben Sie folgende Handlungsfelder identifiziert:
 </h4>
@@ -128,3 +127,6 @@ rmd_display_unterstuetzung_entlastung(Alist_2c)
 ```
 
 </br></br></br>
+<h4>
+Zur Umsetzung der Massnahmen müssen Sie sich nun mit ihren Angehörigen und Vorgesetzten abstimmen. Sehen Sie sich hierzu nochmals unser Erklärvideo an. ..Link..
+</h4>

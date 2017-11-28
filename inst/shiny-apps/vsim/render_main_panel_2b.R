@@ -23,7 +23,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2b_intro) {
     return(
       list(
-        h4("Im folgenden Abschnitt bietet Ihnen der Vereinbarkeitssimulator die Möglichkeit, Ihre Zeit im zukünftigen Jahr zu planen/einzuteilen."),
+        h4("Im nun folgenden Teil 2b bietet Ihnen der Vereinbarkeitssimulator die Möglichkeit, ihre Zeit im zukünftigen Jahr zu planen/einzuteilen."),
         br(),
         br(),
         h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'. ")
@@ -32,8 +32,8 @@ output$mainPanel <- renderUI( {
   } else if (question_id == Survey_Sections$Teil2b_first_question) {
     return(
       fluidPage(
-        fluidRow(h4("Möglicherweise ist Ihnen beim Ausfüllen der Fragen klargeworden, dass Sie mit der Planung/Einteilung Ihrer Zeit zufrieden sind. Möglicherweise möchten Sie Ihre Zeiteinteilung aber auch anpassen."),
-                  h4("Das kann mit Unterstützung Ihrer/Ihres Vorgesetzten, Ihres Teams und Ihrer Angehörigen gelingen. Überlegen Sie sich, für welche Aktivitäten Sie im nächsten Jahr mehr oder weniger Zeit als bisher verwenden wollen und wählen Sie im Dropdown-Menu die für Sie passenden Vorschläge aus."), br(), br()),
+        fluidRow(h4("Möglicherweise ist Ihnen beim Ausfüllen der Fragen klargeworden, dass Sie mit der Planung/Einteilung ihrer Zeit zufrieden sind. Möglicherweise möchten Sie Ihre Zeiteinteilung aber auch anpassen."),
+                  h4("Das kann mit Unterstützung ihrer/ihres Vorgesetzten, ihres Teams und ihrer Angehörigen gelingen. Überlegen Sie sich, für welche Aktivitäten Sie im nächsten Jahr mehr oder weniger Zeit als bisher verwenden wollen und wählen Sie im Dropdown-Menu die für Sie passenden Vorschläge aus."), br(), br()),
         fluidRow(
           column(2, HTML("<h4><b>Zeit für was</b></h4>")),
           column(4, HTML("<h4><b>Ihre relevanten Belastungen und Unzufriedenheiten</b></h4>")),
@@ -83,7 +83,7 @@ output$mainPanel <- renderUI( {
         h4("Die Erfassung Ihrer Vorstellungen zur Zeitplanung im nächsten Jahr ist nun abgeschlossen."),
         br(),
         br(),
-        h4("Klicken Sie bitte auf 'Weiter' um zum letzten Abschnitt des Vereinbarkeitssimulators zu gelangen.")
+        h4("Klicken Sie bitte auf 'Weiter' um zum Teil 2c 'Unterstützung und Entlastung' des Vereinbarkeitssimulators zu gelangen.")
       )
     )
   }

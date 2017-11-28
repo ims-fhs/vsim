@@ -24,10 +24,14 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2a_intro) {
     return(
       list(
-        h4("Mit Blick auf die im vorigen Teil ermittelten Belastungsfaktoren und Unzufriedenheiten treten in Teil 2 des Vereinbarkeitssimulators mögliche Lösungsansätze in den Vordergrund. Konkret geht es darum festzulegen, in welchen Bereichen durch verbindliche Vereinbarungen eine Verbesserung Ihrer privaten oder beruflichen Situation in Aussicht gestellt werden kann."),
+        p("..hier kommt noch das Bild 'Wegleitung durch den Simulator'.."),
+        h4("Mit Blick auf die im vorigen Teil ermittelten Belastungsfaktoren und Unzufriedenheiten treten in Teil 2 des Vereinbarkeitssimulators mögliche Lösungsansätze in den Vordergrund."),
+        h4("Sie haben im gesamten Teil 2 die Möglichkeit, die Lösungsvorschläge durch persönliche Anmerkungen zu ergänzen. Damit können Sie die Lösungsvorschläge personalisieren und um wichtige Details ergänzen."),
+        br(),
+        h4("Im Teil 2a geht es darum festzulegen, in welchen Bereichen durch verbindliche Vereinbarungen eine Verbesserung ihrer privaten oder beruflichen Situation in Aussicht gestellt werden kann."),
         br(),
         br(),
-        h4("Zum Fortführen klicken Sie bitte auf 'Weiter'.")
+        h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'.")
       )
     )
   } else if (question_id > Survey_Sections$Teil2a_intro & question_id <= Survey_Sections$Teil2a_last_question) {
@@ -41,7 +45,7 @@ output$mainPanel <- renderUI( {
     return(
       list(
         h4(textOutput("question")),
-        h4(checkboxGroupInput("survey", "", choices = c(option_list(), "Was soll das denn nützen?"), selected = selected, width = "600")),
+        h4(checkboxGroupInput("survey", "", choices = c(option_list(), "Ich sehe keinen Nutzen in dieser Vereinbarung"), selected = selected, width = "600")),
         h4(textInput("kommentar", "Persönliche Anmerkungen", kommentar))
       )
     )
@@ -51,7 +55,7 @@ output$mainPanel <- renderUI( {
         h4("Die Erfassung potentieller Vereinbarungsmöglichkeiten ist nun abgeschlossen."),
         br(),
         br(),
-        h4("Klicken Sie bitte aus 'Weiter' um zur Einschätzung Ihrer zukünftigen Zeitplanung zu gelangen. ")
+        h4("Klicken Sie bitte aus 'Weiter' um zum Teil 2b 'Einschätzung Ihrer zukünftigen Zeitplanung' zu gelangen. ")
       )
     )
   }

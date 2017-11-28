@@ -14,7 +14,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2c_intro) {
     return(
       list(
-        h4("Im letzten Abschnitt des Vereinbarkeitssimulators werden Ihnen konkrete Massnahmen vorgeschlagen, mit welchen Sie vorhandene Belastungsfaktoren und/oder Unzufriedenheiten verändern können. Sie haben ausserdem die Möglichkeit, bei jeder Frage persönliche Anmerkungen anzubringen."),
+        h4("Im letzten Abschnitt des Vereinbarkeitssimulators werden Ihnen konkrete Massnahmen vorgeschlagen, mit welchen Sie vorhandene Belastungsfaktoren und/oder Unzufriedenheiten verändern können."),
         br(),
         br(),
         h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'.")
@@ -33,7 +33,7 @@ output$mainPanel <- renderUI( {
   } else if (question_id == Survey_Sections$Teil2c_end_statement) {
     return(
       list(
-        h4("Die Erfassung der für Sie denkbaren Unterstützungs- und/oder Entlastungsmöglichkeiten ist nun abgeschlossen. Somit sind Sie beinahe schon am Ende des Vereinbarkeitssimulators angelangt."),
+        h4("Die Erfassung der Unterstützungs- und/oder Entlastungsmöglichkeiten ist nun abgeschlossen. Somit sind Sie beinahe schon am Ende des Vereinbarkeitssimulators angelangt."),
         br(),
         br(),
         h4("Bitte klicken Sie auf 'Weiter' um zur zusammenfassenden Übersicht ihrer Planung für das nächste Jahr zu gelangen. ")
