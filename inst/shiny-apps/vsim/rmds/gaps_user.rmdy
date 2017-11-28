@@ -47,6 +47,8 @@ Folgende Belastungsfaktoren konnten ermittelt werden:
 
 ```{r belastung}
 belastungen <- rule_extract_belastungen(df$Gaps)
+belastungen <- sapply(belastungen, function(x) {
+    unlist(strsplit(x, ": "))[length(unlist(strsplit(x, ": ")))]})
 rmd_display_table(belastungen, color = col_belastung())
 ```
 <center>
@@ -92,5 +94,5 @@ rmd_display_table(unzufriedenheiten, color = col_unzufriedenheit())
 <br>
 <br>
 <h4>
-Um mit Teil 2 des Vereinbarkeitssimulators weiterzufahren, klicken Sie bitte auf 'Weiter'.
+Um mit Teil 2 des Vereinbarkeitssimulators fortzufahren, klicken Sie bitte auf 'Weiter'.
 </h4>
