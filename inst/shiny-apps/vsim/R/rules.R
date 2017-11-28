@@ -69,10 +69,9 @@ rule_extract_unzufriedenheiten <- function(gaps) {
 #'
 #' @examples rule_extract_vereinbarungen(test_vereinbarungen_chancen_alist_2a)
 rule_extract_vereinbarungen <- function(alist_2a ) {
-  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
-  alist_2a  <- alist_2a [!grepl("denn n.+tzen?", alist_2a [, 3]), ]
-  alist_2a  <- alist_2a [!grepl("weiss nicht", alist_2a [, 3]), ]
-  alist_2a  <- alist_2a [, -1]
+  alist_2a  <- alist_2a[!grepl("Ich sehe keinen Nutzen in dieser Vereinbarung", alist_2a[, "Antwort"]), ]
+  alist_2a  <- alist_2a[!grepl("weiss nicht", alist_2a[, "Antwort"]), ]
+  alist_2a  <- alist_2a[, -1]
   names(alist_2a )[names(alist_2a ) == "Question"] <- "Frage"
   return(alist_2a)
 }

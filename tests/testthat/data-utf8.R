@@ -9,8 +9,8 @@ test_vereinbarungen_chancen_alist_2a <-
 "Belastung Abschalten, Belastung private Verpflichtungen, Belastung berufliche Verpflichtungen, Belastung Gleichzeitigkeiten, Belastung durch Switchen",
 "Belastung Abschalten, Belastung private Verpflichtungen, Belastung berufliche Verpflichtungen, Belastung Gleichzeitigkeiten, Belastung durch Switchen",
 "Belastung Abschalten, Belastung private Verpflichtungen, Belastung berufliche Verpflichtungen, Belastung Gleichzeitigkeiten, Belastung durch Switchen",
-"Belastung Abschalten, Belastung private Verpflichtungen, Belastung berufliche Verpflichtungen, Belastung Gleichzeitigkeiten, Belastung durch Switchen",
-"Belastung Abschalten, Belastung private Verpflichtungen, Belastung berufliche Verpflichtungen, Belastung Gleichzeitigkeiten, Belastung durch Switchen"
+"weiss nicht",
+"Ich sehe keinen Nutzen in dieser Vereinbarung"
 ), Kommentar = c("2a kommentar 29", "2a kommentar 30", "2a kommentar 31",
 "2a kommentar 32", "2a kommentar 33", "2a kommentar 34")), .Names = c("Frage",
 "Antwort", "Kommentar"), class = "data.frame", row.names = c(3L,
@@ -135,7 +135,7 @@ structure(list(Qnum = c(1.1, 1.2, 3.1, 3.2, 5.1, 5.2), Question = c("Wenn Sie mi
 "Answer1", "Answer2", "Answer3", "Answer4", "Answer5"), row.names = c(1L,
 2L, 5L, 6L, 9L, 10L), class = "data.frame")
 
-# test3: antworten 4, 5, 6 positiv -> keine frage in teil 2a!
+# test3: antworten 5, 6, 20 positiv -> keine frage in teil 2a!
 test_calc_relevant_questions_2a_03 <-
 structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
@@ -165,10 +165,10 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 "Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.",
 "Ich habe das Gefühl, manche Klienten/Kollegen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner Klienten/Kollegen geschieht.",
 "Ich fühle mich machtlos, meine Arbeitssituation zu verändern."
-), Answer = c("weiss nicht", "weiss nicht", "weiss nicht", "Oft",
+), Answer = c("weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "Oft", "Oft", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
-"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "Trifft voll und ganz zu",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht")), .Names = c("Qnum", "Question",
 "Answer"), row.names = c(NA, -27L), class = "data.frame")
