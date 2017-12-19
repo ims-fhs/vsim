@@ -78,6 +78,7 @@ output$save_results <- renderText({
     Alist <- Qlist_2a
     Alist <- Alist[, 1:4]
     if (!is.null(results2)) {
+      # Bug? verschiedn grosse listen!?
       Alist[,3] <- results2
     }
     if (!is.null(kommentare2)) {
