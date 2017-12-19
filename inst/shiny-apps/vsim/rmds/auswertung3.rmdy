@@ -98,8 +98,8 @@ Mit Blick auf ihre Zeitplanung für das kommende Jahr wollen Sie die folgenden A
 
 ```{r, echo=FALSE, results='asis'}
 Alist_2b <- result_coll$Alist_2b
-rmd_display_zeitverwendung(Alist_2b, result_coll$relevant_gaps)
-
+Alist_2b <- rule_extract_zeitverwendung(Alist_2b, result_coll$relevant_gaps)
+rmd_display_zeitverwendung(Alist_2b)
 ```
 
 ```{r, echo=FALSE, results='asis'}
@@ -123,6 +123,7 @@ Mit Blick auf potentielle Unterstützungs- und Entlastungsmöglichkeiten haben S
 
 ```{r, echo=FALSE, results='asis'}
 Alist_2c <- result_coll$Alist_2c
+Alist_2c <- rule_extract_unterstuetzung_entlastung(Alist_2c)
 rmd_display_unterstuetzung_entlastung(Alist_2c)
 ```
 

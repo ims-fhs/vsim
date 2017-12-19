@@ -145,16 +145,10 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
 #'
 #' @param alist_2b the Alist containing the Questions and the user's Answers
 #' from part 2a
-#' @param relevant_gaps the gaps identified
 #'
 #' @examples rmd_display_zeitverwendung
-rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
-  alist_2b <- alist_2b[, -1]
-  names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
-  names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
-  alist_2b[, "Ihre relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
-  # remove time-usage without changes
-  alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
+rmd_display_zeitverwendung <- function(alist_2b) {
+  assertthat::assert_that(all(c("Zeit für was", "Bedürfnis") %in% names(alist_2b)))
 
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
@@ -215,10 +209,7 @@ rmd_display_zeitverwendung <- function(alist_2b, relevant_gaps) {
 #'
 #' @examples rmd_display_unterstuetzung_entlastung
 rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
-  alist_2c <- alist_2c[grepl("Ja", alist_2c[, 3]), ]
-  alist_2c <- alist_2c[, -1]
-  names(alist_2c)[names(alist_2c) == "Question"] <- "Handlungsfeld"
-  names(alist_2c)[names(alist_2c) == "Answer"] <- "Geplante Strategie"
+  assertthat::assert_that(all(c("Handlungsfeld", "Geplante Strategie") %in% names(alist_2c)))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Handlungsfeld</b></th>",
@@ -319,11 +310,7 @@ shiny_render_navbar_entry <- function(background_color, icon_name, title_main, t
 }
 
 rmd_display_weniger_ea <- function(alist_2b, relevant_gaps) {
-  alist_2b <- alist_2b[, -1]
-  names(alist_2b)[names(alist_2b) == "Question"] <- "Zeit für was"
-  names(alist_2b)[names(alist_2b) == "Antwort"] <- "Bedürfnis"
-  alist_2b[, "Ihre relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
-  alist_2b <- alist_2b[!grepl("gleich", alist_2b[, 2]), ]
+  assertthat::assert_that(all(c("Zeit für was", "Bedürfnis") %in% names(alist_2b)))
   if (nrow(alist_2b) > 0) {
     if (alist_2b[1, 4] == "-") {
       grund <- "mehr Freiraum für andere Tätigkeiten zu schaffen."

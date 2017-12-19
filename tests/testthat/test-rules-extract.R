@@ -48,3 +48,18 @@ test_that("rule_extract_vereinbarungen_kommentare", {
   result <- rule_extract_vereinbarungen_kommentare(test_vereinbarungen_chancen_alist_2a)
   testthat::expect_equal(result, expected)
 })
+
+test_that("rule_extract_vereinbarungen", {
+  result <- rule_extract_unterstuetzung_entlastung(test_unterstuetzung_entlastung_alist_2c)
+  testthat::expect_equal(nrow(result), 3)
+  testthat::expect_equal(ncol(result), 3)
+})
+
+test_that("rule_extract_zeitverwendung", {
+  result <- rule_extract_zeitverwendung(test_zeitverwendung_alist_2b,
+                                        test_zeitverwendung_relevant_gaps)
+  testthat::expect_equal(nrow(result), 4)
+  testthat::expect_equal(ncol(result), 4)
+})
+
+

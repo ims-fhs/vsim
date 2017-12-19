@@ -305,3 +305,28 @@ test_calc_relevant_gaps_2b_03 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 
 test_calc_relevant_gaps_2b_expected_result_03 <- c("Differenz im Zeithandeln Erwerbsarbeit", "-", "Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
 "-", "-")
+
+test_unterstuetzung_entlastung_alist_2c <- structure(list(Qnum = 1:8, Question = c("Wäre es für die finanzielle Umsetzung dieses Plans hilfreich, die Zuständigkeiten für das Geld verdienen in Ihrem Haushalt neu zu verhandeln?",
+"Wäre es für die zeitliche und finanzielle Umsetzung dieses Plans hilfreich, wenn Ihre Kinder neu oder in einem anderen Umfang als bisher durch Krippen, Tagesschulen, Spielgruppen oder ähnliche Organisationen betreut würden?",
+"Wäre es für die zeitliche und finanzielle Umsetzung dieses Plans hilfreich, wenn Ihre Kinder neu oder in einem anderen Umfang als bisher durch Grosseltern, andere Verwandte, Freunde oder Nachbarn betreut würden?",
+"Wäre es für die Umsetzung dieses Plans hilfreich, wenn Sie Hausarbeiten in einem anderen Umfang als bisher an bezahlte Drittpersonen auslagern würden (z.B. Haushaltshilfe, Gärtner, Essen bestellen)?",
+"Wäre es für die zeitliche und finanzielle Umsetzung dieses Plans hilfreich, wenn sich der Umfang der anfallenden Hausarbeiten insgesamt verändern würden (z.B. kleinere oder grössere Wohnung/Haus, weniger oder mehr Umschwung, tiefere Ansprüche bezüglich Sauberkeit)?",
+"Wäre es für die Umsetzung dieses Plans hilfreich, wenn Sie in Ihrem Haushalt allgemein weniger Geld ausgeben würde (z.B. eine günstigere Wohnung nehmen, weniger Ausgaben für Konsumgüter)?",
+"Wäre es für die Umsetzung dieses Plans hilfreich, wenn Ihr beruflicher Aufgabenbereich angepasst würde (z.B. mehr oder weniger Aufgaben, bessere Vereinbarkeit von Beruf und Familie)?",
+"Wäre es im Zusammenhang mit Ihrer Planung sinnvoll, wenn Sie Ihre Ziele für die berufliche Weiterentwicklung oder für Weiterbildungen anpassen würden (in Absprache mit Ihrem/Ihrer Vorgesetzten und/oder Ihren Angehörigen)?"
+), Antwort = c("Ja, es wäre hilfreich, wenn ich einen kleineren Teil und meine Angehörigen einen grösseren Teil beitragen würde",
+"Ja, weniger als bisher", "Ja, neu/mehr als bisher", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht"),
+    Kommentar = c("", "", "", "", "", "", "", "")), row.names = c(NA,
+-8L), .Names = c("Qnum", "Question", "Antwort", "Kommentar"), class = "data.frame")
+
+test_zeitverwendung_alist_2b <- structure(list(Qnum = 1:5, Question = c("für den Job (Erwerbsarbeit)",
+"für Hausarbeiten", "für Kinderbetreuung", "für soziale Kontakte",
+"für Sie selbst"), Antwort = c("viel weniger als bisher", "weniger als bisher",
+"gleich viel wie bisher", "mehr als bisher", "viel mehr als bisher"
+), Kommentar = c("", "", "", "", "")), row.names = c(NA, -5L), .Names = c("Qnum",
+"Question", "Antwort", "Kommentar"), class = "data.frame")
+
+test_zeitverwendung_relevant_gaps <- c("Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
+"Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
+"-")

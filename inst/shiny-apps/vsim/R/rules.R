@@ -96,6 +96,51 @@ rule_extract_vereinbarungen_fragen <- function(alist_2a) {
   return(retval)
 }
 
+#' rule_extract_unterstuetzung_entlastung
+#' ermittelt die Fragen für getroffene Unterstützungen und Entlastungen,
+#' welchen "Ja" in der Antwort enthalten.
+#'
+#' @param Alist_2c Alist_2c data.frame mit allen Antworten zu Unterstützung
+#' & Entlastungen
+#'
+#' @return Alist_2c data.frame mit den vorbereiteten Unterstützungen &
+#' Entlastungen, deren Antwort "Ja" enthielt
+#' @export
+#'
+#' @examples rule_extract_unterstuetzung_entlastung(test_unterstuetzung_entlastung_alist_2c)
+rule_extract_unterstuetzung_entlastung <- function(Alist_2c) {
+  assertthat::assert_that(all(c("Question", "Antwort") %in% names(Alist_2c)))
+  Alist_2c <- Alist_2c[grepl("Ja", Alist_2c[, 3]), ]
+  Alist_2c <- Alist_2c[, -1]
+  names(Alist_2c)[names(Alist_2c) == "Question"] <- "Handlungsfeld"
+  names(Alist_2c)[names(Alist_2c) == "Antwort"] <- "Geplante Strategie"
+  return(Alist_2c)
+}
+
+#' rule_extract_zeitverwendung
+#' ermittelt die Antworten mit angepasster Zeitverwendung
+#'
+#' @param Alist_2b data.frame mit den aktuellen Zeitverwendungen
+#' @param relevant_gaps character-vektor mit den relevant gaps
+#'
+#' @return Alist_2b data.frame mit den Antworten mit angepasster Zeitverwendung
+#' vorbereitet für die Darstellung (Spaltennamen angepasst)
+#' @export
+#'
+#' @examples rule_extract_zeitverwendung(test_zeitverwendung_alist_2b,
+#'                                       test_zeitverwendung_relevant_gaps)
+rule_extract_zeitverwendung <- function(Alist_2b, relevant_gaps) {
+  assertthat::assert_that(all(c("Question", "Antwort") %in% names(Alist_2b)))
+  Alist_2b <- Alist_2b[, -1]
+  names(Alist_2b)[names(Alist_2b) == "Question"] <- "Zeit für was"
+  names(Alist_2b)[names(Alist_2b) == "Antwort"] <- "Bedürfnis"
+  Alist_2b[, "Ihre relevanten Belastungen und Unzufriedenheiten"] <- relevant_gaps
+  # remove time-usage without changes
+  Alist_2b <- Alist_2b[!grepl("gleich", Alist_2b[, 2]), ]
+  return(Alist_2b)
+}
+
+
 #' rule_extract_vereinbarungen_fragen: ermittelt die Fragen für getroffene
 #' Vereinbarungen, welchen Chancen zugewiesen wurden.
 #'
