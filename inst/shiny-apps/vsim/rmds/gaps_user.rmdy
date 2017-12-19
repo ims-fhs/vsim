@@ -47,9 +47,9 @@ Folgende Belastungsfaktoren konnten ermittelt werden:
 
 ```{r belastung}
 belastungen <- rule_extract_belastungen(df$Gaps)
-belastungen <- sapply(belastungen, function(x) {
-    unlist(strsplit(x, ": "))[length(unlist(strsplit(x, ": ")))]})
-rmd_display_table(belastungen, color = col_belastung())
+rmd_display_belastungen_unzufriedenheiten(belastungen,
+    color_strain = col_belastung(),
+    color_no_data = col_evaluation_comment())
 ```
 <center>
 <table width="100%">
@@ -89,7 +89,9 @@ Folgende Unzufriedenheiten konnten ermittelt werden:
 
 ```{r differences}
 unzufriedenheiten <- rule_extract_unzufriedenheiten(df$Gaps)
-rmd_display_table(unzufriedenheiten, color = col_unzufriedenheit())
+rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
+    color_strain = col_unzufriedenheit(),
+    color_no_data = col_evaluation_comment())
 ```
 <br>
 <br>

@@ -37,8 +37,11 @@ get_selected_value <- function(selected_value, default_value = "") {
   return(retval)
 }
 
+#' rmd_display_belastungen_unzufriedenheiten
 #' places a kable-table in the rmd-output based on the passed rows of text and
-#' in the given color.
+#' in the given color_strain if data are passed in belastungen_oder_unzufriedenheiten.
+#' if the belastungen_oder_unzufriedenheiten only contain one String starting with
+#' 'Aktuell keine*', the no-data-message is displayed in the color_no_data
 #'
 #' HINT:
 #' the "rmd_"-prefix indicates, that this method is intended to be called from
@@ -46,16 +49,30 @@ get_selected_value <- function(selected_value, default_value = "") {
 #' dynamic r-code generating dynamic shiny-output). the rmd-chunk must be
 #' marked with "results='asis'" in order to render correctly!
 #'
-#' @param rows the textrows (character) to be displayed
-#' @param color the hex-color-code to color the table-lines
+#' @param belastungen char vector containing the strains
+#' @param color_strain the hex background color-code (i.e. '#FFFFFF') for strains
+#' @param color_no_data the hex background color-code for messages
 #'
-rmd_display_table <- function(rows, color = "") {
-  if (color != "") {
-    kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
+rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufriedenheiten,
+                                                      color_strain,
+                                                      color_no_data = "#FFFFFF") {
+  bg_color = color_strain
+  if (length(belastungen_oder_unzufriedenheiten) == 1 &&
+      grepl("Aktuell keine", belastungen_oder_unzufriedenheiten[1])) {
+    bg_color <- color_no_data
+  }
+  # prevent white font on white background
+  font_color <- "#FFFFFF"
+  if (bg_color == "#FFFFFF") {
+    font_color <- "#000000"
+  }
+
+  if (color_strain != "") {
+    kable(as.data.frame(belastungen_oder_unzufriedenheiten),row.names = FALSE, col.names = "",  format = "html")%>%
       kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left") %>%
-      row_spec(1:length(rows), background = color, color = "white")
+      row_spec(1:length(belastungen_oder_unzufriedenheiten), background = bg_color, color = font_color)
   } else {
-    kable(as.data.frame(rows),row.names = FALSE, col.names = "",  format = "html")%>%
+    kable(as.data.frame(belastungen_oder_unzufriedenheiten),row.names = FALSE, col.names = "",  format = "html")%>%
       kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left")
   }
 }
@@ -99,7 +116,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
           chance <- chancen_belastungen[j]
           html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
                          col_belastung(),
-                         ";padding: 12px; width: 200px; height: 60px; align: center;",
+                         ";padding: 12px; width: 200px; align: center;",
                          " float: left;border: 2px solid #FFFFFF;'>",
                          chance, "</div>&nbsp;")
         }
@@ -109,7 +126,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
           chance <- chancen_unzufriedenheiten[j]
           html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
                          col_unzufriedenheit(),
-                         ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>",
+                         ";padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>",
                          chance, "</div>&nbsp;")
         }
       }
@@ -118,12 +135,12 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
           chance <- chancen_differenzen[j]
           html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
                          col_differenz(),
-                         ";padding: 12px; width: 200px; height: 60px; align: center; float: left;border: 2px solid #FFFFFF;'>",
+                         ";padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>",
                          chance, "</div>&nbsp;")
         }
       }
       # Add comment, if available
-      html <- paste0(html, "<td>",kommentar , "</td>")
+      html <- paste0(html, "<td style='background: ",col_evaluation_comment(),"'>",kommentar , "</td>")
       html <- paste0(html, "</td></tr>")
     }
   } else {
@@ -184,7 +201,8 @@ rmd_display_zeitverwendung <- function(alist_2b) {
                      col,
                      ";padding: 12px; width: 200px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
-                     belunz, "</div></td><td>"), paste0(html, "&nbsp;</td><td>"))
+                     belunz, "</div></td><td style='background: ", col_evaluation_comment(),"'>"),
+                     paste0(html, "&nbsp;</td><td style='background: ", col_evaluation_comment(),"'>"))
       html <- paste0(html, kommentar, "</td>")
       html <- paste0(html, "</td></tr>")
     }
@@ -223,7 +241,7 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
       kommentar <- alist_2c[i, 3]
       html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td>",
                      "<div style='border-radius: 15px;background: ",
-                     col_unterstuetzung_und_entlastung(),
+                     col_evaluation_comment(),
                      ";padding: 12px; width: 500px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
                      frage, "</div></td><td>")
@@ -231,7 +249,7 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
                      col_unterstuetzung_und_entlastung(),
                      ";padding: 12px; width: 300px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
-                     antwort, "</div></td><td>")
+                     antwort, "</div></td><td style='background: ", col_evaluation_comment(),"'>")
       html <- paste0(html, kommentar, "</td>")
       html <- paste0(html, "</td></tr>")
     }

@@ -62,8 +62,6 @@ output$save_results <- renderText({
     Alist[,4] <- kommentare2c
     names(Alist)[3] <- "Antwort"
     names(Alist)[4] <- "Kommentar"
-    # write.table(Alist, file = "../../data/Alist_Teil2c.csv",quote = FALSE, row.names = FALSE, na = "", sep = ";", fileEncoding = "UTF-8")
-    # instead of writing a file we store the data in the memory for later access
     result_coll$Alist_2c <<- Alist
     questionaryPostProcessing();
   }
