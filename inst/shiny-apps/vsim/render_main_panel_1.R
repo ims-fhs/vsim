@@ -23,11 +23,11 @@ output$mainPanel <- renderUI({
   # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
     return(list(h3("Willkommen zum Vereinbarkeitssimulator"),
-                h4("Der Vereinbarkeitssimulator ist ein softwarebasiertes Instrument, welches die spezifischen Lebenslagen von Mitarbeitenden und ihre Wünsche an ihre zukünftige Work-Life-Balance erfasst. So soll ein Dialog zwischen der Unternehmensführung und den Mitarbeitenden inklusive ihrer Angehörigen ermöglicht und Entscheidungsgrundlagen für die Wahl von Arbeitsorganisationsmodellen geschaffen werden."),
-                h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre spezifische Lebenslage. Auf Grund der von Ihnen angegebenen Daten erfolgt dann eine Bewertung der momentanen Ausgangssituation (Ist-Zustand)."),
-                h4("Mit Blick auf den Ist-Zustand werden im ", strong("zweiten Schritt"), "Wünsche und Bedürfnisse festgelegt (Soll-Zustand). In diesem Teil des Vereinbarkeitssimulators können Ideen und Vorgaben erfasst werden, welche Ihnen als Hilfestellung zum Erreichen Ihrer angestrebten Ziele dienen."),
-                h4("Im", strong("dritten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit Ihnen zusammen Lösungsansätze. Hierbei werden Möglichkeiten zur Zielerreichung mittels betrieblicher Hilfen (unternehmensspezifische Angebote wie Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.), Wünsche zur Zeitverwendung sowie individuelle Unterstützungs- und Entlastungsmöglichkeiten aufgezeigt."),
-                h4("Zum Abschluss erhalten Sie eine Zusammenfassung ihrer Lebenslage, ihren Wünschen und Ideen."),
+                h4("Der Vereinbarkeitssimulator ist eine Software für Arbeitnehmer, welche ihre Lebenslagen sowie die Wünsche an ihre zukünftige Work-Life-Balance erfasst. Basierend darauf werden Massnahmen geplant, ausgedruckt und in der Folge mit Arbeitgeber und Angehörigen verhandelt. Um die Wirksamkeit der Umsetzung zu prüfen oder um Erkenntnisse aus den Verhandlungen in den Plan einfliessen zu lassen, kann die Software wiederholt durchgearbeitet werden."),
+                h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre Lebenslage. Aufgrund der von Ihnen angegebenen Daten erfolgt dann eine Bewertung der momentanen Lebenssituation (Ist-Zustand)."),
+                h4("Im ", strong("zweiten Schritt"), "werden Wünsche und Bedürfnisse festgelegt (Soll-Zustand). Hierbei werden Ideen erfasst, welche Ihnen als Hilfe zum Erreichen Ihrer Ziele dienen."),
+                h4("Im", strong("dritten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit Ihnen zusammen Lösungsansätze. Hierbei werden Möglichkeiten zur Zielerreichung mittels betrieblicher Hilfen (Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.), Ideen zur Zeitverwendung sowie individuelle Unterstützungsmöglichkeiten aufgezeigt."),
+                h4("Zum Abschluss erhalten Sie eine Zusammenfassung Ihrer Lebenslage und Ihren Planungsideen."),
                 br(),
                 h4("Zum Starten des Vereinbarkeitssimulators klicken Sie bitte auf 'Weiter'. Durch das Anklicken von 'Zurück' haben Sie ausserdem die Möglichkeit, einen Schritt retour zu gehen.")
                    ))

@@ -18,10 +18,10 @@ rmd_display_icon(icon = icon_plan, align = "left", width = "20%", height = "20%"
 <ol>
 <li>Vereinbarungen</li>
 <li>Zeitverwendung</li>
-<li>Unterstützung und Entlastung</li>
+<li>Unterstützung, Entlastung, Entwicklung</li>
 </ol>
 </br>
-In den drei Teilen werden deine geplanten Massnahmen, welche du im Planungsteil für dich identifiziert hast nochmals gezeigt und du siehst, welche Belastungen und Unzufriedenheiten du mit diesen geplanten Massnahmen im nächsten Jahr angehen willst.
+In den drei Teilen werden die geplanten Massnahmen, die Sie eingeplant haben, nochmals gezeigt. Sie sehen, welche Belastungen und Unzufriedenheiten Sie mit den geplanten Massnahmen in der nächsten Zeit angehen wollen.
 </br></br></h4>
 
 
@@ -74,7 +74,7 @@ cat("</td></tr></table>")
 </table>
 <br>
 <h4>
-Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 folgende potentiellen Vereinbarungen als Lösungsansätze identifziert:
+Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 folgende Vereinbarungen als Lösungsansätze identifiziert:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
@@ -84,7 +84,7 @@ rmd_display_vereinbarungen_chancen(Alist_2a)
 
 <table>
 <tr><td style="white-space: nowrap"><h2>
-Zeitbalance&nbsp;&nbsp;
+Zeitverwendung&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
 rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", height = "20%")
@@ -109,7 +109,7 @@ rmd_display_weniger_ea(Alist_2b, result_coll$relevant_gaps)
 
 <table>
 <tr><td style="white-space: nowrap"><h2>
-Unterstützung und Entlastung&nbsp;&nbsp;
+Unterstützung, Entlastung, Entwicklung&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
 rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "left", width = "20%", height = "20%")

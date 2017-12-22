@@ -21,14 +21,14 @@ questionaryPostProcessing <- function() {
 output$mainPanel <- renderUI( {
   # print(paste0("Rendering Question ", question_id))
   # Initially it shows a welcome message.
-  if (question_id == Survey_Sections$Teil2a_intro) {
+  if (question_id == Survey_Sections$Teil2a_intro && question_id != Survey_Sections$Teil2a_end_statement) {
     return(
       list(
         p("..hier kommt noch das Bild 'Wegleitung durch den Simulator'.."),
-        h4("Mit Blick auf die im vorigen Teil ermittelten Belastungsfaktoren und Unzufriedenheiten treten in Teil 2 des Vereinbarkeitssimulators mögliche Lösungsansätze in den Vordergrund."),
-        h4("Sie haben im gesamten Teil 2 die Möglichkeit, die Lösungsvorschläge durch persönliche Anmerkungen zu ergänzen. Damit können Sie die Lösungsvorschläge personalisieren und um wichtige Details ergänzen."),
+        h4("Mit Blick auf die im vorigen Teil ermittelten Belastungsfaktoren und Unzufriedenheiten treten in Teil 2 des Vereinbarkeitssimulators mögliche Lösungen in den Vordergrund."),
+        h4("Sie haben im gesamten Teil 2 die Möglichkeit, die Lösungsvorschläge durch Eigene Ideen zu ergänzen. Damit können Sie die Lösungsvorschläge nach Ihren Bedürfnissen anpassen und um wichtige Details ergänzen."),
         br(),
-        h4("Im Teil 2a geht es darum festzulegen, in welchen Bereichen durch verbindliche Vereinbarungen eine Verbesserung ihrer privaten oder beruflichen Situation in Aussicht gestellt werden kann."),
+        h4("Im Teil 2a überlegen Sie sich, in welchen Bereichen Sie durch verbindliche Vereinbarungen Ihre private oder berufliche Situation verbessern können."),
         br(),
         br(),
         h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'.")
@@ -46,16 +46,25 @@ output$mainPanel <- renderUI( {
       list(
         h4(textOutput("question")),
         h4(checkboxGroupInput("survey", "", choices = c(option_list(), "Ich sehe keinen Nutzen in dieser Vereinbarung"), selected = selected, width = "600")),
-        h4(textInput("kommentar", "Persönliche Anmerkungen", kommentar))
+        h4(textInput("kommentar", "Eigene Ideen", kommentar))
       )
     )
-  } else if (question_id == Survey_Sections$Teil2a_end_statement) {
+  } else if (question_id == Survey_Sections$Teil2a_end_statement && question_id != Survey_Sections$Teil2a_intro) {
     return(
       list(
-        h4("Die Erfassung potentieller Vereinbarungsmöglichkeiten ist nun abgeschlossen."),
+        h4("Die Erfassung möglicher Vereinbarungen ist nun abgeschlossen."),
         br(),
         br(),
-        h4("Klicken Sie bitte aus 'Weiter' um zum Teil 2b 'Einschätzung Ihrer zukünftigen Zeitplanung' zu gelangen. ")
+        h4("Klicken Sie bitte auf 'Weiter', um zum Teil 2b 'Zeitverwendung' zu gelangen. ")
+      )
+    )
+  } else {
+    return(
+      list(
+        h4("Sie haben im Teil 1 keine Belastungen und Unzufriedenheiten angegeben, die Vereinbarungen im Bereich Flexibilisierung der Arbeit nötig machen würden. Deshalb entfällt für Sie Teil 2a."),
+        br(),
+        br(),
+        h4("Klicken Sie bitte auf 'Weiter', um zum Teil 2b 'Zeitverwendung' zu gelangen. ")
       )
     )
   }

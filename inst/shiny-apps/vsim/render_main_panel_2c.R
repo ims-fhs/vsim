@@ -14,7 +14,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2c_intro) {
     return(
       list(
-        h4("Im letzten Abschnitt des Vereinbarkeitssimulators werden Ihnen konkrete Massnahmen vorgeschlagen, mit welchen Sie vorhandene Belastungsfaktoren und/oder Unzufriedenheiten verändern können."),
+        h4("Im letzten Abschnitt schlägt Ihnen der Vereinbarkeitssimulator konkrete Massnahmen vor, mit denen Sie gegebenenfalls vorhandene Belastungen und/oder Unzufriedenheiten verändern können. Überlegen Sie sich, welche Massnahmen Sie einplanen möchten."),
         br(),
         br(),
         h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'.")
@@ -27,7 +27,7 @@ output$mainPanel <- renderUI( {
         h4(textOutput("question")),
         h4(radioButtons("survey", "",
                      c(option_list(), "weiss nicht"), selected = selected), width = "600"),
-        h4(textInput("kommentar", "Persönliche Anmerkungen", value = ifelse(length(kommentare2c[question_id - Survey_Sections$Teil2c_intro])>0, kommentare2c[question_id - Survey_Sections$Teil2c_intro], "")))
+        h4(textInput("kommentar", "Eigene Ideen", value = ifelse(length(kommentare2c[question_id - Survey_Sections$Teil2c_intro])>0, kommentare2c[question_id - Survey_Sections$Teil2c_intro], "")))
       )
     )
   } else if (question_id == Survey_Sections$Teil2c_end_statement) {

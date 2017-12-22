@@ -41,7 +41,7 @@ rmd_display_icon(icon = icon_belastung, align = "left", width = "20%", height = 
 </td></tr>
 </table>
 <h4>
-Folgende Belastungsfaktoren konnten ermittelt werden:
+Folgende Belastungen konnten ermittelt werden:
 </h4>
 
 

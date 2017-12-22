@@ -23,7 +23,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2b_intro) {
     return(
       list(
-        h4("Im nun folgenden Teil 2b bietet Ihnen der Vereinbarkeitssimulator die Möglichkeit, ihre Zeit im zukünftigen Jahr zu planen/einzuteilen."),
+        h4("Im nun folgenden Teil 2b legen Sie fest, wie Sie Ihre Zeit neu planen wollen."),
         br(),
         br(),
         h4("Zum Fortfahren klicken Sie bitte auf 'Weiter'. ")
@@ -33,45 +33,45 @@ output$mainPanel <- renderUI( {
     return(
       fluidPage(
         fluidRow(h4("Möglicherweise ist Ihnen beim Ausfüllen der Fragen klargeworden, dass Sie mit der Planung/Einteilung ihrer Zeit zufrieden sind. Möglicherweise möchten Sie Ihre Zeiteinteilung aber auch anpassen."),
-                  h4("Das kann mit Unterstützung ihrer/ihres Vorgesetzten, ihres Teams und ihrer Angehörigen gelingen. Überlegen Sie sich, für welche Aktivitäten Sie im nächsten Jahr mehr oder weniger Zeit als bisher verwenden wollen und wählen Sie im Dropdown-Menu die für Sie passenden Vorschläge aus."), br(), br()),
+                  h4("Das kann mit Unterstützung Ihrer/Ihres Vorgesetzten, Ihres Teams und Ihrer Angehörigen gelingen. Überlegen Sie sich, für welche Aktivitäten Sie in der nächsten Zeit mehr oder weniger Zeit als bisher verwenden wollen und wählen Sie im Dropdown-Menu die für Sie passenden Vorschläge aus."), br(), br()),
         fluidRow(
           column(2, HTML("<h4><b>Zeit für was</b></h4>")),
           column(4, HTML("<h4><b>Ihre relevanten Belastungen und Unzufriedenheiten</b></h4>")),
           column(4, HTML("<h4><b>Zeitmenge</b></h4>")),
-          column(2, HTML("<h4><b>Persönliche Anmerkungen</b></h4>"))
+          column(2, HTML("<h4><b>Eigene Ideen</b></h4>"))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für den Job (Erwerbsarbeit)")),
-          column(4, h4(relevant_gaps[1])),
+          column(4, h4(gsub("-", "keine", relevant_gaps[1]))),
           column(4, h4(selectInput('select1', '', choices = choices, selected = get_selected_value(results2b[1], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar1", "", value = ifelse(length(kommentare2b[1])>0, kommentare2b[1], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für Hausarbeiten")),
-          column(4, h4(relevant_gaps[2])),
+          column(4, h4(gsub("-", "keine", relevant_gaps[2]))),
           column(4, h4(selectInput('select2', '', choices = choices, selected = get_selected_value(results2b[2], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar2", "", value = ifelse(length(kommentare2b[2])>0, kommentare2b[2], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2,h4("für Kinderbetreuung")),
-          column(4, h4(relevant_gaps[3])),
+          column(4, h4(gsub("-", "keine", relevant_gaps[3]))),
           column(4, h4(selectInput('select3', '', choices = choices, selected = get_selected_value(results2b[3], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar3", "", value = ifelse(length(kommentare2b[3])>0, kommentare2b[3], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für soziale Kontakte")),
-          column(4, h4(relevant_gaps[4])),
+          column(4, h4(gsub("-", "keine", relevant_gaps[4]))),
           column(4, h4(selectInput('select4', '', choices = choices, selected = get_selected_value(results2b[4], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar4", "", value = ifelse(length(kommentare2b[4])>0, kommentare2b[4], ""))))
         ),
         fluidRow(hr()),
         fluidRow(
           column(2, h4("für Sie selbst")),
-          column(4, h4(relevant_gaps[5])),
+          column(4, h4(gsub("-", "keine", relevant_gaps[5]))),
           column(4, h4(selectInput('select5', '', choices = choices, selected = get_selected_value(results2b[5], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar5", "", value = ifelse(length(kommentare2b[5])>0, kommentare2b[5], ""))))
         )
@@ -80,10 +80,10 @@ output$mainPanel <- renderUI( {
   } else if (question_id == Survey_Sections$Teil2b_end_statement) {
     return(
       list(
-        h4("Die Erfassung Ihrer Vorstellungen zur Zeitplanung im nächsten Jahr ist nun abgeschlossen."),
+        h4("Die Erfassung Ihrer Zeitplanung ist nun abgeschlossen."),
         br(),
         br(),
-        h4("Klicken Sie bitte auf 'Weiter' um zum Teil 2c 'Unterstützung und Entlastung' des Vereinbarkeitssimulators zu gelangen.")
+        h4("Klicken Sie bitte auf 'Weiter' um zum Teil 2c 'Unterstützung, Entlastung, Entwicklung' zu gelangen.")
       )
     )
   }

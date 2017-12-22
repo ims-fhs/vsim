@@ -73,18 +73,18 @@ function(input, output, session) {
                             Teil1_end_statement = nrow(Qlist_1) + 1,
                             Teil1_summary = nrow(Qlist_1) + 2,
                             Teil2a_intro = nrow(Qlist_1) + 3,
-                            Teil2a_first_question = nrow(Qlist_1) + 4,
-                            Teil2a_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + 3,
-                            Teil2a_end_statement = nrow(Qlist_1) + nrow(Qlist_2a) + 4,
-                            Teil2b_intro = nrow(Qlist_1) + nrow(Qlist_2a) + 5,
-                            Teil2b_first_question = nrow(Qlist_1) + nrow(Qlist_2a) + 6,
-                            Teil2b_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + 6,
-                            Teil2b_end_statement = nrow(Qlist_1) + nrow(Qlist_2a) + 7,
-                            Teil2c_intro = nrow(Qlist_1) + nrow(Qlist_2a) + 8,
-                            Teil2c_first_question = nrow(Qlist_1) + nrow(Qlist_2a) + 9,
-                            Teil2c_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 8,
-                            Teil2c_end_statement =  nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 9,
-                            Teil3_final_evaluation =  nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 10)
+                            Teil2a_first_question = nrow(Qlist_1) + 3 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2a_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + 2 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2a_end_statement = nrow(Qlist_1) + nrow(Qlist_2a) + 3 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2b_intro = nrow(Qlist_1) + nrow(Qlist_2a) + 4 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2b_first_question = nrow(Qlist_1) + nrow(Qlist_2a) + 5 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2b_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + 5 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2b_end_statement = nrow(Qlist_1) + nrow(Qlist_2a) + 6 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2c_intro = nrow(Qlist_1) + nrow(Qlist_2a) + 7 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2c_first_question = nrow(Qlist_1) + nrow(Qlist_2a) + 8 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2c_last_question = nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 7 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil2c_end_statement =  nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 8 + ifelse(nrow(Qlist_2a)>0, 1,0),
+                            Teil3_final_evaluation =  nrow(Qlist_1) + nrow(Qlist_2a) + nrow(Qlist_2c) + 9 + ifelse(nrow(Qlist_2a)>0, 1,0))
   }
 
   Survey_Sections <- calc_survey_question_ids()
