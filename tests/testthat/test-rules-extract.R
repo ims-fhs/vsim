@@ -12,6 +12,8 @@ test_that("rule_extract_belastungen", {
   expect_equal(rule_extract_belastungen(c("nix")), "Aktuell keine Belastungen")
   expect_is(rule_extract_belastungen(c("nix", "eine Belastung")), "character")
   expect_error(rule_extract_belastungen(1))
+  expect_equal(rule_extract_belastungen(c("nix", "Belastung: Maus"), strip_prefix = TRUE), "Maus")
+  expect_equal(rule_extract_belastungen(c("nix", "Belastung: Maus")), "Belastung: Maus")
 })
 
 test_that("rule_extract_unzufriedenheiten", {

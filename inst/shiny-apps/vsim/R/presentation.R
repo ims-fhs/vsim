@@ -178,13 +178,7 @@ rmd_display_zeitverwendung <- function(alist_2b) {
       beduerfnis <- alist_2b[i, 2]
       kommentar <- alist_2b[i, 3]
       belunz <- alist_2b[i, 4]
-      if (grepl("Differenz", belunz)) {
-        col <- col_differenz()
-      } else if (grepl("Belastung", belunz)) {
-        col <- col_belastung()
-      } else {
-        col <- col_unzufriedenheit()
-      }
+      belunz <- gsub("Belastung: ", "", belunz)
       html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td>",
                      "<div style='border-radius: 15px;background: ",
                      col_zeitverwendung(),
@@ -198,7 +192,7 @@ rmd_display_zeitverwendung <- function(alist_2b) {
                      beduerfnis, "</div></td><td>")
       html <- ifelse (belunz != "-",
                      paste0(html, "<div style='border-radius: 15px;background: ",
-                     col,
+                     col_belastung(),
                      ";padding: 12px; width: 200px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
                      belunz, "</div></td><td style='background: ", col_evaluation_comment(),"'>"),

@@ -23,6 +23,8 @@ rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
 #' rule_extract_belastungen: Extrahiert die aktuellen Belastungen
 #'
 #' @param gaps A character vector
+#' @param strip_prefix A boolean indicating, whether the 'Belastung: ' - Prefix
+#' should be stripped (TRUE) or not (FALSE)
 #'
 #' @return belastungen A character vector
 #'
@@ -30,11 +32,14 @@ rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
 #' # [1] "eine Belastung"
 #' rule_extract_belastungen(c("nix", "eine Belastung"))
 #' # [1] "Aktuell keine Belastungen"
-rule_extract_belastungen <- function(gaps) {
+rule_extract_belastungen <- function(gaps, strip_prefix = FALSE) {
   assertthat::assert_that(is.character(gaps))
 
   if (length(gaps[grepl("Belastung", gaps)]) > 0 ) {
     belastungen <- gaps[rule_identify_belastungen(gaps)]
+    if (strip_prefix) {
+      belastungen <- gsub("Belastung: ", "", belastungen)
+    }
   } else {
     belastungen <- "Aktuell keine Belastungen"
   }
