@@ -213,22 +213,6 @@ rule_identify_unzufriedenheiten <- function(gaps) {
   return(gaps)
 }
 
-#' rule_identify_vereinbarkeitstaetigkeiten: Identifiziert, ob Vereinbarkeitstaetigkeiten
-#' vorhanden genutzt werden und gibt einen logischen vektor zurück.
-#'
-#' @param gaps A character vector
-#'
-#' @return logical vector
-#'
-#' @examples rule_identify_vereinbarkeitstaetigkeiten(c("nix", "Vereinbarkeitstätigkeit mit Maus"))
-rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
-  assertthat::assert_that(is.character(gaps))
-  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
-  gaps <- grepl("Vereinbarkeitst.+tigkeit", gaps)
-  assertthat::assert_that(is.logical(gaps))
-  return(gaps)
-}
-
 #' rule_identify_situation_switchen: Identifiziert abhängig vom Parameter situation,
 #' ob switchen Chancen haben könnte oder bereits Probleme bietet und gibt einen
 #' logischen skalaren wert zurück.
@@ -260,7 +244,7 @@ rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'c
   assertthat::assert_that(situation %in% c("chance", "problem"))
   # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
   use_measure <- any(grepl("Vereinbarkeitst.+tigkeit Home Office wird angewandt", gaps))#oft, selten
-  problem <- any(grepl("Belastung Home Office", gaps))
+  problem <- any(grepl("Belastung: St.+rungen beim Arbeiten im Home Office", gaps))
   retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
 }

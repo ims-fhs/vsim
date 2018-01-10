@@ -21,11 +21,11 @@ test_vereinbarungen_chancen_expected <-
 "Belastung berufliche Verpflichtungen", "Belastung Gleichzeitigkeiten",
 "Belastung durch Switchen")
 
-# test 1: 1 nein,4 oft ,7 überhaupt nicht ,15 voll/ganz, 16 voll/ganz,25 voll/ganz,26 voll/ganz
+# test 1: 1 nein,4 oft ,7 überhaupt nicht ,15 voll/ganz, 16 voll/ganz,26 voll/ganz,27 voll/ganz
 test_calc_relevant_questions_2a_01 <-
-  structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
-5.9, 5.1, 5.11, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
 "Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
@@ -45,6 +45,7 @@ test_calc_relevant_questions_2a_01 <-
 "Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
 "Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
 "Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
 "Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
 "Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
 "Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
@@ -57,12 +58,12 @@ test_calc_relevant_questions_2a_01 <-
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "Trifft voll und ganz zu",
 "Trifft voll und ganz zu", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
-"Trifft voll und ganz zu", "Trifft voll und ganz zu", "weiss nicht"
-)), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
--27L), class = "data.frame")
+"weiss nicht", "Trifft voll und ganz zu", "Trifft voll und ganz zu",
+"weiss nicht")), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
+-28L), class = "data.frame")
 
 test_calc_relevant_questions_2a_expected_result_01 <-
-  structure(list(Qnum = c(3.1, 3.2, 5.1, 5.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+structure(list(Qnum = c(3.1, 3.2, 5.1, 5.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
 "Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
 "Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie Ihre Arbeitszeit zukünftig flexibler und selbstständiger organisieren, wo sehen Sie Chancen für eine Verbesserung?",
 "Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie Ihre privaten Verpflichtungen zukünftig flexibler organisieren, wo sehen Sie Chancen für eine Verbesserung?"
@@ -82,7 +83,7 @@ test_calc_relevant_questions_2a_expected_result_01 <-
 test_calc_relevant_questions_2a_02 <-
 structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
-5.9, 5.1, 5.11, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
 "Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
@@ -102,6 +103,7 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 "Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
 "Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
 "Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
 "Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
 "Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
 "Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
@@ -113,8 +115,8 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
-"weiss nicht", "weiss nicht", "weiss nicht")), .Names = c("Qnum",
-"Question", "Answer"), row.names = c(NA, -27L), class = "data.frame")
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht")), .Names = c("Qnum",
+"Question", "Answer"), row.names = c(NA, -28L), class = "data.frame")
 
 test_calc_relevant_questions_2a_expected_result_02 <-
 structure(list(Qnum = integer(0), Question = character(0), Massnahme = character(0),
@@ -127,7 +129,7 @@ structure(list(Qnum = integer(0), Question = character(0), Massnahme = character
 test_calc_relevant_questions_2a_03 <-
 structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
-5.9, 5.1, 5.11, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
 "Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
@@ -147,6 +149,7 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 "Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
 "Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
 "Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
 "Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
 "Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
 "Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
@@ -158,8 +161,8 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "Trifft voll und ganz zu",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
-"weiss nicht", "weiss nicht")), .Names = c("Qnum", "Question",
-"Answer"), row.names = c(NA, -27L), class = "data.frame")
+"weiss nicht", "weiss nicht", "weiss nicht")), .Names = c("Qnum",
+"Question", "Answer"), row.names = c(NA, -28L), class = "data.frame")
 
 test_calc_relevant_questions_2a_expected_result_03 <-
 structure(list(Qnum = integer(0), Question = character(0), Massnahme = character(0),
@@ -168,9 +171,11 @@ structure(list(Qnum = integer(0), Question = character(0), Massnahme = character
 "Question", "Massnahme", "Answer1", "Answer2", "Answer3", "Answer4",
 "Answer5"), row.names = integer(0), class = "data.frame")
 
-test_calc_relevant_gaps_2b_01 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+# test4: 5 nie, 11 überhaupt nicht
+test_calc_relevant_questions_2a_04 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
-5.9, 5.1, 5.11, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
 "Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
@@ -190,6 +195,227 @@ test_calc_relevant_gaps_2b_01 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 "Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
 "Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
 "Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
+"Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
+"Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
+"Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
+"Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.",
+"Ich habe das Gefühl, manche KundenInnen/GeschäftspartnerInnen/KollegInnen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner KundenInnen/GeschäftspartnerInnen/KollegInnen geschieht.",
+"Ich fühle mich machtlos, meine Arbeitssituation zu verändern."
+), Answer = c("weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"Nie", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "Trifft überhaupt nicht zu", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht"
+)), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
+-28L), class = "data.frame")
+
+test_calc_relevant_questions_2a_expected_result_04 <-
+structure(list(Qnum = c(1.1, 1.2, 3.1, 3.2, 5.1, 5.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie Ihre Arbeitszeit zukünftig flexibler und selbstständiger organisieren, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie Ihre privaten Verpflichtungen zukünftig flexibler organisieren, wo sehen Sie Chancen für eine Verbesserung?"
+), Massnahme = c("Switchen am Arbeitsplatz zugunsten privater Angelegenheiten",
+"Switchen am Arbeitsplatz zugunsten privater Angelegenheiten",
+"Vereinbarung Home Office mit der vorgesetzten Person", "Vereinbarung Home Office im privaten Bereich",
+"Flexiblere Arbeitszeiten", "Haus- und Betreuungsarbeiten flexibler gestalten"
+), Answer1 = c("Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge",
+"Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge",
+"Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge"
+), Answer2 = c("", "", "", "", "", ""), Answer3 = c("", "", "",
+"", "", ""), Answer4 = c("", "", "", "", "", ""), Answer5 = c("",
+"", "", "", "", "")), .Names = c("Qnum", "Question", "Massnahme",
+"Answer1", "Answer2", "Answer3", "Answer4", "Answer5"), row.names = c(1L,
+2L, 5L, 6L, 9L, 10L), class = "data.frame")
+
+# test5: 5 oft, 22 voll
+test_calc_relevant_questions_2a_05 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
+"Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
+"Wie häufig arbeiten Sie von zu Hause aus?", "Wie häufig führen private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern) dazu, dass Sie Ihren Arbeitsplatz früher verlassen bzw. später eintreffen?",
+"Ich verbringe genügend Zeit mit meinem/meinen Kind(ern), um zu spielen, basteln, Sport treiben, lesen oder Ähnliches.",
+"Wenn ich mit meinen Kindern spiele, bastle, Sport treibe, lese oder ähliche Tätigkeiten unternehme, bin ich zufrieden.",
+"Ich verbringe genügend Zeit zu zweit mit meiner Partnerin/meinem Partner.",
+"Ich bin zufrieden mit der Zeit, welche ich mit meiner Partnerin/meinem Partner zu zweit verbringe. ",
+"In meiner Freizeit verbringe ich genügend Zeit mit Aktivitäten wie Wandern, Spazieren, Velofahren, Lesen, Fernsehen, Ausruhen und/oder Ähnlichem.",
+"In meiner Freizeit verbringe ich genügend Zeit mit Freunden oder Verwandten oder in Vereinen, Feuerwehr, Sportclubs und/oder Ähnlichem.",
+"Ich bin zufrieden mit meinen aktuellen Möglichkeiten zur Karriereentwicklung (Mein Arbeitgeber unterstützt mich darin mich weiterzuentwickeln oder weiterzubilden und meine familiäre Situation lässt dies zu).",
+"In meiner Freizeit kann ich gut von meinen beruflichen Pflichten abschalten.",
+"Ich fühle mich oft belastet, weil ich in meiner Freizeit viele Besorgungen, Termine, etc. erledigen muss, dies aber oftmals nicht in der gegebenen Zeit schaffe.",
+"Ich fühle mich oft belastet, weil ich wichtige Arbeiten (in der Firma) oftmals nur mit Mühe rechtzeitig erledigen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von privaten Verpflichtungen die Erwartungen meines Arbeitgebers oftmals nicht erfüllen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von beruflichen Verpflichtungen meine Erwartungen bezüglich Haushalt und Kinderbetreuung nicht erfüllen kann.  ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
+"Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
+"Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
+"Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
+"Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
+"Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.",
+"Ich habe das Gefühl, manche KundenInnen/GeschäftspartnerInnen/KollegInnen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner KundenInnen/GeschäftspartnerInnen/KollegInnen geschieht.",
+"Ich fühle mich machtlos, meine Arbeitssituation zu verändern."
+), Answer = c("weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"Oft", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "Trifft voll und ganz zu",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht")), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
+-28L), class = "data.frame")
+
+test_calc_relevant_questions_2a_expected_result_05 <-
+structure(list(Qnum = c(4.1, 4.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie zukünftig weniger von zu Hause aus arbeiten, welche Belastungen können Ihrer Meinung nach reduziert werden?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie zukünftig unter veränderten Bedingungen (klare Arbeitszeiten, wenig Störung, ruhiger Arbeitsort, klar abgetrennter Raum, etc.) von zu Hause aus arbeiten, welche Belastungen können Ihrer Meinung nach reduziert werden?"
+), Massnahme = c("Vereinbarung zur Reduktion von Home Office mit der vorgesetzten Person",
+"Vereinbarung Home Office im privaten Bereich"), Answer1 = c("Belastung: Störungen beim Arbeiten im Home Office",
+"Belastung: Störungen beim Arbeiten im Home Office"), Answer2 = c("",
+""), Answer3 = c("", ""), Answer4 = c("", ""), Answer5 = c("",
+"")), .Names = c("Qnum", "Question", "Massnahme", "Answer1",
+"Answer2", "Answer3", "Answer4", "Answer5"), row.names = 7:8, class = "data.frame")
+
+# test6: 11 überhaupt nicht
+test_calc_relevant_questions_2a_06 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
+"Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
+"Wie häufig arbeiten Sie von zu Hause aus?", "Wie häufig führen private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern) dazu, dass Sie Ihren Arbeitsplatz früher verlassen bzw. später eintreffen?",
+"Ich verbringe genügend Zeit mit meinem/meinen Kind(ern), um zu spielen, basteln, Sport treiben, lesen oder Ähnliches.",
+"Wenn ich mit meinen Kindern spiele, bastle, Sport treibe, lese oder ähliche Tätigkeiten unternehme, bin ich zufrieden.",
+"Ich verbringe genügend Zeit zu zweit mit meiner Partnerin/meinem Partner.",
+"Ich bin zufrieden mit der Zeit, welche ich mit meiner Partnerin/meinem Partner zu zweit verbringe. ",
+"In meiner Freizeit verbringe ich genügend Zeit mit Aktivitäten wie Wandern, Spazieren, Velofahren, Lesen, Fernsehen, Ausruhen und/oder Ähnlichem.",
+"In meiner Freizeit verbringe ich genügend Zeit mit Freunden oder Verwandten oder in Vereinen, Feuerwehr, Sportclubs und/oder Ähnlichem.",
+"Ich bin zufrieden mit meinen aktuellen Möglichkeiten zur Karriereentwicklung (Mein Arbeitgeber unterstützt mich darin mich weiterzuentwickeln oder weiterzubilden und meine familiäre Situation lässt dies zu).",
+"In meiner Freizeit kann ich gut von meinen beruflichen Pflichten abschalten.",
+"Ich fühle mich oft belastet, weil ich in meiner Freizeit viele Besorgungen, Termine, etc. erledigen muss, dies aber oftmals nicht in der gegebenen Zeit schaffe.",
+"Ich fühle mich oft belastet, weil ich wichtige Arbeiten (in der Firma) oftmals nur mit Mühe rechtzeitig erledigen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von privaten Verpflichtungen die Erwartungen meines Arbeitgebers oftmals nicht erfüllen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von beruflichen Verpflichtungen meine Erwartungen bezüglich Haushalt und Kinderbetreuung nicht erfüllen kann.  ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
+"Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
+"Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
+"Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
+"Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
+"Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.",
+"Ich habe das Gefühl, manche KundenInnen/GeschäftspartnerInnen/KollegInnen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner KundenInnen/GeschäftspartnerInnen/KollegInnen geschieht.",
+"Ich fühle mich machtlos, meine Arbeitssituation zu verändern."
+), Answer = c("weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "Trifft überhaupt nicht zu", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht"
+)), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
+-28L), class = "data.frame")
+
+test_calc_relevant_questions_2a_expected_result_06 <-
+structure(list(Qnum = c(1.1, 1.2, 3.1, 3.2, 5.1, 5.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie Ihre Arbeitszeit zukünftig flexibler und selbstständiger organisieren, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie Ihre privaten Verpflichtungen zukünftig flexibler organisieren, wo sehen Sie Chancen für eine Verbesserung?"
+), Massnahme = c("Switchen am Arbeitsplatz zugunsten privater Angelegenheiten",
+"Switchen am Arbeitsplatz zugunsten privater Angelegenheiten",
+"Vereinbarung Home Office mit der vorgesetzten Person", "Vereinbarung Home Office im privaten Bereich",
+"Flexiblere Arbeitszeiten", "Haus- und Betreuungsarbeiten flexibler gestalten"
+), Answer1 = c("Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge",
+"Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge",
+"Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge"
+), Answer2 = c("", "", "", "", "", ""), Answer3 = c("", "", "",
+"", "", ""), Answer4 = c("", "", "", "", "", ""), Answer5 = c("",
+"", "", "", "", "")), .Names = c("Qnum", "Question", "Massnahme",
+"Answer1", "Answer2", "Answer3", "Answer4", "Answer5"), row.names = c(1L,
+2L, 5L, 6L, 9L, 10L), class = "data.frame")
+
+# test7: 6 oft, 21 voll
+test_calc_relevant_questions_2a_07 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
+"Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
+"Wie häufig arbeiten Sie von zu Hause aus?", "Wie häufig führen private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern) dazu, dass Sie Ihren Arbeitsplatz früher verlassen bzw. später eintreffen?",
+"Ich verbringe genügend Zeit mit meinem/meinen Kind(ern), um zu spielen, basteln, Sport treiben, lesen oder Ähnliches.",
+"Wenn ich mit meinen Kindern spiele, bastle, Sport treibe, lese oder ähliche Tätigkeiten unternehme, bin ich zufrieden.",
+"Ich verbringe genügend Zeit zu zweit mit meiner Partnerin/meinem Partner.",
+"Ich bin zufrieden mit der Zeit, welche ich mit meiner Partnerin/meinem Partner zu zweit verbringe. ",
+"In meiner Freizeit verbringe ich genügend Zeit mit Aktivitäten wie Wandern, Spazieren, Velofahren, Lesen, Fernsehen, Ausruhen und/oder Ähnlichem.",
+"In meiner Freizeit verbringe ich genügend Zeit mit Freunden oder Verwandten oder in Vereinen, Feuerwehr, Sportclubs und/oder Ähnlichem.",
+"Ich bin zufrieden mit meinen aktuellen Möglichkeiten zur Karriereentwicklung (Mein Arbeitgeber unterstützt mich darin mich weiterzuentwickeln oder weiterzubilden und meine familiäre Situation lässt dies zu).",
+"In meiner Freizeit kann ich gut von meinen beruflichen Pflichten abschalten.",
+"Ich fühle mich oft belastet, weil ich in meiner Freizeit viele Besorgungen, Termine, etc. erledigen muss, dies aber oftmals nicht in der gegebenen Zeit schaffe.",
+"Ich fühle mich oft belastet, weil ich wichtige Arbeiten (in der Firma) oftmals nur mit Mühe rechtzeitig erledigen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von privaten Verpflichtungen die Erwartungen meines Arbeitgebers oftmals nicht erfüllen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von beruflichen Verpflichtungen meine Erwartungen bezüglich Haushalt und Kinderbetreuung nicht erfüllen kann.  ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
+"Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
+"Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
+"Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
+"Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
+"Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.",
+"Ich habe das Gefühl, manche KundenInnen/GeschäftspartnerInnen/KollegInnen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner KundenInnen/GeschäftspartnerInnen/KollegInnen geschieht.",
+"Ich fühle mich machtlos, meine Arbeitssituation zu verändern."
+), Answer = c("weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "Oft", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
+"weiss nicht", "Trifft voll und ganz zu", "weiss nicht", "weiss nicht",
+"weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht"
+)), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
+-28L), class = "data.frame")
+
+test_calc_relevant_questions_2a_expected_result_07 <-
+structure(list(Qnum = c(6.1, 6.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie Ihre Arbeitszeit zukünftig weniger flexibel (regelmässige Arbeitszeiten, klar festgelegte Aufgaben, etc.) organisieren, welche Belastungen können Ihrer Meinung nach reduziert werden?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie Ihre privaten Verpflichtungen zukünftig geregelter organisieren, welche Belastungen können Ihrer Meinung nach reduziert werden?"
+), Massnahme = c("Weniger flexible Arbeitszeiten", "Haus- und Betreuungsarbeiten klarer regeln"
+), Answer1 = c("Belastung: Keine klar festgelegeten Arbeitszeiten (Flexibilisierung)",
+"Belastung: Keine klar festgelegeten Arbeitszeiten (Flexibilisierung)"
+), Answer2 = c("", ""), Answer3 = c("", ""), Answer4 = c("",
+""), Answer5 = c("", "")), .Names = c("Qnum", "Question", "Massnahme",
+"Answer1", "Answer2", "Answer3", "Answer4", "Answer5"), row.names = 11:12, class = "data.frame")
+
+# test b_1: 1 nein, gerne weniger, 5 oft ,8 überhaupt nicht ,13 voll/ganz, 26 voll/ganz, 28 voll/ganz
+test_calc_relevant_gaps_2b_01 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
+"Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
+"Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
+"Wie häufig arbeiten Sie von zu Hause aus?", "Wie häufig führen private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern) dazu, dass Sie Ihren Arbeitsplatz früher verlassen bzw. später eintreffen?",
+"Ich verbringe genügend Zeit mit meinem/meinen Kind(ern), um zu spielen, basteln, Sport treiben, lesen oder Ähnliches.",
+"Wenn ich mit meinen Kindern spiele, bastle, Sport treibe, lese oder ähliche Tätigkeiten unternehme, bin ich zufrieden.",
+"Ich verbringe genügend Zeit zu zweit mit meiner Partnerin/meinem Partner.",
+"Ich bin zufrieden mit der Zeit, welche ich mit meiner Partnerin/meinem Partner zu zweit verbringe. ",
+"In meiner Freizeit verbringe ich genügend Zeit mit Aktivitäten wie Wandern, Spazieren, Velofahren, Lesen, Fernsehen, Ausruhen und/oder Ähnlichem.",
+"In meiner Freizeit verbringe ich genügend Zeit mit Freunden oder Verwandten oder in Vereinen, Feuerwehr, Sportclubs und/oder Ähnlichem.",
+"Ich bin zufrieden mit meinen aktuellen Möglichkeiten zur Karriereentwicklung (Mein Arbeitgeber unterstützt mich darin mich weiterzuentwickeln oder weiterzubilden und meine familiäre Situation lässt dies zu).",
+"In meiner Freizeit kann ich gut von meinen beruflichen Pflichten abschalten.",
+"Ich fühle mich oft belastet, weil ich in meiner Freizeit viele Besorgungen, Termine, etc. erledigen muss, dies aber oftmals nicht in der gegebenen Zeit schaffe.",
+"Ich fühle mich oft belastet, weil ich wichtige Arbeiten (in der Firma) oftmals nur mit Mühe rechtzeitig erledigen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von privaten Verpflichtungen die Erwartungen meines Arbeitgebers oftmals nicht erfüllen kann.",
+"Ich habe oft ein schlechtes Gewissen, weil ich aufgrund von beruflichen Verpflichtungen meine Erwartungen bezüglich Haushalt und Kinderbetreuung nicht erfüllen kann.  ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
+"Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
+"Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
 "Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
 "Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
 "Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
@@ -202,17 +428,18 @@ test_calc_relevant_gaps_2b_01 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 "weiss nicht", "weiss nicht", "Trifft voll und ganz zu", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
-"Trifft voll und ganz zu", "weiss nicht", "Trifft voll und ganz zu"
+"weiss nicht", "Trifft voll und ganz zu", "weiss nicht", "Trifft voll und ganz zu"
 )), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
--27L), class = "data.frame")
+-28L), class = "data.frame")
 
 test_calc_relevant_gaps_2b_expected_result_01 <-
   c("Differenz im Zeithandeln Erwerbsarbeit", "-", "-", "-", "-")
 
-
-test_calc_relevant_gaps_2b_02 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+# test b_2: 1 nein, weniger, 2 nein, weniger, 7-14 überhaupt nicht, 15-28 voll und ganz
+test_calc_relevant_gaps_2b_02 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
-5.9, 5.1, 5.11, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
 "Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
@@ -232,6 +459,7 @@ test_calc_relevant_gaps_2b_02 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 "Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
 "Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
 "Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
 "Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
 "Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
 "Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
@@ -247,17 +475,20 @@ test_calc_relevant_gaps_2b_02 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 "Trifft voll und ganz zu", "Trifft voll und ganz zu", "Trifft voll und ganz zu",
 "Trifft voll und ganz zu", "Trifft voll und ganz zu", "Trifft voll und ganz zu",
 "Trifft voll und ganz zu", "Trifft voll und ganz zu", "Trifft voll und ganz zu",
-"Trifft voll und ganz zu", "Trifft voll und ganz zu")), .Names = c("Qnum",
-"Question", "Answer"), row.names = c(NA, -27L), class = "data.frame")
+"Trifft voll und ganz zu", "Trifft voll und ganz zu", "Trifft voll und ganz zu"
+)), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
+-28L), class = "data.frame")
 
 test_calc_relevant_gaps_2b_expected_result_02 <- c("Differenz im Zeithandeln Erwerbsarbeit, Belastung: Hohe zeitliche Beanspruchung",
 "Unzufriedenheit mit dem privaten Zeitmanagement, Belastung: Hohe zeitliche Beanspruchung",
 "Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
 "-")
 
-test_calc_relevant_gaps_2b_03 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
+# test b_3: 1 nein, mehr, 3 nein, weniger, 8 überhaupt nicht, 11 überhaupt nicht, 14 voll und ganz, 17 voll und ganz
+test_calc_relevant_gaps_2b_03 <-
+structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 3.3, 3.4, 3.5, 3.6, 4.1, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,
-5.9, 5.1, 5.11, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
+5.9, 5.1, 5.11, 5.12, 6.1, 6.2, 6.3), Question = c("Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten) zuständig sind?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?",
 "Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?",
 "Wie häufig erledigen Sie während der Arbeitszeit zwischendurch oder zu Randzeiten private Verpflichtungen (z.B. Einkäufe erledigen, Mittagessen zubereiten, Versorgen von Kindern)? ",
@@ -277,6 +508,7 @@ test_calc_relevant_gaps_2b_03 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 "Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit oftmals verschiedene Dinge gleichzeitig erledigen muss. ",
 "Ich fühle mich oft belastet, weil ich während der Arbeit oftmals auch privaten Verpflichtungen nachkommen muss.",
 "Ich fühle mich oft belastet, weil ich zu Hause oftmals auch beruflichen Verpflichtungen nachkommen muss.  ",
+"Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.",
 "Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und privaten Verpflichtungen insgesamt zu hoch ist.",
 "Ich fühle mich oft belastet, weil die finanzielle Situation in meinem Haushalt angespannt ist.",
 "Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.",
@@ -290,12 +522,13 @@ test_calc_relevant_gaps_2b_03 <- structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2
 "weiss nicht", "Trifft voll und ganz zu", "weiss nicht", "weiss nicht",
 "Trifft voll und ganz zu", "weiss nicht", "weiss nicht", "weiss nicht",
 "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht", "weiss nicht",
-"weiss nicht", "weiss nicht")), .Names = c("Qnum", "Question",
-"Answer"), row.names = c(NA, -27L), class = "data.frame")
+"weiss nicht", "weiss nicht", "weiss nicht")), .Names = c("Qnum",
+"Question", "Answer"), row.names = c(NA, -28L), class = "data.frame")
 
 test_calc_relevant_gaps_2b_expected_result_03 <- c("Differenz im Zeithandeln Erwerbsarbeit", "-", "Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
 "-", "-")
 
+# test c_1
 test_unterstuetzung_entlastung_alist_2c <- structure(list(Qnum = 1:8, Question = c("Wäre es für die finanzielle Umsetzung dieses Plans hilfreich, die Zuständigkeiten für das Geld verdienen in Ihrem Haushalt neu zu verhandeln?",
 "Wäre es für die zeitliche und finanzielle Umsetzung dieses Plans hilfreich, wenn Ihre Kinder neu oder in einem anderen Umfang als bisher durch Krippen, Tagesschulen, Spielgruppen oder ähnliche Organisationen betreut würden?",
 "Wäre es für die zeitliche und finanzielle Umsetzung dieses Plans hilfreich, wenn Ihre Kinder neu oder in einem anderen Umfang als bisher durch Grosseltern, andere Verwandte, Freunde oder Nachbarn betreut würden?",
