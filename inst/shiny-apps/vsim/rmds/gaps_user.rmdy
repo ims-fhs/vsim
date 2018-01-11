@@ -30,7 +30,7 @@ gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist,
 Belastungsfaktoren&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_belastung, align = "left", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
@@ -72,7 +72,7 @@ if (show_warning) {
 Unzufriedenheiten&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_unzufriedenheit, align = "left", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>

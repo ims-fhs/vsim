@@ -51,12 +51,7 @@ chancen_belastungen <- rule_identify_vereinbarungen_chancen(Alist_2a, "Belastung
 chancen_unzufriedenheiten <- rule_identify_vereinbarungen_chancen(Alist_2a, "Unzufriedenheit")
 
 cat("<table width='100%'><tr><td>")
-if (chancen_belastungen) {
-  rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_belastung(), "Vereinbarungen zur Reduktion von Belastungen geplant")
-}
-if (chancen_unzufriedenheiten) {
- rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_unzufriedenheit(), "Vereinbarungen zur Reduktion von Unzufriedenheiten geplant")
-}
+rmd_display_icon(icon = icon_vereinbarung, align = "right", width = 40, height = 40)
 cat("</td></tr></table>")
 ```
 </td></tr>
@@ -76,7 +71,7 @@ rmd_display_vereinbarungen_chancen(Alist_2a)
 Zeitverwendung&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_zeitverwendung, align = "left", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_zeitverwendung, align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
@@ -101,7 +96,7 @@ rmd_display_weniger_ea(Alist_2b, result_coll$relevant_gaps)
 Unterstützung, Entlastung, Entwicklung&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "left", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
