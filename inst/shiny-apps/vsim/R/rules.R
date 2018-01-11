@@ -84,19 +84,26 @@ rule_extract_vereinbarungen <- function(alist_2a ) {
 #' rule_extract_vereinbarungen_fragen: ermittelt die Fragen für getroffene
 #' Vereinbarungen, welchen Chancen zugewiesen wurden.
 #'
-#' @param alist_2a
+#' @param alist_2a data.frame der Antworten
+#' @param qlist data.frame der Fragen
+#' @param type Typ der Information zur Rückgabe
 #'
 #' @return vereinbarungen
 #'
 #' @examples rule_extract_vereinbarungen_fragen(test_vereinbarungen_chancen_alist_2a)
-rule_extract_vereinbarungen_fragen <- function(alist_2a) {
+rule_extract_vereinbarungen_fragen <- function(alist_2a, qlist,
+                                               type = stop(c("Frage", "Massnahme"))) {
   assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
                                                         "Kommentar")))
   answered <- which(!is.na(alist_2a$Antwort))
   assertthat::assert_that(is.numeric(answered))
   retval <- character()
   if (length(answered) > 0) {
-    retval <- alist_2a[answered, ]$Frage
+    if (type == "Frage") {
+      retval <- alist_2a[answered, ]$Frage
+    } else {
+      retval <- qlist[answered, ]$Massnahme
+    }
   }
   return(retval)
 }

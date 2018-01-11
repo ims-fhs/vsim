@@ -25,12 +25,14 @@ testthat::test_that("get_selected_value works", {
 })
 
 testthat::test_that("rmd_display_vereinbarungen_chancen works", {
+
   html <- rmd_display_vereinbarungen_chancen(alist_2a = test_rmd_display_vereinbarungen_chancen_alist2a_01,
-                                     bol_vorgesetzter = TRUE)
+                                             qlist = test_rmd_display_vereinbarungen_chancen_qlist_01,
+                                             bol_vorgesetzter = test_rmd_display_vereinbarungen_chancen_bolvg_01)
   testthat::expect_equal(html, test_rmd_display_vereinbarungen_chancen_expected_html_01)
 
-  html <- rmd_display_vereinbarungen_chancen(alist_2a = test_rmd_display_vereinbarungen_chancen_alist2a_01,
-                                     bol_vorgesetzter = FALSE)
+  html <- rmd_display_vereinbarungen_chancen(alist_2a = test_rmd_display_vereinbarungen_chancen_alist2a_02,
+                                             qlist = test_rmd_display_vereinbarungen_chancen_qlist_02,
+                                             bol_vorgesetzter = test_rmd_display_vereinbarungen_chancen_bolvg_02)
   testthat::expect_equal(html, test_rmd_display_vereinbarungen_chancen_expected_html_02)
-
 })

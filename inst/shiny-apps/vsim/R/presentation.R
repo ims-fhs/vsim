@@ -84,17 +84,22 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
 #'
 #' @param alist_2a the Alist containing the Questions and the user's Answers
 #' from part 2a
+#' @param qlist the Qlist conaining
+#' @param bol_vorgesetzter
 #'
 #' @examples rmd_display_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a)
-rmd_display_vereinbarungen_chancen <- function(alist_2a, bol_vorgesetzter = TRUE) {
-  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
+rmd_display_vereinbarungen_chancen <- function(alist_2a, qlist,
+                                               bol_vorgesetzter = TRUE) {
+  fragen <- rule_extract_vereinbarungen_fragen(alist_2a, qlist, "Frage")
+  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a, qlist, "Massnahme")
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
   # subset for boss/relatives
   if (bol_vorgesetzter) {
-    ids <- which(grepl("Ihrem/Ihrer Vorgesetzten", vereinbarungen))
+    ids <- which(grepl("Ihrem/Ihrer Vorgesetzten", fragen))
   } else {
-    ids <- which(grepl("Ihren Angehörigen", vereinbarungen))
+    ids <- which(grepl("Ihren Angeh.+rigen", fragen))
   }
+  fragen <- fragen[ids]
   vereinbarungen <- vereinbarungen[ids]
   kommentare <- kommentare[ids]
 
@@ -113,7 +118,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a, bol_vorgesetzter = TRUE
                      ";padding: 12px; width: 400px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
                      vereinbarung, "</div></td><td>")
-      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a)
+      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(fragen[i], alist_2a)
       if (length(chancen_belastungen) > 0) {
         for (j in 1:length(chancen_belastungen)) {
           chance <- chancen_belastungen[j]
