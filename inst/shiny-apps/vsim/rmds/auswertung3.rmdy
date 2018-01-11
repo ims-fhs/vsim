@@ -70,13 +70,20 @@ cat("</td></tr></table>")
 </table>
 <br>
 <h4>
-Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 folgende Vereinbarungen als Lösungsansätze identifiziert:
+Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 Vereinbarungen als Lösungsansätze identifiziert. <br><br>Besprechen Sie folgende Vereinbarungen mit Ihrem/Ihrer Vorgesetzten:
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
-rmd_display_vereinbarungen_chancen(Alist_2a)
+cat(rmd_display_vereinbarungen_chancen(Alist_2a, bol_vorgesetzter = TRUE))
 ```
+<br>
+<h4>
+Besprechen Sie folgende Vereinbarungen mit Ihren Angehörigen:
+</h4>
 
+```{r, echo=FALSE, results='asis'}
+cat(rmd_display_vereinbarungen_chancen(Alist_2a, bol_vorgesetzter = FALSE))
+```
 
 <table>
 <tr><td style="white-space: nowrap"><h2>

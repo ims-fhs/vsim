@@ -61,11 +61,7 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
       grepl("Aktuell keine", belastungen_oder_unzufriedenheiten[1])) {
     bg_color <- color_no_data
   }
-  # prevent white font on white background
-  font_color <- "#FFFFFF"
-  if (bg_color == "#FFFFFF") {
-    font_color <- "#000000"
-  }
+  font_color <- "#000000"
 
   if (color_strain != "") {
     kable(as.data.frame(belastungen_oder_unzufriedenheiten),row.names = FALSE, col.names = "",  format = "html")%>%
@@ -90,9 +86,18 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
 #' from part 2a
 #'
 #' @examples rmd_display_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a)
-rmd_display_vereinbarungen_chancen <- function(alist_2a) {
+rmd_display_vereinbarungen_chancen <- function(alist_2a, bol_vorgesetzter = TRUE) {
   vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
+  # subset for boss/relatives
+  if (bol_vorgesetzter) {
+    ids <- which(grepl("Ihrem/Ihrer Vorgesetzten", vereinbarungen))
+  } else {
+    ids <- which(grepl("Ihren Angehörigen", vereinbarungen))
+  }
+  vereinbarungen <- vereinbarungen[ids]
+  kommentare <- kommentare[ids]
+
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
@@ -127,9 +132,8 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
       html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr>")
   }
   html <- paste0(html, "</table>")
-  cat(html)
+  return(html)
 }
-
 
 #' rmd_display_zeitverwendung: renders the zeitverwendung table based
 #' on the alist_2b provided

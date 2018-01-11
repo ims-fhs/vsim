@@ -553,3 +553,29 @@ test_zeitverwendung_alist_2b <- structure(list(Qnum = 1:5, Question = c("für de
 test_zeitverwendung_relevant_gaps <- c("Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
 "Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
 "-")
+
+# test presentation
+# test 1: bol_vorgesetzter = TRUE
+test_rmd_display_vereinbarungen_chancen_alist2a_01 <-
+structure(list(Frage = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie zukünftig vermehrt von zu Hause aus arbeiten, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie Ihre Arbeitszeit zukünftig flexibler und selbstständiger organisieren, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie Ihre privaten Verpflichtungen zukünftig flexibler organisieren, wo sehen Sie Chancen für eine Verbesserung?"
+), Antwort = c("Unzufriedenheit mit dem privaten Zeitmanagement, Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung, Unzufriedenheit mit sozialen Beziehungen",
+"Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
+"Unzufriedenheit mit sozialen Beziehungen", "Unzufriedenheit mit dem privaten Zeitmanagement",
+"Unzufriedenheit mit dem privaten Zeitmanagement, Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung, Unzufriedenheit mit sozialen Beziehungen",
+"Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung"
+), Kommentar = c("", "", "", "", "", "")), .Names = c("Frage",
+"Antwort", "Kommentar"), class = "data.frame", row.names = c(1L,
+2L, 5L, 6L, 9L, 10L))
+
+test_rmd_display_vereinbarungen_chancen_expected_html_01 <-
+"<table cellpadding='10' cellspacing='10' width='100%'><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' ><th width='40%'><b>Geplante Vereinbarung</b></th><th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene Ideen&nbsp;&nbsp;</b></th></tr><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr></table>"
+
+# test 2: bol_vorgesetzter = FALSE, aber gleicher Input wie Test 01: test_rmd_display_vereinbarungen_chancen_alist2a_01
+test_rmd_display_vereinbarungen_chancen_expected_html_02 <-
+"<table cellpadding='10' cellspacing='10' width='100%'><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' ><th width='40%'><b>Geplante Vereinbarung</b></th><th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene Ideen&nbsp;&nbsp;</b></th></tr><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr></table>"
+

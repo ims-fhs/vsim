@@ -23,3 +23,14 @@ testthat::test_that("get_selected_value works", {
   result <- get_selected_value(sample, default)
   testthat::expect_equal(result, expected)
 })
+
+testthat::test_that("rmd_display_vereinbarungen_chancen works", {
+  html <- rmd_display_vereinbarungen_chancen(alist_2a = test_rmd_display_vereinbarungen_chancen_alist2a_01,
+                                     bol_vorgesetzter = TRUE)
+  testthat::expect_equal(html, test_rmd_display_vereinbarungen_chancen_expected_html_01)
+
+  html <- rmd_display_vereinbarungen_chancen(alist_2a = test_rmd_display_vereinbarungen_chancen_alist2a_01,
+                                     bol_vorgesetzter = FALSE)
+  testthat::expect_equal(html, test_rmd_display_vereinbarungen_chancen_expected_html_02)
+
+})
