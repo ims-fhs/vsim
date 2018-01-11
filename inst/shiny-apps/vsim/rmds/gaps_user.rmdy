@@ -3,15 +3,9 @@ title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
 output: html_document:
           css: styles.css
 ---
-<table>
-<tr><td style="white-space: nowrap"><h1>
-Auswertung Lebenslage&nbsp;&nbsp;
-</h1></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_lebenslage_auswertung, align = "left", width = "20%", height = "20%")
-```
-</td></tr>
-</table>
+<img src="simulator_teil2.png" alt="" height="60">
+
+<h1>Auswertung Lebenslage</h1>
 
 <h4>
 Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende mögliche <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b> erkannt:</br></br>
@@ -36,7 +30,7 @@ gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist,
 Belastungsfaktoren&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_belastung, align = "left", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
@@ -78,7 +72,7 @@ if (show_warning) {
 Unzufriedenheiten&nbsp;&nbsp;
 </h2></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_unzufriedenheit, align = "left", width = "20%", height = "20%")
+rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
