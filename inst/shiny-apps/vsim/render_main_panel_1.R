@@ -22,7 +22,8 @@ questionaryPostProcessing <- function() {
 output$mainPanel <- renderUI({
   # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
-    return(list(h3("Willkommen zum Vereinbarkeitssimulator"),
+    return(list(img(src='simulator.png', height = 60),
+                h3("Willkommen zum Vereinbarkeitssimulator"),
                 h4("Der Vereinbarkeitssimulator ist eine Software für Arbeitnehmer, welche ihre Lebenslagen sowie die Wünsche an ihre zukünftige Work-Life-Balance erfasst. Basierend darauf werden Massnahmen geplant, ausgedruckt und in der Folge mit Arbeitgeber und Angehörigen verhandelt. Um die Wirksamkeit der Umsetzung zu prüfen oder um Erkenntnisse aus den Verhandlungen in den Plan einfliessen zu lassen, kann die Software wiederholt durchgearbeitet werden."),
                 h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre Lebenslage. Aufgrund der von Ihnen angegebenen Daten erfolgt dann eine Bewertung der momentanen Lebenssituation (Ist-Zustand)."),
                 h4("Im ", strong("zweiten Schritt"), "werden Wünsche und Bedürfnisse festgelegt (Soll-Zustand). Hierbei werden Ideen erfasst, welche Ihnen als Hilfe zum Erreichen Ihrer Ziele dienen."),

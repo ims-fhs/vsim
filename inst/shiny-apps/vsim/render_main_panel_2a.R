@@ -24,7 +24,7 @@ output$mainPanel <- renderUI( {
   if (question_id == Survey_Sections$Teil2a_intro && question_id != Survey_Sections$Teil2a_end_statement) {
     return(
       list(
-        p("..hier kommt noch das Bild 'Wegleitung durch den Simulator'.."),
+        img(src='simulator_teil3.png', height = 60),
         h4("Mit Blick auf die im vorigen Teil ermittelten Belastungsfaktoren und Unzufriedenheiten treten in Teil 2 des Vereinbarkeitssimulators mögliche Lösungen in den Vordergrund."),
         h4("Sie haben im gesamten Teil 2 die Möglichkeit, die Lösungsvorschläge durch Eigene Ideen zu ergänzen. Damit können Sie die Lösungsvorschläge nach Ihren Bedürfnissen anpassen und um wichtige Details ergänzen."),
         br(),

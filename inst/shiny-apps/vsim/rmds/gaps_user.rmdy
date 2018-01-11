@@ -3,6 +3,8 @@ title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
 output: html_document:
           css: styles.css
 ---
+<img src="simulator_teil2.png" alt="" height="60">
+
 <table>
 <tr><td style="white-space: nowrap"><h1>
 Auswertung Lebenslage&nbsp;&nbsp;
