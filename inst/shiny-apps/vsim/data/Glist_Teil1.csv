@@ -1,5 +1,5 @@
 Qnum;Question;Gap1;Indikator1;Gap2;Indikator2
-1.1;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten etc.) verwenden?;Differenz im Zeithandeln Erwerbsarbeit;Nein, ich möchte gern weniger Zeit dafür verwenden,Nein, ich möchte gern mehr Zeit dafür verwenden;;
+1.1;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten etc.) verwenden?;Unzufriedenheit mit dem beruflichen Zeitmanagement;Nein, ich möchte gern weniger Zeit dafür verwenden,Nein, ich möchte gern mehr Zeit dafür verwenden;;
 1.2;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?;Unzufriedenheit mit dem privaten Zeitmanagement;Nein, ich möchte gern weniger Zeit dafür verwenden,Nein, ich möchte gern mehr Zeit dafür verwenden;;
 1.3;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?;Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung;Nein, ich möchte gern weniger Zeit dafür verwenden,Nein, ich möchte gern mehr Zeit dafür verwenden;;
 2.1;Wie häufig erledigen Sie während Ihrer Arbeitszeit zwischendurch oder zu Randzeiten private Angelegenheiten (z.B. familiäre Verpflichtungen)?;Vereinbarkeitstätigkeit Switchen wird angewandt;Oft,Ab und zu;;
@@ -20,9 +20,10 @@ Qnum;Question;Gap1;Indikator1;Gap2;Indikator2
 5.6;Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit verschiedene Dinge gleichzeitig erledigen muss. ;Belastung: Viele zeitgleiche Aufgaben (privat und/oder beruflich);Trifft voll und ganz zu,Trifft eher zu;;
 5.7;Ich fühle mich oft belastet, weil ich während der Arbeit häufig privaten Verpflichtungen nachkommen muss.;Belastung: Häufiges Hin- und Herschalten zwischen Privatem und Beruflichem (Switchen);Trifft voll und ganz zu,Trifft eher zu;;
 5.8;Ich fühle mich oft belastet, weil ich Zuhause häufig beruflichen Verpflichtungen nachkommen muss.  ;Belastung: Keine klar festgelegeten Arbeitszeiten (Flexibilisierung);Trifft voll und ganz zu,Trifft eher zu;;
-5.9;Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und- und familiären Verplfichtungen insgesamt zu hoch ist.;Belastung: Hohe zeitliche Beanspruchung;Trifft voll und ganz zu,Trifft eher zu;;
-5.10;Ich fühle mich oft belastet, weil die finanzielle Situation in meinem/unserem Haushalt angespannt ist.;Belastung: Finanzielle Situation;Trifft voll und ganz zu,Trifft eher zu;;
-5.11;Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.;Belastung: Gesundheitliche Situation;Trifft voll und ganz zu,Trifft eher zu;;
+5.9;Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.;Belastung: Störungen beim Arbeiten im Home Office;Trifft voll und ganz zu,Trifft eher zu;;
+5.10;Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und- und familiären Verplfichtungen insgesamt zu hoch ist.;Belastung: Hohe zeitliche Beanspruchung;Trifft voll und ganz zu,Trifft eher zu;;
+5.11;Ich fühle mich oft belastet, weil die finanzielle Situation in meinem/unserem Haushalt angespannt ist.;Belastung: Finanzielle Situation;Trifft voll und ganz zu,Trifft eher zu;;
+5.12;Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.;Belastung: Gesundheitliche Situation;Trifft voll und ganz zu,Trifft eher zu;;
 6.1;Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.;Belastung: Psychische oder emotionale Belastung;Trifft voll und ganz zu,Trifft eher zu;;
 6.2;Ich habe das Gefühl, manche KundenInnen/GeschäftspartnerInnen/KollegInnen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner KundenInnen/GeschäftspartnerInnen/KollegInnen geschieht.;Belastung: Psychische oder emotionale Situation;Trifft voll und ganz zu,Trifft eher zu;;
 6.3;Ich fühle mich machtlos, meine Arbeitssituation zu verändern.;Belastung: Psychische oder emotionale Belastung;Trifft voll und ganz zu,Trifft eher zu;;

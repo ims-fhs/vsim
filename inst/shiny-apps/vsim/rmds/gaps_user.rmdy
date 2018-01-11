@@ -46,7 +46,7 @@ Folgende Belastungen konnten ermittelt werden:
 
 
 ```{r belastung}
-belastungen <- rule_extract_belastungen(df$Gaps)
+belastungen <- rule_extract_belastungen(df$Gaps, strip_prefix = TRUE)
 rmd_display_belastungen_unzufriedenheiten(belastungen,
     color_strain = col_belastung(),
     color_no_data = col_evaluation_comment())

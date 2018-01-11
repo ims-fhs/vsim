@@ -23,6 +23,8 @@ rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
 #' rule_extract_belastungen: Extrahiert die aktuellen Belastungen
 #'
 #' @param gaps A character vector
+#' @param strip_prefix A boolean indicating, whether the 'Belastung: ' - Prefix
+#' should be stripped (TRUE) or not (FALSE)
 #'
 #' @return belastungen A character vector
 #'
@@ -30,11 +32,14 @@ rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
 #' # [1] "eine Belastung"
 #' rule_extract_belastungen(c("nix", "eine Belastung"))
 #' # [1] "Aktuell keine Belastungen"
-rule_extract_belastungen <- function(gaps) {
+rule_extract_belastungen <- function(gaps, strip_prefix = FALSE) {
   assertthat::assert_that(is.character(gaps))
 
   if (length(gaps[grepl("Belastung", gaps)]) > 0 ) {
     belastungen <- gaps[rule_identify_belastungen(gaps)]
+    if (strip_prefix) {
+      belastungen <- gsub("Belastung: ", "", belastungen)
+    }
   } else {
     belastungen <- "Aktuell keine Belastungen"
   }
@@ -47,11 +52,11 @@ rule_extract_belastungen <- function(gaps) {
 #'
 #' @return belastungen A character vector
 #'
-#' @examples rule_extract_unzufriedenheiten(c("Differenz im Haus", "Unzufrieden mit Laus"))
+#' @examples rule_extract_unzufriedenheiten(c("Unzufriedenheit im Haus", "Unzufrieden mit Laus"))
 rule_extract_unzufriedenheiten <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
 
-  if (length(gaps[grepl("Unzufrieden", gaps) | grepl("Differenz", gaps)]) > 0) {
+  if (length(gaps[grepl("Unzufrieden", gaps)]) > 0) {
     unzufriedenheiten <- gaps[rule_identify_unzufriedenheiten(gaps)]
   } else {
     unzufriedenheiten <- "Aktuell keine Unzufriedenheiten"
@@ -172,10 +177,10 @@ rule_extract_vereinbarungen_kommentare <- function(alist_2a) {
 #' @examples rule_extract_chancen_per_vereinbarung(test_vereinbarungen_chancen_alist_2a$Frage[1],
 #'                                                 test_vereinbarungen_chancen_alist_2a)
 rule_extract_chancen_per_vereinbarung <- function(vereinbarung, alist_2a,
-                                                  type=stop(c("Differenz","Unzufriedenheit","Belastung"))) {
+                                                  type=stop(c("Unzufriedenheit","Belastung"))) {
   assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
                                                         "Kommentar")))
-  assertthat::assert_that(type %in% c("Differenz","Unzufriedenheit","Belastung"))
+  assertthat::assert_that(type %in% c("Unzufriedenheit","Belastung"))
   vereinbarung_id <- which(alist_2a$Frage == vereinbarung)
   assertthat::assert_that(is.numeric(vereinbarung_id) && vereinbarung_id > 0)
   retval <- unlist(strsplit(alist_2a$Antwort[vereinbarung_id], ", "))
@@ -208,23 +213,7 @@ rule_identify_belastungen <- function(gaps) {
 #' @examples rule_identify_unzufriedenheiten(c("nix", "Unzufrieden mit Laus"))
 rule_identify_unzufriedenheiten <- function(gaps) {
   assertthat::assert_that(is.character(gaps))
-  gaps <- grepl("Unzufrieden", gaps) | grepl("Differenz", gaps)
-  assertthat::assert_that(is.logical(gaps))
-  return(gaps)
-}
-
-#' rule_identify_vereinbarkeitstaetigkeiten: Identifiziert, ob Vereinbarkeitstaetigkeiten
-#' vorhanden genutzt werden und gibt einen logischen vektor zurück.
-#'
-#' @param gaps A character vector
-#'
-#' @return logical vector
-#'
-#' @examples rule_identify_vereinbarkeitstaetigkeiten(c("nix", "Vereinbarkeitstätigkeit mit Maus"))
-rule_identify_vereinbarkeitstaetigkeiten <- function(gaps) {
-  assertthat::assert_that(is.character(gaps))
-  # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
-  gaps <- grepl("Vereinbarkeitst.+tigkeit", gaps)
+  gaps <- grepl("Unzufrieden", gaps)
   assertthat::assert_that(is.logical(gaps))
   return(gaps)
 }
@@ -260,7 +249,7 @@ rule_identify_situation_homeoffice <- function(gaps, situation = stop("One of 'c
   assertthat::assert_that(situation %in% c("chance", "problem"))
   # HINT: regex match to prevent 'umlaute'-issue on windows / r constellation
   use_measure <- any(grepl("Vereinbarkeitst.+tigkeit Home Office wird angewandt", gaps))#oft, selten
-  problem <- any(grepl("Belastung Home Office", gaps))
+  problem <- any(grepl("Belastung: St.+rungen beim Arbeiten im Home Office", gaps))
   retval <- rule_identify_chance_or_problem(use_measure, problem, situation)
   return(retval)
 }
@@ -325,10 +314,10 @@ rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
 #'
 #' @return boolean
 #'
-#' @examples rule_identify_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a, "Differenz")
+#' @examples rule_identify_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a, "Belastung")
 rule_identify_vereinbarungen_chancen <- function(alist_2a,
-              type = stop(c("Belastung", "Unzufriedenheit", "Differenz"))) {
-  assertthat::assert_that(type %in% c("Belastung", "Unzufriedenheit", "Differenz"))
+              type = stop(c("Belastung", "Unzufriedenheit"))) {
+  assertthat::assert_that(type %in% c("Belastung", "Unzufriedenheit"))
   assertthat::assert_that("Antwort" %in% names(alist_2a))
   chancen <- unique(unlist(strsplit(paste(alist_2a$Antwort[complete.cases(alist_2a$Antwort)],
                                           collapse = ", "), ", ")))

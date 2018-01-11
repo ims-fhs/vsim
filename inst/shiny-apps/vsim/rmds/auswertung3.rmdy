@@ -56,7 +56,6 @@ Alist_2a <- rule_extract_vereinbarungen(Alist_2a)
 
 chancen_belastungen <- rule_identify_vereinbarungen_chancen(Alist_2a, "Belastung")
 chancen_unzufriedenheiten <- rule_identify_vereinbarungen_chancen(Alist_2a, "Unzufriedenheit")
-chancen_differenzen <- rule_identify_vereinbarungen_chancen(Alist_2a, "Differenz")
 
 cat("<table width='100%'><tr><td>")
 if (chancen_belastungen) {
@@ -64,9 +63,6 @@ if (chancen_belastungen) {
 }
 if (chancen_unzufriedenheiten) {
  rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_unzufriedenheit(), "Vereinbarungen zur Reduktion von Unzufriedenheiten geplant")
-}
-if (chancen_differenzen) {
- rmd_display_icon(icon_massnahme_vereinbarung_belastung, "center", "30%", "30%", col_differenz(), "Vereinbarungen zur Reduktion von Differenzen geplant")
 }
 cat("</td></tr></table>")
 ```

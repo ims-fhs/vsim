@@ -9,7 +9,6 @@ test_that("Belastungen are identified", {
 
 test_that("Unzufriedenheiten are identified", {
   expect_equal(rule_identify_unzufriedenheiten(c("nix", "eine Unzufriedenheit")), c(FALSE, TRUE))
-  expect_equal(rule_identify_unzufriedenheiten(c("nix", "eine Differenz")), c(FALSE, TRUE))
   expect_equal(rule_identify_unzufriedenheiten(c("nix")), c(FALSE))
   expect_is(rule_identify_unzufriedenheiten(c("nix", "eine Unzufriedenheit")), "logical")
   expect_error(rule_identify_unzufriedenheiten(1))
