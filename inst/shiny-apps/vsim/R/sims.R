@@ -94,8 +94,8 @@ calc_relevant_gaps_2b <- function(Alist) {
   gaps_user <- rule_extract_gaps(Alist, Glist, unique_only = TRUE)
   relevant_gaps <- character(5)
   relevant_gaps[1] <- ifelse(
-    length(gaps_user[grepl("Erwerb", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
-    paste(c(gaps_user[grepl("Erwerb", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
+    length(gaps_user[grepl("beruflichen Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("beruflichen Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
     "-")
   relevant_gaps[2] <- ifelse(
     length(gaps_user[grepl("privaten Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
