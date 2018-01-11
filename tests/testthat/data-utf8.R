@@ -69,9 +69,9 @@ structure(list(Qnum = c(3.1, 3.2, 5.1, 5.2), Question = c("Wenn Sie mit Ihrem/Ih
 "Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie Ihre privaten Verpflichtungen zukünftig flexibler organisieren, wo sehen Sie Chancen für eine Verbesserung?"
 ), Massnahme = c("Vereinbarung Home Office mit der vorgesetzten Person",
 "Vereinbarung Home Office im privaten Bereich", "Flexiblere Arbeitszeiten",
-"Haus- und Betreuungsarbeiten flexibler gestalten"), Answer1 = c("Differenz im Zeithandeln Erwerbsarbeit",
-"Differenz im Zeithandeln Erwerbsarbeit", "Differenz im Zeithandeln Erwerbsarbeit",
-"Differenz im Zeithandeln Erwerbsarbeit"), Answer2 = c("Unzufriedenheit mit sozialen Beziehungen",
+"Haus- und Betreuungsarbeiten flexibler gestalten"), Answer1 = c("Unzufriedenheit mit dem beruflichen Zeitmanagement",
+"Unzufriedenheit mit dem beruflichen Zeitmanagement", "Unzufriedenheit mit dem beruflichen Zeitmanagement",
+"Unzufriedenheit mit dem beruflichen Zeitmanagement"), Answer2 = c("Unzufriedenheit mit sozialen Beziehungen",
 "Unzufriedenheit mit sozialen Beziehungen", "Unzufriedenheit mit sozialen Beziehungen",
 "Unzufriedenheit mit sozialen Beziehungen"), Answer3 = c("",
 "", "", ""), Answer4 = c("", "", "", ""), Answer5 = c("", "",
@@ -433,7 +433,7 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 -28L), class = "data.frame")
 
 test_calc_relevant_gaps_2b_expected_result_01 <-
-  c("Differenz im Zeithandeln Erwerbsarbeit", "-", "-", "-", "-")
+  c("Unzufriedenheit mit dem beruflichen Zeitmanagement", "-", "-", "-", "-")
 
 # test b_2: 1 nein, weniger, 2 nein, weniger, 7-14 überhaupt nicht, 15-28 voll und ganz
 test_calc_relevant_gaps_2b_02 <-
@@ -479,7 +479,7 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 )), .Names = c("Qnum", "Question", "Answer"), row.names = c(NA,
 -28L), class = "data.frame")
 
-test_calc_relevant_gaps_2b_expected_result_02 <- c("Differenz im Zeithandeln Erwerbsarbeit, Belastung: Hohe zeitliche Beanspruchung",
+test_calc_relevant_gaps_2b_expected_result_02 <- c("Unzufriedenheit mit dem beruflichen Zeitmanagement, Belastung: Hohe zeitliche Beanspruchung",
 "Unzufriedenheit mit dem privaten Zeitmanagement, Belastung: Hohe zeitliche Beanspruchung",
 "Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
 "-")
@@ -525,7 +525,7 @@ structure(list(Qnum = c(1.1, 1.2, 1.3, 2.1, 2.2, 2.3, 3.1, 3.2,
 "weiss nicht", "weiss nicht", "weiss nicht")), .Names = c("Qnum",
 "Question", "Answer"), row.names = c(NA, -28L), class = "data.frame")
 
-test_calc_relevant_gaps_2b_expected_result_03 <- c("Differenz im Zeithandeln Erwerbsarbeit", "-", "Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
+test_calc_relevant_gaps_2b_expected_result_03 <- c("Unzufriedenheit mit dem beruflichen Zeitmanagement", "-", "Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
 "-", "-")
 
 # test c_1

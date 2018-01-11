@@ -90,7 +90,7 @@ Folgende Unzufriedenheiten konnten ermittelt werden:
 ```{r differences}
 unzufriedenheiten <- rule_extract_unzufriedenheiten(df$Gaps)
 rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
-    color_strain = col_unzufriedenheit(),
+    color_strain = col_belastung(),
     color_no_data = col_evaluation_comment())
 ```
 <br>

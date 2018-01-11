@@ -77,8 +77,8 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
   }
 }
 
-#' rmd_display_vereinbarungen_chancen: renders the vereinbarungen table based
-#' on the alist_2a provided
+#' rmd_display_vereinbarungen_chancen
+#' renders the vereinbarungen table based on the alist_2a provided
 #'
 #' HINT:
 #' the "rmd_"-prefix indicates, that this method is intended to be called from
@@ -108,9 +108,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
                      ";padding: 12px; width: 400px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
                      vereinbarung, "</div></td><td>")
-      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Belastung")
-      chancen_unzufriedenheiten <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Unzufriedenheit")
-      chancen_differenzen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Differenz")
+      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a)
       if (length(chancen_belastungen) > 0) {
         for (j in 1:length(chancen_belastungen)) {
           chance <- chancen_belastungen[j]
@@ -118,24 +116,6 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
                          col_belastung(),
                          ";padding: 12px; width: 200px; align: center;",
                          " float: left;border: 2px solid #FFFFFF;'>",
-                         chance, "</div>&nbsp;")
-        }
-      }
-      if (length(chancen_unzufriedenheiten) > 0) {
-        for (j in 1:length(chancen_unzufriedenheiten)) {
-          chance <- chancen_unzufriedenheiten[j]
-          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
-                         col_unzufriedenheit(),
-                         ";padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>",
-                         chance, "</div>&nbsp;")
-        }
-      }
-      if (length(chancen_differenzen) > 0) {
-        for (j in 1:length(chancen_differenzen)) {
-          chance <- chancen_differenzen[j]
-          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
-                         col_differenz(),
-                         ";padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>",
                          chance, "</div>&nbsp;")
         }
       }
