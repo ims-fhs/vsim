@@ -5,15 +5,7 @@ output: html_document:
 ---
 <img src="simulator_teil2.png" alt="" height="60">
 
-<table>
-<tr><td style="white-space: nowrap"><h1>
-Auswertung Lebenslage&nbsp;&nbsp;
-</h1></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_lebenslage_auswertung, align = "left", width = "20%", height = "20%")
-```
-</td></tr>
-</table>
+<h1>Auswertung Lebenslage</h1>
 
 <h4>
 Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende mögliche <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b> erkannt:</br></br>

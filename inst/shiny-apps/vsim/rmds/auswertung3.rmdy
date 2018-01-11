@@ -4,15 +4,7 @@ output: html_document
 ---
 <img src="simulator_teil4.png" alt="" height="60">
 
-<table>
-<tr><td style="white-space: nowrap"><h1>
-Plan&nbsp;&nbsp;
-</h1></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_plan, align = "left", width = "20%", height = "20%")
-```
-</td></tr>
-</table>
+<h1>Plan</h1>
 
 <h4>Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt:
 </br></br>
