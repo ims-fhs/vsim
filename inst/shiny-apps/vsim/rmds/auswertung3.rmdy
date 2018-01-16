@@ -115,6 +115,8 @@ Alist_2c <- result_coll$Alist_2c
 Alist_2c <- rule_extract_unterstuetzung_entlastung(Alist_2c)
 rmd_display_unterstuetzung_entlastung(Alist_2c)
 ```
+<br>
+<input type="button" class="btn btn_default" onClick="window.print()" value="Auswertung Drucken"/>
 
 </br></br></br>
 <h4>
