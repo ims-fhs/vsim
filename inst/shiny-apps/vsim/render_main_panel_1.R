@@ -22,13 +22,13 @@ questionaryPostProcessing <- function() {
 output$mainPanel <- renderUI({
   # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
-    return(list(img(src='simulator.png', height = 60),
-                h3("Willkommen zum Vereinbarkeitssimulator"),
-                h4("Der Vereinbarkeitssimulator ist eine Software für Arbeitnehmer, welche ihre Lebenslagen sowie die Wünsche an ihre zukünftige Work-Life-Balance erfasst. Basierend darauf werden Massnahmen geplant, ausgedruckt und in der Folge mit Arbeitgeber und Angehörigen verhandelt. Um die Wirksamkeit der Umsetzung zu prüfen oder um Erkenntnisse aus den Verhandlungen in den Plan einfliessen zu lassen, kann die Software wiederholt durchgearbeitet werden."),
-                h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre Lebenslage. Aufgrund der von Ihnen angegebenen Daten erfolgt dann eine Bewertung der momentanen Lebenssituation (Ist-Zustand)."),
-                h4("Im ", strong("zweiten Schritt"), "werden Wünsche und Bedürfnisse festgelegt (Soll-Zustand). Hierbei werden Ideen erfasst, welche Ihnen als Hilfe zum Erreichen Ihrer Ziele dienen."),
-                h4("Im", strong("dritten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit Ihnen zusammen Lösungsansätze. Hierbei werden Möglichkeiten zur Zielerreichung mittels betrieblicher Hilfen (Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.), Ideen zur Zeitverwendung sowie individuelle Unterstützungsmöglichkeiten aufgezeigt."),
-                h4("Zum Abschluss erhalten Sie eine Zusammenfassung Ihrer Lebenslage und Ihren Planungsideen."),
+    return(list(h3("Willkommen zum Vereinbarkeitssimulator"),
+                h4("Der Vereinbarkeitssimulator ist eine Software, die Ihre Wünsche an Ihre zukünftige Work-Life-Balance erfasst. Basierend darauf können Arbeitsorganisationsmodelle geplant werden. Die Software geht mit Ihnen folgende Schritte durch:"),
+                img(src='simulator.png', height = 60),
+                h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre Lebenslage."),
+                h4("Im ", strong("zweiten Schritt"), "erfolgt eine Auswertung der von Ihnen angegebenen Daten über Ihre momentane Lebenssituation. Hier werden Unzufriedenheiten und Belastungen verdeutlicht."),
+                h4("Im", strong("dritten Schritt"),  "werden Ideen und Hilfsmassnahmen festgelegt, mit denen Ihre Unzufriedenheiten und Belastungen vermindert werden können."),
+                h4("Im", strong("vierten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit Ihnen zusammen eine Planung. Hierbei werden Möglichkeiten zum Zeitmanagement und betrieblicher Hilfen (Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.) aufgezeigt. Zum Abschluss erhalten Sie eine Zusammenfassung Ihrer Planungsideen."),
                 br(),
                 h4("Zum Starten des Vereinbarkeitssimulators klicken Sie bitte auf 'Weiter'. Durch das Anklicken von 'Zurück' haben Sie ausserdem die Möglichkeit, einen Schritt retour zu gehen.")
                    ))
