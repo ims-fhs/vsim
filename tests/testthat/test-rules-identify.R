@@ -38,11 +38,6 @@ test_that("rule_identify_chance_or_problem", {
   expect_true(rule_identify_chance_or_problem(TRUE, TRUE, "problem"))
 })
 
-test_that("rule_identify_vereinbarungen_chancen", {
-  retval <- rule_identify_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a, "Belastung")
-  expect_true(retval)
-})
-
 test_that("possible Burnout-Situations are identified.", {
   expect_true(rule_identify_belastungen_psychische_gesundheit(c("Psychische", "psychische")))
   expect_true(rule_identify_belastungen_psychische_gesundheit(c(

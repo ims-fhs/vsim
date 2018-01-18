@@ -16,10 +16,10 @@ test_vereinbarungen_chancen_alist_2a <-
 "Antwort", "Kommentar"), class = "data.frame", row.names = c(3L,
 4L, 7L, 8L, 11L, 12L))
 
-test_vereinbarungen_chancen_expected <-
-  c("Belastung Abschalten", "Belastung private Verpflichtungen",
-"Belastung berufliche Verpflichtungen", "Belastung Gleichzeitigkeiten",
-"Belastung durch Switchen")
+test_rule_extract_chancen_per_vereinbarung_chancen_expected <-
+c("Unzufriedenheit mit dem beruflichen Zeitmanagement", "Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
+"Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Karriereentwicklung"
+)
 
 # test 1: 1 nein,4 oft ,7 überhaupt nicht ,15 voll/ganz, 16 voll/ganz,26 voll/ganz,27 voll/ganz
 test_calc_relevant_questions_2a_01 <-
@@ -553,3 +553,60 @@ test_zeitverwendung_alist_2b <- structure(list(Qnum = 1:5, Question = c("für de
 test_zeitverwendung_relevant_gaps <- c("Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
 "Belastung: Hohe zeitliche Beanspruchung", "Belastung: Hohe zeitliche Beanspruchung",
 "-")
+
+# test presentation rmd_display_vereinbarungen_chancen
+# test 1: vorgesetzter
+test_rmd_display_vereinbarungen_chancen_alist2a_01 <-
+structure(list(Frage = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?"
+), Antwort = c("Unzufriedenheit mit dem beruflichen Zeitmanagement, Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung, Unzufriedenheit mit der Selbstsorge, Unzufriedenheit mit der Karriereentwicklung",
+"Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung, Unzufriedenheit mit der Selbstsorge, Unzufriedenheit mit der Karriereentwicklung"
+), Kommentar = c("", "")), .Names = c("Frage", "Antwort", "Kommentar"
+), class = "data.frame", row.names = 1:2)
+
+test_rmd_display_vereinbarungen_chancen_qlist_01 <-
+structure(list(Qnum = c(1.1, 1.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?"
+), Massnahme = c("Switchen am Arbeitsplatz zugunsten privater Angelegenheiten",
+"Switchen am Arbeitsplatz zugunsten privater Angelegenheiten"
+), Answer1 = c("Unzufriedenheit mit dem beruflichen Zeitmanagement",
+"Unzufriedenheit mit dem beruflichen Zeitmanagement"), Answer2 = c("Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
+"Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung"
+), Answer3 = c("Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge"
+), Answer4 = c("Unzufriedenheit mit der Karriereentwicklung",
+"Unzufriedenheit mit der Karriereentwicklung"), Answer5 = c("",
+"")), .Names = c("Qnum", "Question", "Massnahme", "Answer1",
+"Answer2", "Answer3", "Answer4", "Answer5"), row.names = 1:2, class = "data.frame")
+
+test_rmd_display_vereinbarungen_chancen_bolvg_01 <- TRUE
+
+test_rmd_display_vereinbarungen_chancen_expected_html_01 <-
+"<table cellpadding='10' cellspacing='10' width='100%'><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' ><th width='40%'><b>Geplante Vereinbarung</b></th><th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene&nbsp;Ideen&nbsp;&nbsp;</b></th></tr><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td><div style='border-radius: 15px;background: #AEDBCC;padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>Switchen am Arbeitsplatz zugunsten privater Angelegenheiten</div></td><td>&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit dem beruflichen Zeitmanagement</div>&nbsp;&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung</div>&nbsp;&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit der Selbstsorge</div>&nbsp;&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit der Karriereentwicklung</div>&nbsp;<td style='background: #FFFFFF'></td></td></tr></table>"
+
+# test 2: angehörige
+test_rmd_display_vereinbarungen_chancen_alist2a_02 <-
+structure(list(Frage = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?"
+), Antwort = c("Unzufriedenheit mit dem beruflichen Zeitmanagement, Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung, Unzufriedenheit mit der Selbstsorge, Unzufriedenheit mit der Karriereentwicklung",
+"Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung, Unzufriedenheit mit der Selbstsorge, Unzufriedenheit mit der Karriereentwicklung"
+), Kommentar = c("", "")), .Names = c("Frage", "Antwort", "Kommentar"
+), class = "data.frame", row.names = 1:2)
+
+test_rmd_display_vereinbarungen_chancen_qlist_02 <-
+structure(list(Qnum = c(1.1, 1.2), Question = c("Wenn Sie mit Ihrem/Ihrer Vorgesetzten vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?",
+"Wenn Sie mit Ihren Angehörigen vereinbaren, dass Sie private Verpflichtungen in Zukunft vermehrt vom Arbeitsplatz aus oder in Arbeitspausen erledigen, wo sehen Sie Chancen für eine Verbesserung?"
+), Massnahme = c("Switchen am Arbeitsplatz zugunsten privater Angelegenheiten",
+"Switchen am Arbeitsplatz zugunsten privater Angelegenheiten"
+), Answer1 = c("Unzufriedenheit mit dem beruflichen Zeitmanagement",
+"Unzufriedenheit mit dem beruflichen Zeitmanagement"), Answer2 = c("Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung",
+"Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung"
+), Answer3 = c("Unzufriedenheit mit der Selbstsorge", "Unzufriedenheit mit der Selbstsorge"
+), Answer4 = c("Unzufriedenheit mit der Karriereentwicklung",
+"Unzufriedenheit mit der Karriereentwicklung"), Answer5 = c("",
+"")), .Names = c("Qnum", "Question", "Massnahme", "Answer1",
+"Answer2", "Answer3", "Answer4", "Answer5"), row.names = 1:2, class = "data.frame")
+
+test_rmd_display_vereinbarungen_chancen_bolvg_02 <- FALSE
+
+test_rmd_display_vereinbarungen_chancen_expected_html_02 <-
+"<table cellpadding='10' cellspacing='10' width='100%'><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' ><th width='40%'><b>Geplante Vereinbarung</b></th><th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene&nbsp;Ideen&nbsp;&nbsp;</b></th></tr><tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td><div style='border-radius: 15px;background: #AEDBCC;padding: 12px; width: 400px; align: center; border: 2px solid #FFFFFF;'>Switchen am Arbeitsplatz zugunsten privater Angelegenheiten</div></td><td>&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit der zeitlichen Organisation der Kinderbetreuung</div>&nbsp;&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit der Selbstsorge</div>&nbsp;&nbsp;<div style='border-radius: 15px;background: #F17579;padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>Unzufriedenheit mit der Karriereentwicklung</div>&nbsp;<td style='background: #FFFFFF'></td></td></tr></table>"

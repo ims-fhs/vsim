@@ -84,19 +84,26 @@ rule_extract_vereinbarungen <- function(alist_2a ) {
 #' rule_extract_vereinbarungen_fragen: ermittelt die Fragen für getroffene
 #' Vereinbarungen, welchen Chancen zugewiesen wurden.
 #'
-#' @param alist_2a
+#' @param alist_2a data.frame der Antworten
+#' @param qlist data.frame der Fragen
+#' @param type Typ der Information zur Rückgabe
 #'
 #' @return vereinbarungen
 #'
 #' @examples rule_extract_vereinbarungen_fragen(test_vereinbarungen_chancen_alist_2a)
-rule_extract_vereinbarungen_fragen <- function(alist_2a) {
+rule_extract_vereinbarungen_fragen <- function(alist_2a, qlist,
+                                               type = stop(c("Frage", "Massnahme"))) {
   assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
                                                         "Kommentar")))
   answered <- which(!is.na(alist_2a$Antwort))
   assertthat::assert_that(is.numeric(answered))
   retval <- character()
   if (length(answered) > 0) {
-    retval <- alist_2a[answered, ]$Frage
+    if (type == "Frage") {
+      retval <- alist_2a[answered, ]$Frage
+    } else {
+      retval <- qlist[answered, ]$Massnahme
+    }
   }
   return(retval)
 }
@@ -176,15 +183,12 @@ rule_extract_vereinbarungen_kommentare <- function(alist_2a) {
 #'
 #' @examples rule_extract_chancen_per_vereinbarung(test_vereinbarungen_chancen_alist_2a$Frage[1],
 #'                                                 test_vereinbarungen_chancen_alist_2a)
-rule_extract_chancen_per_vereinbarung <- function(vereinbarung, alist_2a,
-                                                  type=stop(c("Unzufriedenheit","Belastung"))) {
+rule_extract_chancen_per_vereinbarung <- function(vereinbarung, alist_2a) {
   assertthat::assert_that(all(colnames(alist_2a) %in% c("Frage", "Antwort",
                                                         "Kommentar")))
-  assertthat::assert_that(type %in% c("Unzufriedenheit","Belastung"))
   vereinbarung_id <- which(alist_2a$Frage == vereinbarung)
   assertthat::assert_that(is.numeric(vereinbarung_id) && vereinbarung_id > 0)
   retval <- unlist(strsplit(alist_2a$Antwort[vereinbarung_id], ", "))
-  retval <- retval[grepl(type, retval)]
   return(retval)
 }
 
@@ -304,22 +308,4 @@ rule_identify_belastungen_psychische_gesundheit <- function(gaps) {
   retval <- length(gaps) > 0 && sum(grepl("psychische", gaps, ignore.case = TRUE)) > 1
   assertthat::assert_that(is.logical(retval))
   return(retval)
-}
-
-#' rule_identify_vereinbarungen_chancen: ermittelt, ob die alist_2a chancen enthält,
-#' welche vom typ type sind.
-#'
-#' @param alist_2a antworten aus teil 2a
-#' @param type chancen typ
-#'
-#' @return boolean
-#'
-#' @examples rule_identify_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a, "Belastung")
-rule_identify_vereinbarungen_chancen <- function(alist_2a,
-              type = stop(c("Belastung", "Unzufriedenheit"))) {
-  assertthat::assert_that(type %in% c("Belastung", "Unzufriedenheit"))
-  assertthat::assert_that("Antwort" %in% names(alist_2a))
-  chancen <- unique(unlist(strsplit(paste(alist_2a$Antwort[complete.cases(alist_2a$Antwort)],
-                                          collapse = ", "), ", ")))
-  return (any(grepl(type, chancen)))
 }

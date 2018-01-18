@@ -1,0 +1,10 @@
+test_that("col_()", {
+  expect_is(class(col_lebenslage()), "character")
+  expect_is(class(col_belastung()), "character")
+  expect_is(class(col_vereinbarung()), "character")
+  expect_is(class(col_zeitverwendung()), "character")
+  expect_is(class(col_unterstuetzung_und_entlastung()), "character")
+  expect_is(class(col_plan()), "character")
+  expect_is(class(col_evaluation_comment()), "character")
+  expect_is(class(col_achtung()), "character")
+})

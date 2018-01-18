@@ -61,11 +61,7 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
       grepl("Aktuell keine", belastungen_oder_unzufriedenheiten[1])) {
     bg_color <- color_no_data
   }
-  # prevent white font on white background
-  font_color <- "#FFFFFF"
-  if (bg_color == "#FFFFFF") {
-    font_color <- "#000000"
-  }
+  font_color <- "#000000"
 
   if (color_strain != "") {
     kable(as.data.frame(belastungen_oder_unzufriedenheiten),row.names = FALSE, col.names = "",  format = "html")%>%
@@ -77,8 +73,8 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
   }
 }
 
-#' rmd_display_vereinbarungen_chancen: renders the vereinbarungen table based
-#' on the alist_2a provided
+#' rmd_display_vereinbarungen_chancen
+#' renders the vereinbarungen table based on the alist_2a provided
 #'
 #' HINT:
 #' the "rmd_"-prefix indicates, that this method is intended to be called from
@@ -88,16 +84,30 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
 #'
 #' @param alist_2a the Alist containing the Questions and the user's Answers
 #' from part 2a
+#' @param qlist the Qlist conaining
+#' @param bol_vorgesetzter
 #'
 #' @examples rmd_display_vereinbarungen_chancen(test_vereinbarungen_chancen_alist_2a)
-rmd_display_vereinbarungen_chancen <- function(alist_2a) {
-  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a)
+rmd_display_vereinbarungen_chancen <- function(alist_2a, qlist,
+                                               bol_vorgesetzter = TRUE) {
+  fragen <- rule_extract_vereinbarungen_fragen(alist_2a, qlist, "Frage")
+  vereinbarungen <- rule_extract_vereinbarungen_fragen(alist_2a, qlist, "Massnahme")
   kommentare <- rule_extract_vereinbarungen_kommentare(alist_2a)
+  # subset for boss/relatives
+  if (bol_vorgesetzter) {
+    ids <- which(grepl("Ihrem/Ihrer Vorgesetzten", fragen))
+  } else {
+    ids <- which(grepl("Ihren Angeh.+rigen", fragen))
+  }
+  fragen <- fragen[ids]
+  vereinbarungen <- vereinbarungen[ids]
+  kommentare <- kommentare[ids]
+
   assertthat::are_equal(length(vereinbarungen), length(kommentare))
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th width='40%'><b>Geplante Vereinbarung</b></th>",
-                 "<th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene Ideen&nbsp;&nbsp;</b></th></tr>")
+                 "<th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene&nbsp;Ideen&nbsp;&nbsp;</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
@@ -108,9 +118,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
                      ";padding: 12px; width: 400px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
                      vereinbarung, "</div></td><td>")
-      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Belastung")
-      chancen_unzufriedenheiten <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Unzufriedenheit")
-      chancen_differenzen <- rule_extract_chancen_per_vereinbarung(vereinbarung, alist_2a, "Differenz")
+      chancen_belastungen <- rule_extract_chancen_per_vereinbarung(fragen[i], alist_2a)
       if (length(chancen_belastungen) > 0) {
         for (j in 1:length(chancen_belastungen)) {
           chance <- chancen_belastungen[j]
@@ -118,24 +126,6 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
                          col_belastung(),
                          ";padding: 12px; width: 200px; align: center;",
                          " float: left;border: 2px solid #FFFFFF;'>",
-                         chance, "</div>&nbsp;")
-        }
-      }
-      if (length(chancen_unzufriedenheiten) > 0) {
-        for (j in 1:length(chancen_unzufriedenheiten)) {
-          chance <- chancen_unzufriedenheiten[j]
-          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
-                         col_unzufriedenheit(),
-                         ";padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>",
-                         chance, "</div>&nbsp;")
-        }
-      }
-      if (length(chancen_differenzen) > 0) {
-        for (j in 1:length(chancen_differenzen)) {
-          chance <- chancen_differenzen[j]
-          html <- paste0(html, "&nbsp;<div style='border-radius: 15px;background: ",
-                         col_differenz(),
-                         ";padding: 12px; width: 200px; align: center; float: left;border: 2px solid #FFFFFF;'>",
                          chance, "</div>&nbsp;")
         }
       }
@@ -147,9 +137,8 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a) {
       html <- paste0(html, "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC;'><td colspan='3'> Keine Vereinbarungen geplant.</td></tr>")
   }
   html <- paste0(html, "</table>")
-  cat(html)
+  return(html)
 }
-
 
 #' rmd_display_zeitverwendung: renders the zeitverwendung table based
 #' on the alist_2b provided
@@ -171,7 +160,7 @@ rmd_display_zeitverwendung <- function(alist_2b) {
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Zeit für was</b></th>",
                  "<th><b>Bedürfnis</b></th><th><b>Ihre relevanten Belastungen und Unzufriedenheiten</b></th>",
-                 "<th><b>Eigene Ideen</b></th></tr>")
+                 "<th><b>Eigene&nbsp;Ideen</b></th></tr>")
   if (nrow(alist_2b) > 0) {
     for (i in 1:nrow(alist_2b)) {
       zeitfuerwas <- alist_2b[i, 1]
@@ -226,7 +215,7 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Handlungsfeld</b></th>",
                  "<th><b>Geplante Strategie</b></th>",
-                 "<th><b>Eigene Ideen</b></th></tr>")
+                 "<th><b>Eigene&nbsp;Ideen</b></th></tr>")
 
   if (nrow(alist_2c) > 0) {
     for (i in 1:nrow(alist_2c)) {
