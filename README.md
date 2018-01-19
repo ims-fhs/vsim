@@ -27,7 +27,7 @@ Unabhängig von der Variante der gewählten Installation benötigen Sie einen PC
 Um den Vereinbarkeitssimulator für Ihre Mitarbeiter im Internet zugreifbar zu machen benötigen Sie einen Account unter [https://www.shinyapps.io/](https://www.shinyapps.io/). Eröffnen Sie als erstes einen Account. Sie können problemlos zuerst einen kostenlosen Account eröffnen, damit herumexperimentieren und wenn alles funktioniert, den "Plan"" unter den Account-Settings erweitern. Wenn Sie den Simulator im Unternehmen nützen wollen, sollten Sie aber auf jeden Fall sicherstellen, dass der Plan Ihren Anforderungen entspricht.
 
 <center>
-![Erstellen eines shinyapp.io-Accounts](vignettes/images/shiny_create_account.png){width=100%}
+![Erstellen eines shinyapp.io-Accounts](https://github.com/ims-fhs/vsim/blob/master/vignettes/images/shiny_create_account.png){width=100%}
 </center>
 
 Sie können Accountname und Applikationsname wählen und haben somit Einfluss auf die URL, unter welcher der Simulator später zugreifbar sein wird:
@@ -64,7 +64,7 @@ Nachdem Sie das Projekt in RStudio geöffnet haben, öffnen Sie nun im RStudio d
 Wenn Sie rsconnect korrekt eingerichtet und konfiguriert haben, das Projekt 'vsim.Rproj' in RStudio gestartet und das server.R-Skript aus dem Verzeichnis inst/shiny-apps/vsim/server.R geöffnet haben, sollte oben rechts am Editor-Rand das Publish-Icon von shinyapps.io ersichtlich sein:
 
 <center>
-![Publish-Icon in RStudio](vignettes/images/publish_icon.png){width=60%}
+![Publish-Icon in RStudio](https://github.com/ims-fhs/vsim/blob/master/vignettes/images/publish_icon.png){width=60%}
 </center>
  
 Ist dieses Icon nicht sichtbar, überprüfen Sie nochmals die Schritte zur Konfiguration von rsconnect und Ihrem shinyapps.io-Account, löschen Sie die shinyapps.io-Konfiguration unter den Einstellungen im RStudio über den Menupunkt Tools/Global Options/Publishing und konfigurieren Sie die Verknüpfung zu Ihrem shinyapps.io-Account erneut. Befolgen Sie dazu [diese Anweisungen](https://shiny.rstudio.com/articles/shinyapps.html).
@@ -72,7 +72,7 @@ Ist dieses Icon nicht sichtbar, überprüfen Sie nochmals die Schritte zur Konfi
 Klicken Sie auf das Publish-Icon, haben Sie die Möglichkeit, die Applikation unter dem oben eingerichteten shinyapps.io-Account zu veröffentlichen und den Applikationsnamen, unter dem der Simulator verfügbar gemacht werden soll, anzugeben:
 
 <center>
-![Publish-Icon in RStudio](vignettes/images/publish_shinyapps.png){width=60%}
+![Publish-Icon in RStudio](https://github.com/ims-fhs/vsim/blob/master/vignettes/images/publish_shinyapps.png){width=60%}
 </center>
  
 Geben Sie unter "Title" den Namen an, unter dem die Anwendung veröffentlicht werden soll. Klicken Sie nun auf den "Publish"-Button, um die Anwendung unter ihrem eingerichteten shinyapps.io-Account zu veröffentlichen. Der Veröffentlichungsvorgang dauert eine Weile und endet damit, dass die Webapplikation auf shinyapps.io im Browser geöffnet wird.
