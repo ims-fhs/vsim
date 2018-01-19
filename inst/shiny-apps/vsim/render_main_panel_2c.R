@@ -27,7 +27,7 @@ output$mainPanel <- renderUI( {
         h4(textOutput("question")),
         h4(radioButtons("survey", "",
                      c(option_list(), "weiss nicht"), selected = selected), width = "600"),
-        h4(textInput("kommentar", "Eigene Ideen", value = ifelse(length(kommentare2c[question_id - Survey_Sections$Teil2c_intro])>0, kommentare2c[question_id - Survey_Sections$Teil2c_intro], "")))
+        h4(textInput("kommentar", "Anmerkungen", value = ifelse(length(kommentare2c[question_id - Survey_Sections$Teil2c_intro])>0, kommentare2c[question_id - Survey_Sections$Teil2c_intro], "")))
       )
     )
   } else if (question_id == Survey_Sections$Teil2c_end_statement) {

@@ -1,1 +1,0 @@
-Dieses Verzeichnis enthält die Dokumente zum fachlichen des Simulators sowie den technischen Leitfaden zur konfiguration des Simulators fürs eigene Unternehmen.

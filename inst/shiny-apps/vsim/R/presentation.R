@@ -107,7 +107,7 @@ rmd_display_vereinbarungen_chancen <- function(alist_2a, qlist,
   html <- paste0("<table cellpadding='10' cellspacing='10' width='100%'>",
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th width='40%'><b>Geplante Vereinbarung</b></th>",
-                 "<th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Eigene&nbsp;Ideen&nbsp;&nbsp;</b></th></tr>")
+                 "<th width='*'><b>Bestehende Unzufriedenheit</b></th><th><b>Anmerkungen&nbsp;&nbsp;</b></th></tr>")
   if (length(vereinbarungen) > 0) {
     for (i in 1:length(vereinbarungen)) {
       vereinbarung <- vereinbarungen[i]
@@ -160,7 +160,7 @@ rmd_display_zeitverwendung <- function(alist_2b) {
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Zeit für was</b></th>",
                  "<th><b>Bedürfnis</b></th><th><b>Ihre relevanten Belastungen und Unzufriedenheiten</b></th>",
-                 "<th><b>Eigene&nbsp;Ideen</b></th></tr>")
+                 "<th><b>Anmerkungen</b></th></tr>")
   if (nrow(alist_2b) > 0) {
     for (i in 1:nrow(alist_2b)) {
       zeitfuerwas <- alist_2b[i, 1]
@@ -215,7 +215,7 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
                  "<tr style='border-bottom:2px solid #CCCCCC; border-top:2px solid #CCCCCC; background: #CCCCCC;' >",
                  "<th><b>Handlungsfeld</b></th>",
                  "<th><b>Geplante Strategie</b></th>",
-                 "<th><b>Eigene&nbsp;Ideen</b></th></tr>")
+                 "<th><b>Anmerkungen</b></th></tr>")
 
   if (nrow(alist_2c) > 0) {
     for (i in 1:nrow(alist_2c)) {

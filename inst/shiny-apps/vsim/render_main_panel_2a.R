@@ -26,7 +26,7 @@ output$mainPanel <- renderUI( {
       list(
         img(src='simulator_teil3.png', height = 60),
         h4("Mit Blick auf die im vorigen Teil ermittelten Belastungsfaktoren und Unzufriedenheiten treten in Teil 2 des Vereinbarkeitssimulators mögliche Lösungen in den Vordergrund."),
-        h4("Sie haben im gesamten Teil 2 die Möglichkeit, die Lösungsvorschläge durch Eigene Ideen zu ergänzen. Damit können Sie die Lösungsvorschläge nach Ihren Bedürfnissen anpassen und um wichtige Details ergänzen."),
+        h4("Sie haben im gesamten Teil 2 die Möglichkeit, die Lösungsvorschläge durch Anmerkungen zu ergänzen. Damit können Sie die Lösungsvorschläge nach Ihren Bedürfnissen anpassen und um wichtige Details ergänzen."),
         br(),
         h4("Im Teil 2a überlegen Sie sich, in welchen Bereichen Sie durch verbindliche Vereinbarungen Ihre private oder berufliche Situation verbessern können."),
         br(),
@@ -46,7 +46,7 @@ output$mainPanel <- renderUI( {
       list(
         h4(textOutput("question")),
         h4(checkboxGroupInput("survey", "", choices = c(option_list(), "Ich sehe keinen Nutzen in dieser Vereinbarung"), selected = selected, width = "600")),
-        h4(textInput("kommentar", "Eigene Ideen", kommentar))
+        h4(textInput("kommentar", "Anmerkungen", kommentar))
       )
     )
   } else if (question_id == Survey_Sections$Teil2a_end_statement && question_id != Survey_Sections$Teil2a_intro) {
