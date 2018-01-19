@@ -36,3 +36,13 @@ testthat::test_that("rmd_display_vereinbarungen_chancen works", {
                                              bol_vorgesetzter = test_rmd_display_vereinbarungen_chancen_bolvg_02)
   testthat::expect_equal(html, test_rmd_display_vereinbarungen_chancen_expected_html_02)
 })
+
+testthat::test_that("unquestion works", {
+  a <- unquestion("Möchten Sie einen Hund kaufen?", "Möchten Sie")
+  testthat::expect_equal(a, "Einen Hund kaufen.")
+})
+
+testthat::test_that("unanswer works", {
+  a <- unanswer("Ja, ich möchte die Kinder mehr selbst betreuen als bisher")
+  testthat::expect_equal(a, "Ich möchte die Kinder mehr selbst betreuen als bisher")
+})

@@ -227,12 +227,12 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
                      col_evaluation_comment(),
                      ";padding: 12px; width: 500px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
-                     frage, "</div></td><td>")
+                     unquestion(frage, "Möchten Sie"), "</div></td><td>")
       html <- paste0(html, "<div style='border-radius: 15px;background: ",
                      col_unterstuetzung_und_entlastung(),
                      ";padding: 12px; width: 300px; align: center; ",
                      "border: 2px solid #FFFFFF;'>",
-                     antwort, "</div></td><td style='background: ", col_evaluation_comment(),"'>")
+                     unanswer(antwort), "</div></td><td style='background: ", col_evaluation_comment(),"'>")
       html <- paste0(html, kommentar, "</td>")
       html <- paste0(html, "</td></tr>")
     }
@@ -241,6 +241,48 @@ rmd_display_unterstuetzung_entlastung <- function(alist_2c) {
   }
   html <- paste0(html, "</table>")
   cat(html)
+}
+
+
+#' unquestion
+#' transfer a question into a statement by removing the prefix and starting the
+#' leftover with initcap, and replacing the questionmark by a period.
+#'
+#' @param question
+#' @param prefix
+#'
+#' @return the leftover Statement
+#' @export
+#'
+#' @examples unquestion("Möchten Sie einen Hund kaufen?", "Möchten Sie")
+unquestion <- function(question, prefix) {
+  stmt <- question
+  if (startsWith(question, prefix)) {
+    stmt <- gsub(pattern = paste0(prefix, " *"), replacement = "", question)
+    # make initcap
+    stmt <- paste0(toupper(substr(x = stmt, 1, 1)), substr(x = stmt, 2, nchar(stmt)-1), ".")
+  }
+  return (stmt)
+}
+
+#' unanswer
+#' transfers an answer into a statement by removing the prefix and starting the
+#' leftover with initcap.
+#'
+#' @param answer
+#'
+#' @return the leftover Statement
+#' @export
+#'
+#' @examples unanswer("Ja, ich möchte die Kinder mehr selbst betreuen als bisher")
+unanswer <- function(answer) {
+  stmt <- answer
+  if (startsWith(answer, "Ja, ")) {
+    stmt <- gsub(pattern = "Ja, ", replacement = "", answer)
+    # make initcap
+    stmt <- paste0(toupper(substr(x = stmt, 1, 1)), substr(x = stmt, 2, nchar(stmt)))
+  }
+  return (stmt)
 }
 
 #' places an icon in shiny-rendered dynamic output based on the passed icon-name.
