@@ -1,12 +1,12 @@
 Qnum;Question;Answer
-1.1;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten etc.) zuständig sind?;weiss nicht
-1.2;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten (Putzen, Kochen, Instandhalten, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc.) zuständig sind?;weiss nicht
-1.3;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung zuständig sind?;weiss nicht
+1.1;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Erwerbsarbeit (incl. Pendeln, Übernachtungen, Pausen und Mittagszeiten etc.) verwenden?;Nein, ich möchte gern weniger Zeit dafür verwenden
+1.2;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für Hausarbeiten wie Putzen, Kochen, Reparieren, Gartenarbeit, Zahlungen, Einkaufen, Waschen etc. verwenden?;weiss nicht
+1.3;Finden Sie es in Ordnung, wie viel Zeit Sie pro Woche für die Kinderbetreuung verwenden?;weiss nicht
 2.1;Wie häufig erledigen Sie während Ihrer Arbeitszeit zwischendurch oder zu Randzeiten private Angelegenheiten (z.B. familiäre Verpflichtungen)? ;weiss nicht
 2.2;Wie häufig erledigen Sie Ihre Arbeit von zu Hause aus?;weiss nicht
 2.3;Wie häufig führen private Verpflichtungen (z.B. wenn Sie vor Ladenschluss Einkäufe erledigen müssen, wenn Sie das Mittagessen zubereiten müssen, wenn Sie Ihr krankes Kind versorgen müssen) dazu, dass Sie Ihren Arbeitsplatz früher verlassen bzw. später eintreffen?;weiss nicht
-3.1;Ich verbringe genügend Zeit mit meinem/meinen Kind(ern) um Tätigkeiten wie spielen, basteln, lesen oder ähnliches durchführen.;weiss nicht
-3.2;Ich bin zufrieden mit der Zeit, welche ich mit meinen Kindern verbringen und Tätigkeiten wie spielen, basteln, Sport treiben, lesen oder ähnliche Aktivitäten durchführe.;weiss nicht
+3.1;Ich verbringe genügend Zeit mit meinem/meinen Kind(ern), um zu spielen, basteln, Sport treiben, lesen oder Ähnliches.;weiss nicht
+3.2;Wenn ich mit meinen Kindern spiele, bastle, Sport treibe, lese oder ähliche Tätigkeiten unternehme, bin ich zufrieden.;weiss nicht
 3.3;Ich verbringe genügend Zeit zu zweit mit meiner Partnerin/meinem Partner.;weiss nicht
 3.4;Ich bin zufrieden mit der Zeit, welche ich mit meiner Partnerin/meinem Partner zu zweit verbringe. ;weiss nicht
 3.5;In meiner Freizeit verbringe ich genügend Zeit mit Aktivitäten wie Wandern, Spazieren, Velofahren, Bücher lesen, Fernsehen, Ausruhen und/oder ähnlichem.;weiss nicht
@@ -20,7 +20,10 @@ Qnum;Question;Answer
 5.6;Ich fühle mich oft belastet, weil ich während der Arbeit oder in der Freizeit verschiedene Dinge gleichzeitig erledigen muss. ;weiss nicht
 5.7;Ich fühle mich oft belastet, weil ich während der Arbeit häufig privaten Verpflichtungen nachkommen muss.;weiss nicht
 5.8;Ich fühle mich oft belastet, weil ich Zuhause häufig beruflichen Verpflichtungen nachkommen muss.  ;weiss nicht
-5.9;Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und- und familiären Verpflichtungen insgesamt zu hoch ist.;weiss nicht
-5.1;Ich fühle mich oft belastet, weil die finanzielle Situation in meinem/unserem Haushalt angespannt ist.;weiss nicht
-5.11;Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.;weiss nicht
-5.12;Ich fühle mit oft belastet, weil ich psychisch angeschlagen bin.;weiss nicht
+5.9;Ich fühle mich während des Home Office belastet, weil oftmals private Aufgaben dazwischen kommen.;weiss nicht
+5.10;Ich fühle mich oft belastet, weil die zeitliche Beanspruchung von Arbeit und- und familiären Verpflichtungen insgesamt zu hoch ist.;weiss nicht
+5.11;Ich fühle mich oft belastet, weil die finanzielle Situation in meinem/unserem Haushalt angespannt ist.;weiss nicht
+5.12;Ich fühle mit oft belastet, weil ich gesundheitlich angeschlagen bin.;weiss nicht
+6.1;Ich fühle mich durch meine Arbeit frustriert und habe das Interesse an meiner Arbeit verloren.;weiss nicht
+6.2;Ich habe das Gefühl, manche KundenInnen/GeschäftspartnerInnen/KollegInnen unpersönlich zu behandeln und es interessiert mich nicht wirklich, was mit manchen meiner KundenInnen/GeschäftspartnerInnen/KollegInnen geschieht.;weiss nicht
+6.3;Ich fühle mich machtlos, meine Arbeitssituation zu verändern.;weiss nicht

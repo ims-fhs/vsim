@@ -1,0 +1,124 @@
+---
+title: "Plan"
+output: html_document
+---
+<img src="simulator_teil4.png" alt="" height="60">
+
+<h1>Plan</h1>
+
+<h4>Die Schlussauswertung zeigt deinen Plan. Dieser ist in bis drei Abschnitte unterteilt:
+</br></br>
+<ol>
+<li>Vereinbarungen</li>
+<li>Zeitverwendung</li>
+<li>Unterstützung, Entlastung, Entwicklung</li>
+</ol>
+</br>
+In den drei Teilen werden die geplanten Massnahmen, die Sie eingeplant haben, nochmals gezeigt. Sie sehen, welche Belastungen und Unzufriedenheiten Sie mit den geplanten Massnahmen in der nächsten Zeit angehen wollen.
+</br></br></h4>
+
+
+```{r setup, include=FALSE}
+library(shiny)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r load}
+Alist <- result_coll$Alist
+Qlist <- result_coll$Qlist_2a
+Glist <- read.csv('data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
+```
+
+```{r gaps}
+gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
+df <- as.data.frame(Glist[,3][gaps_user], stringsAsFactors = FALSE)
+names(df) <- "Gaps"
+df <- as.data.frame(unique(df$Gaps), stringsAsFactors = FALSE)
+names(df) <- "Gaps"
+```
+
+
+
+
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Vereinbarungen&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r echo = FALSE, results = 'asis'}
+Alist_2a <- result_coll$Alist_2a
+Alist_2a <- rule_extract_vereinbarungen(Alist_2a)
+
+cat("<table width='100%'><tr><td>")
+rmd_display_icon(icon = icon_vereinbarung, align = "right", width = 40, height = 40)
+cat("</td></tr></table>")
+```
+</td></tr>
+</table>
+<br>
+<h4>
+Mit Blick auf die bestehenden Unzufriedenheiten und Belastungen haben Sie im Teil 2 Vereinbarungen als Lösungsansätze identifiziert. <br><br>Besprechen Sie folgende Vereinbarungen mit Ihrem/Ihrer Vorgesetzten:
+</h4>
+
+```{r, echo=FALSE, results='asis'}
+cat(rmd_display_vereinbarungen_chancen(Alist_2a, Qlist, bol_vorgesetzter = TRUE))
+```
+<br>
+<h4>
+Besprechen Sie folgende Vereinbarungen mit Ihren Angehörigen:
+</h4>
+
+```{r, echo=FALSE, results='asis'}
+cat(rmd_display_vereinbarungen_chancen(Alist_2a, Qlist, bol_vorgesetzter = FALSE))
+```
+
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Zeitverwendung&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_zeitverwendung, align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+<br>
+<h4>
+Mit Blick auf ihre Zeitplanung für das kommende Jahr wollen Sie die folgenden Anpassungen vornehmen:
+</h4>
+
+```{r, echo=FALSE, results='asis'}
+Alist_2b <- result_coll$Alist_2b
+Alist_2b <- rule_extract_zeitverwendung(Alist_2b, result_coll$relevant_gaps)
+rmd_display_zeitverwendung(Alist_2b)
+```
+
+```{r, echo=FALSE, results='asis'}
+rmd_display_weniger_ea(Alist_2b, result_coll$relevant_gaps)
+```
+
+
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Unterstützung, Entlastung, Entwicklung&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unterstuetzung_und_entlastung, align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+</br>
+<h4>
+Mit Blick auf potentielle Unterstützungs- und Entlastungsmöglichkeiten haben Sie folgende Handlungsfelder identifiziert:
+</h4>
+
+```{r, echo=FALSE, results='asis'}
+Alist_2c <- result_coll$Alist_2c
+Alist_2c <- rule_extract_unterstuetzung_entlastung(Alist_2c)
+rmd_display_unterstuetzung_entlastung(Alist_2c)
+```
+</br>
+<h4>
+Zur Umsetzung des Plans müssen Sie sich nun mit ihren Angehörigen und Vorgesetzten abstimmen. Drucken Sie sich dazu Ihre Auswertung aus und sehen Sie sich ergänzend unser <a target="_blank" href="https://www.youtube.com/watch?v=QVd2lpqo6I4&feature=youtu.be">Erklärvideo</a> an.
+</h4>
+</br>
+<input type="button" class="btn btn_default" onClick="window.print()" value="Auswertung Drucken"/>
+</br></br></br></br></br></br>

@@ -4,8 +4,12 @@ Title: Vereinbarkeits Simulator (vsim)
 Version: 0.1.0
 Author: Fabian Leuthold
 Maintainer: <fabian.leuthold@fhsg.ch>
-Description: Applikation für den Vereinbarkeits Simulator
+Description: Applikation f?r den Vereinbarkeits Simulator
 License: What license is it under?
 Encoding: UTF-8
-Suggests: testthat, shiny
+Imports: dplyr, kableExtra (>= 0.6.1), shiny
+Suggests: testthat, knitr,
+    rmarkdown
 LazyData: true
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr

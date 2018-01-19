@@ -1,0 +1,94 @@
+---
+title: "Vereinbarkeitssimulator - Auswertung Lebenslage"
+output: html_document:
+          css: styles.css
+---
+<img src="simulator_teil2.png" alt="" height="60">
+
+<h1>Auswertung Lebenslage</h1>
+
+<h4>
+Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende mögliche <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b> erkannt:</br></br>
+</h4>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r gaps}
+gaps_user <- rule_extract_gaps(result_coll$Alist,
+    read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8"))
+df <- as.data.frame(gaps_user, stringsAsFactors = FALSE)
+names(df) <- "Gaps"
+
+gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist,
+    read.csv('./data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8"),
+    unique_only = FALSE)
+```
+
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Belastungsfaktoren&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+<h4>
+Folgende Belastungen konnten ermittelt werden:
+</h4>
+
+
+```{r belastung}
+belastungen <- rule_extract_belastungen(df$Gaps, strip_prefix = TRUE)
+rmd_display_belastungen_unzufriedenheiten(belastungen,
+    color_strain = col_belastung(),
+    color_no_data = col_evaluation_comment())
+```
+<center>
+<table width="100%">
+<tr>
+<td width="20%" align="center">
+```{r belastung_psychische_gesundheit, echo = FALSE, results = 'asis'}
+show_warning <- rule_identify_belastungen_psychische_gesundheit(gaps_user_non_unique)
+if (show_warning) {
+  rmd_display_icon(icon_achtung, width="20%", height="20%", align="center")
+}
+```
+</td><td>
+
+```{r belastung_psychische_gesundheit_text, echo = FALSE, results = 'asis'}
+if (show_warning) {
+  cat("Sie haben zwei oder mehr Fragen zu psychischen Belastungen positiv beantwortet. Für diesen Bereich kann Ihnen der Vereinbarkeitssimulator nur bedingt Hilfe anbieten. Bitte überprüfen Sie doch, ob Sie unter bestimmten Arbeitsbedingungen dazu neigen, Burnout-Symptome zu entwickeln. Wenn Sie wissen möchten, ob bereits Symptome eines Burnouts erkennbar sind, gibt es die Möglichkeit, dies durch einen empfehlenswerten und ausführlicheren <a target='_blank' href='https://www.hilfe-bei-burnout.de/burnout-test-lang/'>Burnout-Test</a> abzuklären. Weitere Informationen zum Thema Burnout finden Sie <a target='_blank' href='https://www.burnout-info.ch/'>hier</a>.")
+}
+```
+</td>
+</tr>
+</table>
+</center>
+
+<table>
+<tr><td style="white-space: nowrap"><h2>
+Unzufriedenheiten&nbsp;&nbsp;
+</h2></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+<h4>
+Folgende Unzufriedenheiten konnten ermittelt werden:
+</h4>
+
+
+```{r differences}
+unzufriedenheiten <- rule_extract_unzufriedenheiten(df$Gaps)
+rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
+    color_strain = col_belastung(),
+    color_no_data = col_evaluation_comment())
+```
+<br>
+<br>
+<h4>
+Um mit Teil 2 des Vereinbarkeitssimulators fortzufahren, klicken Sie bitte auf 'Weiter'.
+</h4>

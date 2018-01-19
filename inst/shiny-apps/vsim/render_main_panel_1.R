@@ -1,12 +1,12 @@
 # Dynamic UI is the interface which changes as the survey
-# progresses.  
+# progresses.
 
-# this function is called in order to prepare variables for the next questionary 
+# this function is called in order to prepare variables for the next questionary
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
-  source("part2a_simulator.R", encoding = file_encoding, local = TRUE)[1]
-  Qlist_2a <<- result_coll$Qlist_2a
-  Qlist_2a[is.na(Qlist_2a)] <- ""
+  Alist <- result_coll$Alist
+  Qlist_2a <<- calc_relevant_questions_2a(Alist)
+  result_coll$Qlist_2a <<- Qlist_2a
   calc_survey_question_ids()
   # ****** Data part 2a
   # Create an empty vector to hold survey results
@@ -20,29 +20,39 @@ questionaryPostProcessing <- function() {
 }
 
 output$mainPanel <- renderUI({
-  # Initially it shows a welcome message. 
+  # Initially it shows a welcome message.
   if (question_id == Survey_Sections$Teil1_intro) {
-    return(list(h3("Willkommen zum Vereinbarkeitssimulator - Teil 1. Im ersten Teil des Simulators geht es darum ihre momentane Lebenssituation zu erfassen."))) 
-  } else if (question_id > Survey_Sections$Teil1_intro & question_id <= Survey_Sections$Teil1_last_question) { 
+    return(list(h3("Willkommen zum Vereinbarkeitssimulator"),
+                h4("Der Vereinbarkeitssimulator ist eine Software, die Ihre Wünsche an Ihre zukünftige Work-Life-Balance erfasst. Basierend darauf können Arbeitsorganisationsmodelle geplant werden. Die Software geht mit Ihnen folgende Schritte durch:"),
+                img(src='simulator.png', height = 60),
+                h4("Im", strong("ersten Schritt"),"erfragt der Vereinbarkeitssimulator Ihre Lebenslage."),
+                h4("Im ", strong("zweiten Schritt"), "erfolgt eine Auswertung der von Ihnen angegebenen Daten über Ihre momentane Lebenssituation. Hier werden Unzufriedenheiten und Belastungen verdeutlicht."),
+                h4("Im", strong("dritten Schritt"),  "werden Ideen und Hilfsmassnahmen festgelegt, mit denen Ihre Unzufriedenheiten und Belastungen vermindert werden können."),
+                h4("Im", strong("vierten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit Ihnen zusammen eine Planung. Hierbei werden Möglichkeiten zum Zeitmanagement und betrieblicher Hilfen (Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.) aufgezeigt. Zum Abschluss erhalten Sie eine Zusammenfassung Ihrer Planungsideen."),
+                br(),
+                h4("Zum Starten des Vereinbarkeitssimulators klicken Sie bitte auf 'Weiter'. Durch das Anklicken von 'Zurück' haben Sie ausserdem die Möglichkeit, einen Schritt retour zu gehen.")
+                   ))
+  } else if (question_id > Survey_Sections$Teil1_intro & question_id <= Survey_Sections$Teil1_last_question) {
     # Once the next button has been clicked once we see each question
     # of the survey.
     # memorize last answer to set answer correct for redisplaying the question
-    selected <- strsplit(results[question_id], '\n')[[1]]
-    selected <- ifelse(length(selected) == 0, "weiss nicht", selected)
+      selected <- results[[question_id]]
+    selected <- ifelse(selected == "", "weiss nicht", selected)
     return(list(
-        shiny::img(src = "warning.png", width="20%", height="20%"),
         h4(textOutput("question")),
         h4(
         radioButtons("survey", "", c(option_list(), "weiss nicht"), selected = selected))
-      )) 
+      ))
   } else if (question_id == Survey_Sections$Teil1_end_statement) {
     return(list(
-        h3("Teil 1 ist nun fertig. Klicken Sie auf 'weiter', um den  Teil 1 auszuwerten.")
+        h4("Die Erfassung Ihrer Lebenslage ist nun abgeschlossen."),
+        br(),
+        br(),
+        h4("Klicken Sie bitte auf 'Weiter' um zur Auswertung Ihrer Angaben zu gelangen.")
     ))
   } else if (question_id == Survey_Sections$Teil1_summary) {
-    a <- inclRmd("gaps_user.Rmd")
-    output$mainPanel <- renderUI(HTML(a))
     questionaryPostProcessing();
+    return(inclRmd("rmds/gaps_user.rmdy"))
   }
 })
 
@@ -76,7 +86,7 @@ output$save_results <- renderText({
 option_list <- reactive({
   qlist <- Qlist_1[question_id,3:ncol(Qlist_1)]
   # Remove items from the qlist if the option is empty.
-  # Also, convert the option list to matrix. 
+  # Also, convert the option list to matrix.
   as.matrix(qlist[qlist != ""])
 })
 
@@ -84,7 +94,7 @@ option_list <- reactive({
 # Followed by the question text.
 output$question <- renderText({
   paste0(
-    "Frage ", question_id,": ", 
+    "Frage ", question_id,": ",
     Qlist_1[question_id,2]
   )
 })
