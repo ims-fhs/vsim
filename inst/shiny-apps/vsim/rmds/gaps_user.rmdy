@@ -87,8 +87,8 @@ rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
     color_strain = col_belastung(),
     color_no_data = col_evaluation_comment())
 ```
-<br>
-<br>
+</br>
 <h4>
 Um mit Teil 2 des Vereinbarkeitssimulators fortzufahren, klicken Sie bitte auf 'Weiter'.
 </h4>
+</br>

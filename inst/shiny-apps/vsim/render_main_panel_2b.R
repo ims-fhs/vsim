@@ -38,7 +38,7 @@ output$mainPanel <- renderUI( {
           column(2, HTML("<h4><b>Zeit für was</b></h4>")),
           column(4, HTML("<h4><b>Ihre relevanten Belastungen und Unzufriedenheiten</b></h4>")),
           column(4, HTML("<h4><b>Zeitmenge</b></h4>")),
-          column(2, HTML("<h4><b>Eigene Ideen</b></h4>"))
+          column(2, HTML("<h4><b>Anmerkungen</b></h4>"))
         ),
         fluidRow(hr()),
         fluidRow(

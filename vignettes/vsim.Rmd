@@ -15,11 +15,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-
-# Worum geht es?
-Einführungstext von Thomas Schmid.
-
 # Technischer Leitfaden
 ## Ziel
 Dieser Leitfaden richtet sich an technisch versiertes IT-Personal und erklärt die nötigen Schritte, die unternommen werden müssen, um den OpenSource Vereinbarkeitssimulator für das eigene Unternehmen online verfügbar zu machen.
@@ -100,5 +95,3 @@ Angenommen Ihr Account lautet auf den Namen "mycompany" und Sie hätten unter "T
 https://mycompany.shinyapps.io/vsim
 
 Prüfen Sie als letztes, ob die Applikation wirklich unter der erwarteten URL verfügbar ist. War dieser Schritt ebenfalls erfolgreich, ist die Installation / Veröffentlichung abgeschlossen. 
-
-
