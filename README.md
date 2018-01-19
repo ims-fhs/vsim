@@ -76,20 +76,15 @@ Vereinbarkeitsarrangements lassen sich mittels dem Wissen um Sorgearbeitsverpfli
 Je nach dem wo die lebenslagenspezifischen Ziele gesetzt werden und wo ein Grossteil der Zeit hineinfliesst, ist es notwendig auch spezifische Vereinbarkeitsmassnahmen zu nutzen. 
 
 ## Support
+
 Die Software des Vereinbarkeitssimulators kann unter folgender URL bezogen werden:
-
 https://github.com/ims-fhs/vsim
-
-Auf der oben genannten Webseite ist sowohl der Source-Code wie auch die Dokumentation und dieser Leitfaden bezogen werden. Antworten auf technische Fragen finden Sie direkt im README.md der Webseite oder in der Vignette vsim.Rmd durch eingabe von '?vsim' des vsim-packages nach Installation/Build der Software.
+Auf der oben genannten Webseite kann sowohl der Source-Code wie auch die Dokumentation und dieser Leitfaden bezogen werden. Antworten auf technische Fragen finden Sie direkt im README.md der Webseite oder in der Vignette vsim.Rmd durch Eingabe von '?vsim' nach Installation/Build der Software.
 
 ## Impressum
-
-Das Projekt fand im Rahmen einer Kooperation mit Thomann Nutzfahrzeuge AG, Sonderschule Bad Sonder und Abraxas Informatik AG satt.
+Dieses Projekt entstand aus der Zusammenarbeit des Institutes für Soziale Arbeit und dem Institut für Modellbildung und Simulation der Fachhochschule St. Gallen. Es fand im Rahmen einer Kooperation mit Thomann Nutzfahrzeuge AG, Sonderschule Bad Sonder und Abraxas Informatik AG satt.
 
 Gefördert wurde das Projekt mit Finanzhilfen des Eidgenössischen Büros für die Gleichstellung von Mann und Frau (EBG). 
-
-Der im Rahmen dieses Projektes entwickelte Vereinbarkeitssimulator sowie die damit verbundenen Dokumente wurden im Januar 2018 von den Instituten IFSA-FHS und IMS-FHS der Fachhochschule St. Gallen veröffentlicht.
-
 
 # Technischer Leitfaden
 ## Ziel
