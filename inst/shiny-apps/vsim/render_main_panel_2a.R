@@ -61,7 +61,7 @@ output$mainPanel <- renderUI( {
   } else {
     return(
       list(
-        h4("Sie haben im Teil 1 keine Belastungen und Unzufriedenheiten angegeben, die Vereinbarungen im Bereich Flexibilisierung der Arbeit nötig machen würden. Deshalb entfällt für Sie Teil 2a."),
+        h4("Aufgrund Ihrer Angaben konnte der Simulator keine Vereinbarungsmassnahmen zur Verbesserung ihrer momentanen Situation identifizieren. Deshalb entfällt für Sie Teil 2a."),
         br(),
         br(),
         h4("Klicken Sie bitte auf 'Weiter', um zum Teil 2b 'Zeitverwendung' zu gelangen. ")
