@@ -1,11 +1,12 @@
 Package: vsim
 Type: Package
 Title: Vereinbarkeits Simulator (vsim)
-Version: 0.1.0
-Author: Fabian Leuthold
-Maintainer: <fabian.leuthold@fhsg.ch>
-Description: Applikation f?r den Vereinbarkeits Simulator
-License: What license is it under?
+Version: 1.0.0
+Author: Adrian Stämpfli, Fabian Leuthold
+Maintainer: Fabian Leuthold <fabian.leuthold@fhsg.ch>
+Description: Der Vereinbarkeitssimulator erfasst die spezifischen Lebenslagen 
+    von Mitarbeitenden und ihre Wünsche an ihre zukünftige Work-Life-Balance.
+License: GPL-3
 Encoding: UTF-8
 Imports: dplyr, kableExtra (>= 0.6.1), shiny
 Suggests: testthat, knitr,
