@@ -74,7 +74,15 @@ output$mainPanel <- renderUI( {
           column(4, h4(gsub("-", "keine", relevant_gaps[5]))),
           column(4, h4(selectInput('select5', '', choices = choices, selected = get_selected_value(results2b[5], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar5", "", value = ifelse(length(kommentare2b[5])>0, kommentare2b[5], ""))))
-        )
+        ),
+        fluidRow(br()),
+        fluidRow(br()),
+        fluidRow(br()),
+        fluidRow(br()),
+        fluidRow(br()),
+        fluidRow(br()),
+        fluidRow(br()),
+        fluidRow(br())
       )
     )
   } else if (question_id == Survey_Sections$Teil2b_end_statement) {
