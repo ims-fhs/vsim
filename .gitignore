@@ -27,5 +27,3 @@ vignettes/*.pdf
 # OSX hidden files
 *.DS_Store
 inst/doc
-# Shinyapp Deployment Timestamps
-*.dcf
