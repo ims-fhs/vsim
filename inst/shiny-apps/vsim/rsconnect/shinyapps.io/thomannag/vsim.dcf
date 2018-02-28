@@ -1,0 +1,12 @@
+name: vsim
+title: vsim
+username:
+account: thomannag
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 273897
+bundleId: 1210432
+url: https://thomannag.shinyapps.io/vsim/
+when: 1517937665.8139
+asMultiple: FALSE
+asStatic: FALSE
