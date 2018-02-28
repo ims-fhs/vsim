@@ -5,8 +5,8 @@ account: fhsg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 181359
-bundleId: 1222318
+bundleId: 1244782
 url: https://fhsg.shinyapps.io/vereinbarkeitssimulator/
-when: 1518595078.24893
+when: 1519820159.68894
 asMultiple: FALSE
 asStatic: FALSE
