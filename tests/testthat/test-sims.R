@@ -1,8 +1,10 @@
 context("simulator tests")
 
 test_that("calc_relevant_questions_2a", {
-  Glist <<- read.csv('../../inst/shiny-apps/vsim/data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
-  QInputlist_Teil2a <<- read.csv('../../inst/shiny-apps/vsim/data/QInputlist_Teil2a.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
+  Glist <<- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
+                          stringsAsFactors = FALSE)
+  Qlist_2a <<- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2a"),
+                             stringsAsFactors = FALSE)
 
   # test1
   result <- calc_relevant_questions_2a(test_calc_relevant_questions_2a_01)

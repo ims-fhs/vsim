@@ -2,6 +2,7 @@ library(shiny)
 library(knitr)
 library(dplyr)
 library(kableExtra)
+# for testing: setwd(paste0(getwd(),"/inst/shiny-apps/vsim/"))
 
 # define encoding settings
 file_encoding <- getOption("shiny.site.encoding", default = "UTF-8")
@@ -13,17 +14,20 @@ source("R/rules.R", encoding = file_encoding, local = TRUE)
 source("R/sims.R", encoding = file_encoding, local = TRUE)
 
 # read the survey questions
-Qlist_1 <- read.csv("data/Qlist_Teil1.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
+Qlist_1 <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil1"), stringsAsFactors = FALSE)
 Qlist_1[is.na(Qlist_1)] <- ""
 
-Qlist_2b <- read.csv("data/QInputlist_Teil2b.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
+Qlist_2a <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2a"), stringsAsFactors = FALSE)
+Qlist_2a[is.na(Qlist_2a)] <- ""
+
+Qlist_2b <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2b"), stringsAsFactors = FALSE)
 Qlist_2b[is.na(Qlist_2b)] <- ""
 
-Qlist_2c <- read.csv("data/Qlist_Teil2c.csv", sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
+Qlist_2c <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2c"), stringsAsFactors = FALSE)
 Qlist_2c[is.na(Qlist_2c)] <- ""
 
-Glist <- read.csv('data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
-QInputlist_Teil2a <- read.csv('data/QInputlist_Teil2a.csv', sep = ";", stringsAsFactors = FALSE, encoding = file_encoding)
+Glist <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"), stringsAsFactors = FALSE)
+
 
 choices <- c(
   "viel weniger als bisher",

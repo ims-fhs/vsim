@@ -1,5 +1,5 @@
 #' calc_relevant_questions_2a: takes the Alist (and the global Glist and
-#' QInputlist_Teil2a) and returns the Qlist_Teil2a with the relevant questions.
+#' Qlist_2a) and returns the Qlist_Teil2a with the relevant questions.
 #'
 #' @param Alist the Alist containing the answered questions from part 1
 #'
@@ -28,16 +28,16 @@ calc_relevant_questions_2a <- function(Alist) {
   if(rule_identify_situation_switchen(gaps_user, "chance") && !grepl("Aktuell keine", unzufriedenheiten))
   {#Gap
     relevant_questions[c(1,2)] <- TRUE
-    Qlist_Teil2a[1, ] <- c(QInputlist_Teil2a[1, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
-    Qlist_Teil2a[2, ] <- c(QInputlist_Teil2a[2, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[1, ] <- c(Qlist_2a[1, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[2, ] <- c(Qlist_2a[2, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
   }
 
   #Problem Switchen
   if(rule_identify_situation_switchen(gaps_user, "problem") && !grepl("Aktuell keine", belastungen))
   {#Gap
     relevant_questions[c(3,4)] <- TRUE
-    Qlist_Teil2a[3, ] <- c(QInputlist_Teil2a[3, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
-    Qlist_Teil2a[4, ] <- c(QInputlist_Teil2a[4, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[3, ] <- c(Qlist_2a[3, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[4, ] <- c(Qlist_2a[4, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
   }
 
   #2. Home Office
@@ -46,16 +46,16 @@ calc_relevant_questions_2a <- function(Alist) {
   if(rule_identify_situation_homeoffice(gaps_user, "chance") && !grepl("Aktuell keine", unzufriedenheiten))
   {#Gap
     relevant_questions[c(5,6)] <- TRUE
-    Qlist_Teil2a[5, ] <- c(QInputlist_Teil2a[5, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
-    Qlist_Teil2a[6, ] <- c(QInputlist_Teil2a[6, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[5, ] <- c(Qlist_2a[5, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[6, ] <- c(Qlist_2a[6, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
   }
 
   #Problem HOME OFFICE
   if(rule_identify_situation_homeoffice(gaps_user, "problem") && !grepl("Aktuell keine", belastungen))
   {#Gap
       relevant_questions[c(7,8)] <- TRUE
-      Qlist_Teil2a[7, ] <- c(QInputlist_Teil2a[7, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
-      Qlist_Teil2a[8, ] <- c(QInputlist_Teil2a[8, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
+      Qlist_Teil2a[7, ] <- c(Qlist_2a[7, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
+      Qlist_Teil2a[8, ] <- c(Qlist_2a[8, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
   }
 
   #3. Flexible Zeiten
@@ -64,16 +64,16 @@ calc_relevant_questions_2a <- function(Alist) {
   if(rule_identify_situation_flexibilisierung(gaps_user, "chance") && !grepl("Aktuell keine", unzufriedenheiten))
   {#Gap
     relevant_questions[c(9,10)] <- TRUE
-    Qlist_Teil2a[9, ] <- c(QInputlist_Teil2a[9, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
-    Qlist_Teil2a[10, ] <- c(QInputlist_Teil2a[10, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[9, ] <- c(Qlist_2a[9, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[10, ] <- c(Qlist_2a[10, c(1:3)], c(unzufriedenheiten), c(NA, NA, NA, NA))[1:8]
   }
 
   #Problem flexible Zeiten
   if(rule_identify_situation_flexibilisierung(gaps_user, "problem") && !grepl("Aktuell keine", belastungen))
   {#Gap
     relevant_questions[c(11,12)] <- TRUE
-    Qlist_Teil2a[11, ] <- c(QInputlist_Teil2a[11, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
-    Qlist_Teil2a[12, ] <- c(QInputlist_Teil2a[12, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[11, ] <- c(Qlist_2a[11, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
+    Qlist_Teil2a[12, ] <- c(Qlist_2a[12, c(1:3)], c(belastungen), c(NA, NA, NA, NA))[1:8]
   }
 
   Qlist_Teil2a <- Qlist_Teil2a[relevant_questions, ]

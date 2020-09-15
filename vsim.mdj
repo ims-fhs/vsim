@@ -1962,7 +1962,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "QInputlist_Teil2a",
+											"text": "Qlist_2a",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -8530,7 +8530,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFcFaNyeY5fVzE="
 					},
-					"name": "QInputlist_Teil2a",
+					"name": "Qlist_2a",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -19270,7 +19270,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "QInputlist_Teil2a",
+											"text": "Qlist_2a",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
