@@ -1,6 +1,7 @@
 context("simulator tests")
 
 test_that("calc_relevant_questions_2a", {
+  # setwd(paste0(getwd(),"/tests/testthat/"))
   Glist <<- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
                           stringsAsFactors = FALSE)
   Qlist_2a <<- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2a"),
@@ -37,7 +38,8 @@ test_that("calc_relevant_questions_2a", {
 })
 
 test_that("calc_relevant_gaps_2b", {
-  Glist <<- read.csv('../../inst/shiny-apps/vsim/data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
+  Glist <<- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
+                         stringsAsFactors = FALSE)
   # test1
   result <- calc_relevant_gaps_2b(test_calc_relevant_gaps_2b_01)
   expect_equal(result, test_calc_relevant_gaps_2b_expected_result_01)

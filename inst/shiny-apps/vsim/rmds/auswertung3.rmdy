@@ -26,7 +26,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r load}
 Alist <- result_coll$Alist
 Qlist <- result_coll$Qlist_2a
-Glist <- read.csv('data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
+Glist <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
+                         stringsAsFactors = FALSE)
 ```
 
 ```{r gaps}

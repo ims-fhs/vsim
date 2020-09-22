@@ -1,8 +1,10 @@
 context("rules_extract")
 
 test_that("gaps are extracted correctly from Alist.", {
-  Alist <- read.csv('../../inst/shiny-apps/vsim/data/Alist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
-  Glist <- read.csv('../../inst/shiny-apps/vsim/data/Glist_Teil1.csv', sep = ";", stringsAsFactors = FALSE, encoding = "UTF-8")
+  Alist <- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Alist_Teil1"),
+                         stringsAsFactors = FALSE)
+  Glist <- as.data.frame(readxl::read_xlsx(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
+                         stringsAsFactors = FALSE)
   expect_error(rule_extract_gaps(Alist[1, ], Glist))
   expect_equal(rule_extract_gaps(Alist[1, ], Glist[1, ]), "Unzufriedenheit mit dem beruflichen Zeitmanagement")
 })
