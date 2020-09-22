@@ -15,16 +15,12 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r gaps}
-gaps_user <- rule_extract_gaps(result_coll$Alist,
-    as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
-                                   stringsAsFactors = FALSE))
+gaps_user <- rule_extract_gaps(result_coll$Alist, import_from_excel(give_me = "G1"))
 df <- as.data.frame(gaps_user, stringsAsFactors = FALSE)
 names(df) <- "Gaps"
 
-gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist,
-    as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"),
-                            stringsAsFactors = FALSE),
-    unique_only = FALSE)
+gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist, import_from_excel(give_me = "G1"),
+                              unique_only = FALSE)
 ```
 
 <table>

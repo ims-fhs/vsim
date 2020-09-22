@@ -12,21 +12,15 @@ source("R/icons.R", encoding = file_encoding, local = TRUE)
 source("R/presentation.R", encoding = file_encoding, local = TRUE)
 source("R/rules.R", encoding = file_encoding, local = TRUE)
 source("R/sims.R", encoding = file_encoding, local = TRUE)
+source("R/import.R", encoding = file_encoding, local = TRUE)
 
 # read the survey questions
-Qlist_1 <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil1"), stringsAsFactors = FALSE)
-Qlist_1[is.na(Qlist_1)] <- ""
 
-Qlist_2a <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2a"), stringsAsFactors = FALSE)
-Qlist_2a[is.na(Qlist_2a)] <- ""
-
-Qlist_2b <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2b"), stringsAsFactors = FALSE)
-Qlist_2b[is.na(Qlist_2b)] <- ""
-
-Qlist_2c <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Qlist_Teil2c"), stringsAsFactors = FALSE)
-Qlist_2c[is.na(Qlist_2c)] <- ""
-
-Glist <- as.data.frame(readxl::read_xlsx(path = "data/vsim_question_lists.xlsx", sheet = "Glist_Teil1"), stringsAsFactors = FALSE)
+Qlist_1 <- import_from_excel(give_me = "Q1")
+Qlist_2a <- import_from_excel(give_me = "Q2a")
+Qlist_2b <- import_from_excel(give_me = "Q2b")
+Qlist_2c <- import_from_excel(give_me = "Q2c")
+Glist <- import_from_excel(give_me = "G1")
 
 
 choices <- c(

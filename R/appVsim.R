@@ -3,6 +3,7 @@ source("inst/shiny-apps/vsim/R/icons.R", encoding = "UTF-8", local = TRUE)
 source("inst/shiny-apps/vsim/R/presentation.R", encoding = "UTF-8", local = TRUE)
 source("inst/shiny-apps/vsim/R/rules.R", encoding = "UTF-8", local = TRUE)
 source("inst/shiny-apps/vsim/R/sims.R", encoding = "UTF-8", local = TRUE)
+source("inst/shiny-apps/vsim/R/import.R", encoding = "UTF-8", local = TRUE)
 
 #' run_app: Start a valid sim911 app.
 #'
