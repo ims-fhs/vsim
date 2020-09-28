@@ -41,7 +41,7 @@ output$mainPanel <- renderUI({
       selected <- results[[question_id]]
     selected <- ifelse(selected == "", "weiss nicht", selected)
     return(list(
-        h4(textOutput("question")),
+        h4(htmlOutput("question")),
         h4(
         radioButtons("survey", "", c(option_list(), "weiss nicht"), selected = selected))
       ))
