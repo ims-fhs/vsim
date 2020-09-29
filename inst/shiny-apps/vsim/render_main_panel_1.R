@@ -5,6 +5,7 @@
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
   Alist <- result_coll$Alist
+  export_to_excel(Alist$Answer)
   Qlist_2a <<- calc_relevant_questions_2a(Alist)
   result_coll$Qlist_2a <<- Qlist_2a
   calc_survey_question_ids()
