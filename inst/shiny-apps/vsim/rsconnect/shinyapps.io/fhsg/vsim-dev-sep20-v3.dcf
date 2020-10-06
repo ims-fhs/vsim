@@ -5,8 +5,8 @@ account: fhsg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2953074
-bundleId: 3708141
+bundleId: 3708552
 url: https://fhsg.shinyapps.io/vsim-dev-sep20-v3/
-when: 1601983944.36919
+when: 1601991373.04371
 asMultiple: FALSE
 asStatic: FALSE
