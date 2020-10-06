@@ -62,4 +62,5 @@ export_to_excel <- function(Alist_Answer, path = "data/outputs/") {
 
   xlsx::write.xlsx(x = empty_list, file =  path_to_file, sheetName = "QAGlist_Teil1",
                    row.names = FALSE)
+  return(empty_list)
 }
