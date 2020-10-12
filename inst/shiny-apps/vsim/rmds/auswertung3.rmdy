@@ -86,6 +86,8 @@ Mit Blick auf ihre Zeitplanung für das kommende Jahr wollen Sie die folgenden A
 </h4>
 
 ```{r, echo=FALSE, results='asis'}
+# print(result_coll$Alist_2b)
+# print(result_coll$relevant_gaps)
 Alist_2b <- result_coll$Alist_2b
 Alist_2b <- rule_extract_zeitverwendung(Alist_2b, result_coll$relevant_gaps)
 rmd_display_zeitverwendung(Alist_2b)

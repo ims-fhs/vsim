@@ -13,9 +13,9 @@
 #' G1 <- import_from_excel(give_me = "G1")
 #' Gtype <- import_from_excel(give_me = "Gtype")
 #' Q2a <- import_from_excel(give_me = "Q2a")
-#' Q2b <- import_from_excel(give_me = "Q2b")
+#' Q2b <- vsim:::import_from_excel(give_me = "Q2b")
 #' Q2c <- import_from_excel(give_me = "Q2c")}
-import_from_excel <- function(path = "data/vsim_question_lists.xlsx",
+import_from_excel <- function(path = "data/vsim_question_lists_kinderbetreuung.xlsx",
                               give_me = c("Q1", "A1", "G1", "Gtype", "Q2a", "Q2b", "Q2c")) {
   assertthat::assert_that(is.character(give_me))
   assertthat::assert_that(length(give_me) == 1)

@@ -92,7 +92,7 @@ calc_relevant_questions_2a <- function(Alist) {
 calc_relevant_gaps_2b <- function(Alist) {
   #Welche Gaps hat der User angegeben?
   gaps_user <- rule_extract_gaps(Alist, Glist, unique_only = TRUE)
-  relevant_gaps <- character(5)
+  relevant_gaps <- character(6)
   relevant_gaps[1] <- ifelse(
     length(gaps_user[grepl("beruflichen Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,
     paste(c(gaps_user[grepl("beruflichen Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]), collapse = ", "),
@@ -112,6 +112,10 @@ calc_relevant_gaps_2b <- function(Alist) {
   relevant_gaps[5] <- ifelse(
     length(gaps_user[grepl("selbst", gaps_user)]) > 0,
     paste(c(gaps_user[grepl("selbst", gaps_user)]), collapse = ", "),
+    "-")
+  relevant_gaps[6] <- ifelse(
+    length(gaps_user[grepl("andere", gaps_user)]) > 0,
+    paste(c(gaps_user[grepl("andere", gaps_user)]), collapse = ", "),
     "-")
   return(relevant_gaps)
 }

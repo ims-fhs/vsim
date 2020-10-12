@@ -75,6 +75,13 @@ output$mainPanel <- renderUI( {
           column(4, h4(selectInput('select5', '', choices = choices, selected = get_selected_value(results2b[5], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar5", "", value = ifelse(length(kommentare2b[5])>0, kommentare2b[5], ""))))
         ),
+        fluidRow(hr()),
+        fluidRow(
+          column(2, h4("für andere Tätigkeiten")),
+          column(4, h4(gsub("-", "keine", relevant_gaps[6]))),
+          column(4, h4(selectInput('select6', '', choices = choices, selected = get_selected_value(results2b[5], "gleich viel wie bisher")))),
+          column(2, h4(textInput("kommentar6", "", value = ifelse(length(kommentare2b[6])>0, kommentare2b[6], ""))))
+        ),
         fluidRow(br()),
         fluidRow(br()),
         fluidRow(br()),
@@ -106,14 +113,18 @@ output$save_results <- renderText({
                  input$select2,
                  input$select3,
                  input$select4,
-                 input$select5)
+                 input$select5,
+                 input$select6)
     kommentare2b <<- c(as.character(input$kommentar1),
                     as.character(input$kommentar2),
                     as.character(input$kommentar3),
                     as.character(input$kommentar4),
-                    as.character(input$kommentar5))
+                    as.character(input$kommentar5),
+                    as.character(input$kommentar6))
   }
   if (question_id == Survey_Sections$Teil2b_end_statement) {
+    assertthat::assert_that(nrow(Qlist_2b) == 6)
+    assertthat::assert_that(length(results2b) == 6)
     Alist <- Qlist_2b
     Alist[,3] <- results2b
     if (is.null(kommentare2b) || any(is.na(kommentare2b))) {
