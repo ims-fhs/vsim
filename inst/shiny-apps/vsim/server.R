@@ -13,6 +13,7 @@ source("R/presentation.R", encoding = file_encoding, local = TRUE)
 source("R/rules.R", encoding = file_encoding, local = TRUE)
 source("R/sims.R", encoding = file_encoding, local = TRUE)
 source("R/import.R", encoding = file_encoding, local = TRUE)
+source("R/plots.R", encoding = file_encoding, local = TRUE)
 
 # read the survey questions
 

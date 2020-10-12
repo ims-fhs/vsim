@@ -55,7 +55,7 @@ import_from_excel <- function(path = "data/vsim_question_lists_kinderbetreuung.x
 #' @param path a character
 export_to_excel <- function(Alist_Answer, path = "data/outputs/") {
   # standard path is set to "data/outputs/" because the function is called from within render_main_panel_1.R
-  empty_list <- import_from_excel(path = "data/vsim_question_lists.xlsx", give_me = "QAG1")
+  empty_list <- import_from_excel(path = "data/vsim_question_lists_kinderbetreuung.xlsx", give_me = "QAG1")
   empty_list$Answer_given <- Alist_Answer
   # path_to_file <- paste0(path, format(Sys.time(), "%Y_%m_%d"),"_Answer_list_",
   #                        format(Sys.time(), "%H_%M_%S"),".xlsx")

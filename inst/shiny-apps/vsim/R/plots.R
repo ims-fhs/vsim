@@ -8,11 +8,15 @@
 #'
 #' @examples
 #' \dontrun{
+#' old_wd <- getwd()
+#' setwd(paste0(getwd(),"/inst/shiny-apps/vsim/"))
 #' tc_arbeit <- import_from_excel(path = "data/outputs/Testcase_Arbeit.xlsx", give_me = "QAG1")
-#' plot_summary_teil_1(tc_random, by = "Arbeit")
+#' plot_summary_teil_1(tc_arbeit, by = "Arbeit")
+#' setwd(old_wd)
 #' }
 plot_summary_teil_1 <- function(QAGlist, by = c("Arbeit", "Haushalt & Selbstsorge",
                                                 "Soziales Umfeld")) {
+  # browser()
   assertthat::assert_that(length(by) == 1)
   assertthat::assert_that(by %in% c("Arbeit", "Haushalt & Selbstsorge", "Soziales Umfeld"))
   # Only look at relevant rows for Arbeit, Haushalt & Selbstsorge and Soziales Umfeld
