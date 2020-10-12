@@ -29,9 +29,9 @@ plot_summary_teil_1 <- function(QAGlist, by = c("Arbeit", "Haushalt & Selbstsorg
   # plot the grafic
   par(mar = c(3,4,4,2) + 0.1)
   x <- seq(0,1,length.out = 50);
-  color <- colorRampPalette(c("green4","grey80", "red"))(50)
+  color <- colorRampPalette(c("green4","gold", "red"))(50)
   plot(x, rep(1, length(x)), cex = 1.5, pch=15, col=color, ylim= c(0.65,1.15),
-       main = paste(by, ": Belastungen & Unzufriedenheiten"), cex.main = 1.3,
+       main = by, cex.main = 1.3,
        xlab = "",  ylab = "", yaxt="n", xaxt = "n")
   text(x = c(0, 1), y = 0.75, labels = c("Tief", "Hoch"), cex = 1.3)
   points(x = score, y = 1, pch = 13, cex = 5, lwd = 2)
