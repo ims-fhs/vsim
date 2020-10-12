@@ -5,8 +5,8 @@ account: ostapps
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2993576
-bundleId: 3729293
+bundleId: 3730633
 url: https://ostapps.shinyapps.io/vsim-dev-sep20-v4-kinderbetreuung/
-when: 1602494302.34519
+when: 1602516227.05211
 asMultiple: FALSE
 asStatic: FALSE
