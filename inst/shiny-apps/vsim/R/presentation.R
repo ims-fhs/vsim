@@ -362,12 +362,12 @@ rmd_display_weniger_ea <- function(alist_2b, relevant_gaps) {
                  " entgegen zu wirken.")
     }
 
-    if (grepl("weniger", alist_2b[1, 2])) {
-      cat(paste0("<center><table width='100%'><tr><td width='20%' align='center'><img src='",
-                 icon_achtung,"', width = '40px', height = '40px' >",
-                 "</td><td>Die für Erwerbsarbeit aufgewendete Zeit soll reduziert werden, um ",
-                 grund,
-                 "</td></tr></table></center>"))
-    }
+    # if (grepl("weniger", alist_2b[1, 2])) {
+    #   cat(paste0("<center><table width='100%'><tr><td width='20%' align='center'><img src='",
+    #              icon_achtung,"', width = '40px', height = '40px' >",
+    #              "</td><td>Die für Erwerbsarbeit aufgewendete Zeit soll reduziert werden, um ",
+    #              grund,
+    #              "</td></tr></table></center>"))
+    # }
   }
 }
