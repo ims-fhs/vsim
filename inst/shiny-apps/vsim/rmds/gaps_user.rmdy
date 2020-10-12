@@ -7,12 +7,31 @@ output: html_document:
 
 <h1>Auswertung Lebenslage</h1>
 
-<h4>
-Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende mögliche <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b> erkannt:</br></br>
-</h4>
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+</br></br>
+
+<h4>
+Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende <b><i>Belastung</i></b> und <b><i>Unzufriedenheit</i></b> je <b><i>Lebensbereich</i></b> erkannt:
+</h4>
+
+```{r uebersichtsgrafik}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "", width = 800, height = 160)
+```
+```{r}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Haushalt & Selbstsorge"), alt = "", width = 800, height = 160)
+```
+```{r}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Soziales Umfeld"), alt = "", width = 800, height = 160)
+
+```
+
+<h4>
+Im Detail ermittelte der Vereinbarkeitssimulator die folgenden <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b>:</br></br>
+</h4>
+
 
 ```{r gaps}
 gaps_user <- rule_extract_gaps(result_coll$Alist, import_from_excel(give_me = "G1"))
@@ -24,17 +43,14 @@ gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist, import_from_excel(g
 ```
 
 <table>
-<tr><td style="white-space: nowrap"><h2>
+<tr><td style="white-space: nowrap"><h4>
 Belastungsfaktoren&nbsp;&nbsp;
-</h2></td><td align="left" width="100%">
+</h4></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
 rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
-<h4>
-Folgende Belastungen konnten ermittelt werden:
-</h4>
 
 
 ```{r belastung}
@@ -66,17 +82,14 @@ if (show_warning) {
 </center>
 
 <table>
-<tr><td style="white-space: nowrap"><h2>
+<tr><td style="white-space: nowrap"><h4>
 Unzufriedenheiten&nbsp;&nbsp;
-</h2></td><td align="left" width="100%">
+</h4></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
 rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
-<h4>
-Folgende Unzufriedenheiten konnten ermittelt werden:
-</h4>
 
 
 ```{r differences}
@@ -86,22 +99,6 @@ rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
     color_no_data = col_evaluation_comment())
 ```
 
-</br></br>
-<h2>
-Belastung und Unzufriedenheiten nach Lebensbereich
-</h2>
-</br>
-```{r}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "test1", width = 800, height = 160)
-```
-
-```{r}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Haushalt & Selbstsorge"), alt = "test2", width = 800, height = 160)
-```
-
-```{r}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Soziales Umfeld"), alt = "test3", width = 800, height = 160)
-```
 
 </br>
 <h4>
