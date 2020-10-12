@@ -1,0 +1,12 @@
+name: vsim-dev-sep20-v4-kinderbetreuung
+title: vsim-dev-sep20-v4-kinderbetreuung
+username:
+account: ostapps
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2993576
+bundleId: 3729293
+url: https://ostapps.shinyapps.io/vsim-dev-sep20-v4-kinderbetreuung/
+when: 1602494302.34519
+asMultiple: FALSE
+asStatic: FALSE
