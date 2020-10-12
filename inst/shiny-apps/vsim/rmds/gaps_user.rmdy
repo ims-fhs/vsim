@@ -85,6 +85,24 @@ rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
     color_strain = col_belastung(),
     color_no_data = col_evaluation_comment())
 ```
+
+</br></br>
+<h2>
+Belastung und Unzufriedenheiten nach Lebensbereich
+</h2>
+</br>
+```{r}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "test1", width = 800, height = 160)
+```
+
+```{r}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Haushalt & Selbstsorge"), alt = "test2", width = 800, height = 160)
+```
+
+```{r}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Soziales Umfeld"), alt = "test3", width = 800, height = 160)
+```
+
 </br>
 <h4>
 Um mit Teil 2 des Vereinbarkeitssimulators fortzufahren, klicken Sie bitte auf 'Weiter'.
