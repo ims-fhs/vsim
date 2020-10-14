@@ -56,7 +56,7 @@ output$mainPanel <- renderUI( {
         ),
         fluidRow(hr()),
         fluidRow(
-          column(2,h4("für Kinderbetreuung")),
+          column(2,h4("für Betreuung von Angehörigen")),
           column(4, h4(gsub("-", "keine", relevant_gaps[3]))),
           column(4, h4(selectInput('select3', '', choices = choices, selected = get_selected_value(results2b[3], "gleich viel wie bisher")))),
           column(2, h4(textInput("kommentar3", "", value = ifelse(length(kommentare2b[3])>0, kommentare2b[3], ""))))
