@@ -31,7 +31,7 @@ output$mainPanel <- renderUI({
                 h4("Im", strong("dritten Schritt"),  "erarbeitet der Vereinbarkeitssimulator mit ihnen zusammen eine Planung. Hierbei werden Möglichkeiten zum Zeitmanagement und betrieblicher Hilfen (Teilzeit, flexible Arbeitszeit, Weiterbildungen etc.) aufgezeigt. Zum Abschluss erhalten Sie eine Zusammenfassung ihrer Planungsideen.",
                    "Mehr Informationen zu den drei Schritten finden Sie in ", shiny::HTML(text = "<a target='_blank' href='https://www.youtube.com/watch?v=vaNSLevObc0&feature=youtu.be'>diesem Erklärvideo</a>"), "."),
                 br(),
-                h4(strong("Hinweise: "),tags$li("Es werden keine Daten gespeichert. Sobald Sie das Fenster schliessen, sind ihre Angaben verloren. Wir empfehlen ihnen daher, die Auswertungen als PDF zu speichern."),
+                h4("Hinweise: ",tags$li(strong(em("Es werden keine Daten gespeichert.")), "Sobald Sie das Fenster schliessen, sind ihre Angaben verloren. Wir empfehlen ihnen daher, die Auswertungen als PDF zu speichern."),
                    tags$li("Diese Anwendung wurde mit Chrome Version 64 getestet.")),
                 br(),
                 h4("Zum Starten des Vereinbarkeitssimulators klicken Sie bitte auf 'Weiter'. Durch Anklicken von 'Zurück' haben Sie ausserdem die Möglichkeit, einen Schritt retour zu gehen.")))
