@@ -10,15 +10,14 @@
 #' \dontrun{
 #' old_wd <- getwd()
 #' setwd(paste0(getwd(),"/inst/shiny-apps/vsim/"))
-#' tc_arbeit <- import_from_excel(path = "data/outputs/Testcase_Arbeit.xlsx", give_me = "QAG1")
+#' tc_arbeit <- import_from_excel(path = "data/outputs/Testcase_aeltere_Arbeitnehmer_Arbeit.xlsx", give_me = "QAG1")
 #' plot_summary_teil_1(tc_arbeit, by = "Arbeit")
 #' setwd(old_wd)
 #' }
-plot_summary_teil_1 <- function(QAGlist, by = c("Arbeit", "Haushalt & Selbstsorge",
-                                                "Soziales Umfeld")) {
+plot_summary_teil_1 <- function(QAGlist, by = c("Arbeit", "Privat")) {
   # browser()
   assertthat::assert_that(length(by) == 1)
-  assertthat::assert_that(by %in% c("Arbeit", "Haushalt & Selbstsorge", "Soziales Umfeld"))
+  assertthat::assert_that(by %in% c("Arbeit", "Privat"))
   # Only look at relevant rows for Arbeit, Haushalt & Selbstsorge and Soziales Umfeld
   relevant_rows <- grepl(by, QAGlist$Gap1_type)
   df <- QAGlist[relevant_rows,]
@@ -45,32 +44,24 @@ plot_summary_teil_1 <- function(QAGlist, by = c("Arbeit", "Haushalt & Selbstsorg
 # # Import Testcases
 # source("inst/shiny-apps/vsim/R/import.R", encoding = "UTF-8", local = TRUE)
 # path <- "inst/shiny-apps/vsim/data/outputs/"
-# tc_arbeit <- import_from_excel(paste0(path,"Testcase_Arbeit.xlsx"), give_me = "QAG1")
-# tc_haushalt_selbstsorge <- import_from_excel(paste0(path,"Testcase_Haushalt_Selbstsorge.xlsx"), give_me = "QAG1")
-# tc_random <- import_from_excel(paste0(path,"Testcase_Random.xlsx"), give_me = "QAG1")
-# tc_soziales_umfeld <- import_from_excel(paste0(path,"Testcase_Soziales_Umfeld.xlsx"), give_me = "QAG1")
+# tc_arbeit <- import_from_excel(paste0(path,"Testcase_aeltere_Arbeitnehmer_Arbeit.xlsx"), give_me = "QAG1")
+# tc_privat <- import_from_excel(paste0(path,"Testcase_aeltere_Arbeitnehmer_Privat.xlsx"), give_me = "QAG1")
+# tc_random <- import_from_excel(paste0(path,"Testcase_aeltere_Arbeitnehmer_Random.xlsx"), give_me = "QAG1")
 #
-# par(mfrow = c(3,1))
+# par(mfrow = c(2,1))
 #
 # # Testcase Arbeit
 # # --> (the way i filled-in the questionnary "Arbeit" should have high values)
 # plot_summary_teil_1(tc_arbeit, by = "Arbeit")
-# plot_summary_teil_1(tc_arbeit, by = "Haushalt & Selbstsorge")
-# plot_summary_teil_1(tc_arbeit, by = "Soziales Umfeld")
+# plot_summary_teil_1(tc_arbeit, by = "Privat")
 #
-# # Testcase Haushalt & Selbstsorge
-# # --> (the way i filled-in the questionnary "Haushalt & Selbstsorge" should have high values)
-# plot_summary_teil_1(tc_haushalt_selbstsorge, by = "Arbeit")
-# plot_summary_teil_1(tc_haushalt_selbstsorge, by = "Haushalt & Selbstsorge")
-# plot_summary_teil_1(tc_haushalt_selbstsorge, by = "Soziales Umfeld")
+# # Testcase Privat
+# # --> (the way i filled-in the questionnary "Privat" should have high values)
+# plot_summary_teil_1(tc_privat, by = "Arbeit")
+# plot_summary_teil_1(tc_privat, by = "Privat")
 #
-# # Testcase Soziales Umfeld
-# # --> (the way i filled-in the questionnary "Soziales Umfeld" should have high values)
-# plot_summary_teil_1(tc_soziales_umfeld, by = "Arbeit")
-# plot_summary_teil_1(tc_soziales_umfeld, by = "Haushalt & Selbstsorge")
-# plot_summary_teil_1(tc_soziales_umfeld, by = "Soziales Umfeld")
-#
-# # Testcase random
+# # Testcase Privat
+# # --> (the questionarry was filled randomly)
 # plot_summary_teil_1(tc_random, by = "Arbeit")
-# plot_summary_teil_1(tc_random, by = "Haushalt & Selbstsorge")
-# plot_summary_teil_1(tc_random, by = "Soziales Umfeld")
+# plot_summary_teil_1(tc_random, by = "Privat")
+

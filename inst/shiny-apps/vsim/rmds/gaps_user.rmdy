@@ -21,11 +21,7 @@ Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator fo
 htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "", width = 800, height = 160)
 ```
 ```{r}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Haushalt & Selbstsorge"), alt = "", width = 800, height = 160)
-```
-```{r}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Soziales Umfeld"), alt = "", width = 800, height = 160)
-
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Privat"), alt = "", width = 800, height = 160)
 ```
 
 <h4>
