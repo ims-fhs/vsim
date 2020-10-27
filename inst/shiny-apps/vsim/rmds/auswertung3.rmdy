@@ -117,6 +117,17 @@ Alist_2c <- result_coll$Alist_2c
 Alist_2c <- rule_extract_unterstuetzung_entlastung(Alist_2c)
 rmd_display_unterstuetzung_entlastung(Alist_2c)
 ```
+
+</br></br>
+<h2>Lebenslage (Belastungen und Unzufriedenheiten pro Lebensbereich)</h2>
+```{r regler_arbeit}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "", width = 800, height = 160)
+```
+```{r regler_privat}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Privat"), alt = "", width = 800, height = 160)
+```
+
+
 </br>
 <h4>
 Zur Umsetzung des Plans müssen Sie sich nun mit ihren Angehörigen und Vorgesetzten abstimmen. Drucken Sie sich dazu Ihre Auswertung aus und sehen Sie sich ergänzend unser <a target="_blank" href="https://www.youtube.com/watch?v=vaNSLevObc0&feature=youtu.be">Erklärvideo</a> an.
