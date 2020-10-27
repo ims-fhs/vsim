@@ -1,0 +1,12 @@
+name: vsim-dev-sep20-v5-kinderbetreuung
+title: vsim-dev-sep20-v5-kinderbetreuung
+username:
+account: fhsg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3105150
+bundleId: 3787909
+url: https://fhsg.shinyapps.io/vsim-dev-sep20-v5-kinderbetreuung/
+when: 1603807898.86847
+asMultiple: FALSE
+asStatic: FALSE
