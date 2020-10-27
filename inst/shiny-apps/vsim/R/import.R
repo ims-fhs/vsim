@@ -39,7 +39,7 @@ import_from_excel <- function(path = "data/vsim_question_lists_aeltere_arbeitneh
   if(give_me == "Gtype") {df <- df[ c(9,13)]
     # Check all unique elements -> comma-separation (without space) is allowed for df$Gap1_type
     types_unique <- unique(unlist(strsplit(x = unique(df$Gap1_type), split = ",")))
-    if (!all(types_unique %in% c("Arbeit", "Haushalt & Selbstsorge","Soziales Umfeld"))) {
+    if (!all(types_unique %in% c("Arbeit", "Privat"))) {
       stop("Not all entries in column 'Gap1_type' in QAGlist_Teil1 are allowed.
   We only allow four (comma-separated) entries ('Arbeit', 'Haushalt & Selbstsorge','Soziales Umfeld')")
     }

@@ -22,6 +22,7 @@ Qlist_2a <- import_from_excel(give_me = "Q2a")
 Qlist_2b <- import_from_excel(give_me = "Q2b")
 Qlist_2c <- import_from_excel(give_me = "Q2c")
 Glist <- import_from_excel(give_me = "G1")
+Gtypelist <- import_from_excel(give_me = "Gtype")
 
 
 choices <- c(

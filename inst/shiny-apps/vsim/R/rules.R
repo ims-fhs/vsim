@@ -2,17 +2,30 @@
 #'
 #' @param Alist aktuelle Alist
 #' @param Glist aktuelle Glist
+#' @param Gtypelist aktuelle Glist
+#' @param filter_gaptype Chacarcter aus c("all", "Arbeit", "Privat"), um die Gaps nach
+#' Lebensbereichen zu filtern
+#' @param unique_only
 #'
 #' @return gaps
 #'
 #' @examples
-rule_extract_gaps <- function(Alist, Glist, unique_only = TRUE) {
+rule_extract_gaps <- function(Alist, Glist, Gtypelist, filter_gaptype = "all", unique_only = TRUE) {
   assertthat::assert_that(class(Alist) == "data.frame")
   assertthat::assert_that(class(Glist) == "data.frame")
+  assertthat::assert_that(class(Gtypelist) == "data.frame")
   assertthat::assert_that(nrow(Alist) == nrow(Glist))
+  assertthat::assert_that(nrow(Glist) == nrow(Gtypelist))
+  assertthat::assert_that(length(filter_gaptype) == 1)
+  assertthat::assert_that(filter_gaptype %in% c("all", "Arbeit", "Privat"))
+
+  # Filter for Gaps of type "Arbeit" or "Privat" if necessary
+  if (filter_gaptype %in% c("Arbeit", "Privat")) {
+    cond_filter <- grepl(pattern = filter_gaptype, x = Gtypelist$Gap1_type)
+  } else {cond_filter <- rep(TRUE, nrow(Glist))}
 
   gaps_user <- sapply(1:nrow(Glist), function(i) grepl(Alist[i,3], Glist[i,4]))
-  gaps_user <- Glist[gaps_user, 3]
+  gaps_user <- Glist[gaps_user & cond_filter, 3] # We only return gaps that match the filter.
   if (unique_only) {
     gaps_user <- unique(gaps_user)
   }

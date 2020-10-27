@@ -1,4 +1,4 @@
-#' calc_relevant_questions_2a: takes the Alist (and the global Glist and
+#' calc_relevant_questions_2a: takes the Alist (and the global Glist, Gtypelist and
 #' Qlist_2a) and returns the Qlist_Teil2a with the relevant questions.
 #'
 #' @param Alist the Alist containing the answered questions from part 1
@@ -16,7 +16,7 @@ calc_relevant_questions_2a <- function(Alist) {
   relevant_questions <- logical(length = 12)
 
   #Welche Gaps hat der User angegeben?
-  gaps_user <- rule_extract_gaps(Alist, Glist, unique_only = TRUE)
+  gaps_user <- rule_extract_gaps(Alist, Glist, Gtypelist, filter_gaptype = "all", unique_only = TRUE)
 
   belastungen <- rule_extract_belastungen(gaps_user)
   unzufriedenheiten <- rule_extract_unzufriedenheiten(gaps_user)
@@ -81,7 +81,7 @@ calc_relevant_questions_2a <- function(Alist) {
   return(Qlist_Teil2a)
 }
 
-#' calc_relevant_gaps_2b: takes the Alist (and the global Glist) and returns the
+#' calc_relevant_gaps_2b: takes the Alist (and the global Glist & Gtypelist) and returns the
 #' Qlist_Teil2a with the relevant questions.
 #'
 #' @param Alist the Alist containing the answered questions from part 1
@@ -91,7 +91,7 @@ calc_relevant_questions_2a <- function(Alist) {
 #' @examples
 calc_relevant_gaps_2b <- function(Alist) {
   #Welche Gaps hat der User angegeben?
-  gaps_user <- rule_extract_gaps(Alist, Glist, unique_only = TRUE)
+  gaps_user <- rule_extract_gaps(Alist, Glist, Gtypelist, filter_gaptype = "all", unique_only = TRUE)
   relevant_gaps <- character(6)
   relevant_gaps[1] <- ifelse(
     length(gaps_user[grepl("beruflichen Zeitmanagement", gaps_user) | grepl("zeitliche Beanspruchung", gaps_user)]) > 0,

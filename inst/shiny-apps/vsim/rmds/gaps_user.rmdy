@@ -11,56 +11,135 @@ output: html_document:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r calculate_gaps}
+# Gaps for Arbeit
+gaps_arbeit <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
+                                 filter_gaptype = "Arbeit")
+df_arbeit <- as.data.frame(gaps_arbeit, stringsAsFactors = FALSE)
+names(df_arbeit) <- "Gaps"
+
+# Gaps for Privat
+gaps_privat <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
+                                 filter_gaptype = "Privat")
+df_privat <- as.data.frame(gaps_privat, stringsAsFactors = FALSE)
+names(df_privat) <- "Gaps"
+
+# Gaps in general (non unique)
+gaps_non_unique <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
+                                          filter_gaptype = "all", unique_only = FALSE)
+```
+
 </br></br>
 
 <h4>
 Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende <b><i>Belastung</i></b> und <b><i>Unzufriedenheit</i></b> je <b><i>Lebensbereich</i></b> erkannt:
 </h4>
 
-```{r uebersichtsgrafik}
+<!-- --------------------------- Section Arbeit ---------------------------------------------------- -->
+
+```{r regler_arbeit}
 htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "", width = 800, height = 160)
-```
-```{r}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Privat"), alt = "", width = 800, height = 160)
 ```
 
 <h4>
-Im Detail ermittelte der Vereinbarkeitssimulator die folgenden <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b>:</br></br>
+Im Detail ermittelte der Vereinbarkeitssimulator die folgenden <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b>
+bei der Arbeit:</br></br>
 </h4>
 
 
-```{r gaps}
-gaps_user <- rule_extract_gaps(result_coll$Alist, import_from_excel(give_me = "G1"))
-df <- as.data.frame(gaps_user, stringsAsFactors = FALSE)
-names(df) <- "Gaps"
-
-gaps_user_non_unique <- rule_extract_gaps(result_coll$Alist, import_from_excel(give_me = "G1"),
-                              unique_only = FALSE)
-```
-
 <table>
 <tr><td style="white-space: nowrap"><h4>
-Belastungsfaktoren&nbsp;&nbsp;
+Belastungsfaktoren Arbeit&nbsp;&nbsp;
 </h4></td><td align="left" width="100%">
 ```{r, echo=FALSE, results='asis'}
 rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
 ```
 </td></tr>
 </table>
-
-
-```{r belastung}
-belastungen <- rule_extract_belastungen(df$Gaps, strip_prefix = TRUE)
-rmd_display_belastungen_unzufriedenheiten(belastungen,
+```{r belastung_arbeit}
+belastungen_arbeit <- rule_extract_belastungen(df_arbeit$Gaps, strip_prefix = TRUE)
+rmd_display_belastungen_unzufriedenheiten(belastungen_arbeit,
     color_strain = col_belastung(),
     color_no_data = col_evaluation_comment())
 ```
+
+
+<table>
+<tr><td style="white-space: nowrap"><h4>
+Unzufriedenheiten Arbeit&nbsp;&nbsp;
+</h4></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+
+```{r unzufriedenheiten_arbeit}
+unzufriedenheiten_arbeit <- rule_extract_unzufriedenheiten(df_arbeit$Gaps)
+rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten_arbeit,
+    color_strain = col_belastung(),
+    color_no_data = col_evaluation_comment())
+```
+
+
+</br></br></br></br>
+<!-- --------------------------- Section Privat ---------------------------------------------------- -->
+
+```{r regler_privat}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Privat"), alt = "", width = 800, height = 160)
+```
+
+<h4>
+Im Detail ermittelte der Vereinbarkeitssimulator die folgenden <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b>
+im Privatleben:</br></br>
+</h4>
+
+
+<table>
+<tr><td style="white-space: nowrap"><h4>
+Belastungsfaktoren Privat&nbsp;&nbsp;
+</h4></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+```{r belastung_privat}
+belastungen_privat <- rule_extract_belastungen(df_privat$Gaps, strip_prefix = TRUE)
+rmd_display_belastungen_unzufriedenheiten(belastungen_privat,
+    color_strain = col_belastung(),
+    color_no_data = col_evaluation_comment())
+```
+
+
+
+<table>
+<tr><td style="white-space: nowrap"><h4>
+Unzufriedenheiten Privat&nbsp;&nbsp;
+</h4></td><td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
+```
+</td></tr>
+</table>
+
+```{r unzufriedenheiten_privat}
+unzufriedenheiten_privat <- rule_extract_unzufriedenheiten(df_privat$Gaps)
+rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten_privat,
+    color_strain = col_belastung(),
+    color_no_data = col_evaluation_comment())
+```
+
+
+
+
+<!-- this section shows additional information for psychische Belastung -->
 <center>
 <table width="100%">
 <tr>
 <td width="20%" align="center">
 ```{r belastung_psychische_gesundheit, echo = FALSE, results = 'asis'}
-show_warning <- rule_identify_belastungen_psychische_gesundheit(gaps_user_non_unique)
+show_warning <- rule_identify_belastungen_psychische_gesundheit(gaps_non_unique)
 if (show_warning) {
   rmd_display_icon(icon_achtung, width="20%", height="20%", align="center")
 }
@@ -76,24 +155,8 @@ if (show_warning) {
 </tr>
 </table>
 </center>
+<!-- ------------------------------------------------------------------------- -->
 
-<table>
-<tr><td style="white-space: nowrap"><h4>
-Unzufriedenheiten&nbsp;&nbsp;
-</h4></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
-```
-</td></tr>
-</table>
-
-
-```{r differences}
-unzufriedenheiten <- rule_extract_unzufriedenheiten(df$Gaps)
-rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten,
-    color_strain = col_belastung(),
-    color_no_data = col_evaluation_comment())
-```
 
 
 </br>
