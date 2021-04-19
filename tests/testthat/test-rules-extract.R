@@ -2,11 +2,12 @@ context("rules_extract")
 
 test_that("gaps are extracted correctly from Alist.", {
 
-  Alist <- import_from_excel(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", give_me = "A1")
-  Glist <- import_from_excel(path = "../../inst/shiny-apps/vsim/data/vsim_question_lists.xlsx", give_me = "G1")
+  Alist <- import_from_excel(path = "../../inst/shiny-apps/vsim/data/outputs/Testcase_aeltere_Arbeitnehmer_Arbeit.xlsx", give_me = "A1")
+  Glist <- import_from_excel(path = "../../inst/shiny-apps/vsim/data/outputs/Testcase_aeltere_Arbeitnehmer_Arbeit.xlsx", give_me = "G1")
+  Gtypelist <- import_from_excel(path = "../../inst/shiny-apps/vsim/data/outputs/Testcase_aeltere_Arbeitnehmer_Arbeit.xlsx", give_me = "Gtype")
 
-  expect_error(rule_extract_gaps(Alist[1, ], Glist))
-  expect_equal(rule_extract_gaps(Alist[1, ], Glist[1, ]), "Unzufriedenheit mit dem beruflichen Zeitmanagement")
+  expect_error(rule_extract_gaps(Alist[1, ], Glist, Gtypelist))
+  expect_equal(rule_extract_gaps(Alist[1, ], Glist[1, ], Gtypelist[1,]), "Unzufriedenheit mit der beruflichen Zeitverwendung")
 })
 
 test_that("rule_extract_belastungen", {
