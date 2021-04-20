@@ -120,12 +120,23 @@ rmd_display_unterstuetzung_entlastung(Alist_2c)
 
 </br></br>
 <h2>Lebenslage (Belastungen und Unzufriedenheiten pro Lebensbereich)</h2>
-```{r regler_arbeit}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "", width = 800, height = 160)
+
+<table>
+<tr><td align="left">
+
+```{r uebersicht_gaps, results='asis'}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1), alt = "", width = 800, height = 400)
 ```
-```{r regler_privat}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Privat"), alt = "", width = 800, height = 160)
+
+</td><td align="left">
+```{r regler_arbeit2, results='asis'}
+rmd_display_icon(icon = icon_blume_UND, align = "left", width = 300, height = 300)
 ```
+</td>
+</tr>
+</table>
+
+
 
 
 </br>

@@ -13,24 +13,25 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r calculate_gaps}
 
-my_gaps <- c("Ich", "Soz.Bez.", "Haushalt", "Beruf", "Gemeinwohl")
+my_gaps <- unique(strsplit(paste0(Gtypelist$Gap1_type, collapse = ","), split = ",")[[1]])
+my_gaps <- my_gaps[!my_gaps == ""]
 for (i in my_gaps) {
   assign(x = paste0("gaps_",i),
          value = rule_extract_gaps(result_coll$Alist, Glist, Gtypelist, filter_gaptype = i))
 }
 
-
-
-# Gaps for Arbeit
-gaps_arbeit <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
-                                 filter_gaptype = "Arbeit")
-df_arbeit <- as.data.frame(gaps_arbeit, stringsAsFactors = FALSE)
-names(df_arbeit) <- "Gaps"
-
-
 # Gaps in general (non unique) -> needed for additional Info for psychische Belastung
 gaps_non_unique <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
-                                          filter_gaptype = "all", unique_only = FALSE)
+                                     filter_gaptype = "all", unique_only = FALSE)
+
+
+# # Gaps for Arbeit -> not needed anymore in new version
+# gaps_arbeit <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
+#                                  filter_gaptype = "Arbeit")
+# df_arbeit <- as.data.frame(gaps_arbeit, stringsAsFactors = FALSE)
+# names(df_arbeit) <- "Gaps"
+#
+#
 ```
 
 
@@ -39,6 +40,9 @@ gaps_non_unique <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
 
 </br></br></br></br>
 
+
+<!-- --------------------------- Section Überblick (new 20.04.2021) ---------------------------------------------------- -->
+
 <h2>Überblick</h21>
 
 <h4>
@@ -46,12 +50,11 @@ Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator fo
 und <b><i>Unzufriedenheiten</i></b> je <b><i>Lebensinhalt</i></b> erkannt:
 </h4>
 
-<!-- --------------------------- Section Arbeit ---------------------------------------------------- -->
 
 <table>
 <tr><td align="left">
 
-```{r regler_arbeit, results='asis'}
+```{r uebersicht_gaps, results='asis'}
 htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1), alt = "", width = 800, height = 400)
 ```
 
@@ -66,6 +69,7 @@ rmd_display_icon(icon = icon_blume_UND, align = "left", width = 300, height = 30
 
 
 
+<!-- --------------------------- Section Details (new 20.04.2021) ---------------------------------------------------- -->
 </br></br></br></br>
 <h2>Details</h21>
 
@@ -77,44 +81,45 @@ je <b><i>Lebensinhalt</i></b>:
 </br></br>
 
 
-
-
-
+<!-- ------------ Titel mit Icons (new 20.04.2021) ----------- -->
 <table>
-<tr><td style="white-space: nowrap"><h4>
-Belastungsfaktoren Arbeit&nbsp;&nbsp;
-</h4></td><td align="left" width="100%">
+<tr>
+<td style="white-space: nowrap"><h4>
+Belastungsfaktoren und Unzufriedenheiten je Lebensinhalt&nbsp;&nbsp;
+</h4></td>
+<td align="left">
 ```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
+rmd_display_icon(icon = icon_belastung, align = "left", width = 40, height = 40)
 ```
-</td></tr>
+</td>
+<td align="left" width="100%">
+```{r, echo=FALSE, results='asis'}
+rmd_display_icon(icon = icon_unzufriedenheit,  align = "left", width = 40, height = 40)
+```
+</td>
+</tr>
 </table>
+
+
+
+<!-- ------------ Belastungen (new 20.04.2021) ----------- -->
+
 ```{r belastung_arbeit}
-belastungen_arbeit <- rule_extract_belastungen(df_arbeit$Gaps, strip_prefix = TRUE)
-rmd_display_belastungen_unzufriedenheiten(belastungen_arbeit,
-    color_strain = col_belastung(),
-    color_no_data = col_evaluation_comment())
+
+# # old version (Arbeit)
+# belastungen_arbeit <- rule_extract_belastungen(df_arbeit$Gaps, strip_prefix = TRUE)
+# rmd_display_belastungen_unzufriedenheiten(belastungen_arbeit,
+#     color_strain = col_belastung(),
+#     color_no_data = col_evaluation_comment())
+
+
+for (i in my_gaps) {
+  cat("\n", i, "\n\n")
+  print(get(paste0("gaps_",i)))
+}
+
+
 ```
-
-
-<table>
-<tr><td style="white-space: nowrap"><h4>
-Unzufriedenheiten Arbeit&nbsp;&nbsp;
-</h4></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
-```
-</td></tr>
-</table>
-
-```{r unzufriedenheiten_arbeit}
-unzufriedenheiten_arbeit <- rule_extract_unzufriedenheiten(df_arbeit$Gaps)
-rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten_arbeit,
-    color_strain = col_belastung(),
-    color_no_data = col_evaluation_comment())
-```
-
-
 
 
 
