@@ -16,7 +16,7 @@
 #' Q2a <- import_from_excel(give_me = "Q2a")
 #' Q2b <- vsim:::import_from_excel(give_me = "Q2b")
 #' Q2c <- import_from_excel(give_me = "Q2c")}
-import_from_excel <- function(path = "data/vsim_question_lists_aeltere_arbeitnehmende.xlsx",
+import_from_excel <- function(path = "data/vsim_question_lists_aeltere_arbeitnehmende_UND.xlsx",
                               give_me = c("QAG1", "Q1", "A1", "G1", "Gtype", "Q2a", "Q2b", "Q2c")) {
 # import_from_excel <- function(path = "data/vsim_question_lists_kinderbetreuung.xlsx",
 #                               give_me = c("QAG1", "Q1", "A1", "G1", "Gtype", "Q2a", "Q2b", "Q2c")) {
@@ -39,9 +39,9 @@ import_from_excel <- function(path = "data/vsim_question_lists_aeltere_arbeitneh
   if(give_me == "Gtype") {df <- df[ c(9,13)]
     # Check all unique elements -> comma-separation (without space) is allowed for df$Gap1_type
     types_unique <- unique(unlist(strsplit(x = unique(df$Gap1_type), split = ",")))
-    if (!all(types_unique %in% c("Arbeit", "Privat"))) {
+    if (!all(types_unique %in% c("Ich", "Soz.Bez.", "Haushalt", "Beruf", "Gemeinwohl"))) {
       stop("Not all entries in column 'Gap1_type' in QAGlist_Teil1 are allowed.
-  We only allow four (comma-separated) entries ('Arbeit', 'Haushalt & Selbstsorge','Soziales Umfeld')")
+  We only allow five (comma-separated) entries ('Ich', 'Soz.Bez.','Haushalt', 'Beruf', 'Gemeinwohl')")
     }
   }
   return(df)
@@ -57,7 +57,7 @@ import_from_excel <- function(path = "data/vsim_question_lists_aeltere_arbeitneh
 #' @param path a character
 export_to_excel <- function(Alist_Answer, path = "data/outputs/") {
   # standard path is set to "data/outputs/" because the function is called from within render_main_panel_1.R
-  empty_list <- import_from_excel(path = "data/vsim_question_lists_aeltere_arbeitnehmende.xlsx", give_me = "QAG1")
+  empty_list <- import_from_excel(path = "data/vsim_question_lists_aeltere_arbeitnehmende_UND.xlsx", give_me = "QAG1")
   # empty_list <- import_from_excel(path = "data/vsim_question_lists_kinderbetreuung.xlsx", give_me = "QAG1")
   empty_list$Answer_given <- Alist_Answer
   # path_to_file <- paste0(path, format(Sys.time(), "%Y_%m_%d"),"_Answer_list_",

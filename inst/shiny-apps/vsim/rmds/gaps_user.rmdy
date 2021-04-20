@@ -12,39 +12,72 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r calculate_gaps}
+
+my_gaps <- c("Ich", "Soz.Bez.", "Haushalt", "Beruf", "Gemeinwohl")
+for (i in my_gaps) {
+  assign(x = paste0("gaps_",i),
+         value = rule_extract_gaps(result_coll$Alist, Glist, Gtypelist, filter_gaptype = i))
+}
+
+
+
 # Gaps for Arbeit
 gaps_arbeit <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
                                  filter_gaptype = "Arbeit")
 df_arbeit <- as.data.frame(gaps_arbeit, stringsAsFactors = FALSE)
 names(df_arbeit) <- "Gaps"
 
-# Gaps for Privat
-gaps_privat <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
-                                 filter_gaptype = "Privat")
-df_privat <- as.data.frame(gaps_privat, stringsAsFactors = FALSE)
-names(df_privat) <- "Gaps"
 
-# Gaps in general (non unique)
+# Gaps in general (non unique) -> needed for additional Info for psychische Belastung
 gaps_non_unique <- rule_extract_gaps(result_coll$Alist, Glist, Gtypelist,
                                           filter_gaptype = "all", unique_only = FALSE)
 ```
 
-</br></br>
+
+
+
+
+</br></br></br></br>
+
+<h2>Überblick</h21>
 
 <h4>
-Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende <b><i>Belastung</i></b> und <b><i>Unzufriedenheit</i></b> je <b><i>Lebensbereich</i></b> erkannt:
+Auf Grundlage der von Ihnen gemachten Angaben hat der Vereinbarkeitssimulator folgende <b><i>Belastungen</i></b>
+und <b><i>Unzufriedenheiten</i></b> je <b><i>Lebensinhalt</i></b> erkannt:
 </h4>
 
 <!-- --------------------------- Section Arbeit ---------------------------------------------------- -->
 
-```{r regler_arbeit}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Arbeit"), alt = "", width = 800, height = 160)
+<table>
+<tr><td align="left">
+
+```{r regler_arbeit, results='asis'}
+htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1), alt = "", width = 800, height = 400)
 ```
+
+</td><td align="left">
+```{r regler_arbeit2, results='asis'}
+rmd_display_icon(icon = icon_blume_UND, align = "left", width = 300, height = 300)
+```
+</td>
+</tr>
+</table>
+
+
+
+
+</br></br></br></br>
+<h2>Details</h21>
 
 <h4>
 Im Detail ermittelte der Vereinbarkeitssimulator die folgenden <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b>
-bei der Arbeit:</br></br>
+je <b><i>Lebensinhalt</i></b>:
 </h4>
+
+</br></br>
+
+
+
 
 
 <table>
@@ -82,56 +115,15 @@ rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten_arbeit,
 ```
 
 
+
+
+
+
+
+
+
+
 </br></br></br></br>
-<!-- --------------------------- Section Privat ---------------------------------------------------- -->
-
-```{r regler_privat}
-htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1, by = "Privat"), alt = "", width = 800, height = 160)
-```
-
-<h4>
-Im Detail ermittelte der Vereinbarkeitssimulator die folgenden <b><i>Belastungsfaktoren</i></b> und <b><i>Unzufriedenheiten</i></b>
-im Privatleben:</br></br>
-</h4>
-
-
-<table>
-<tr><td style="white-space: nowrap"><h4>
-Belastungsfaktoren Privat&nbsp;&nbsp;
-</h4></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_belastung, align = "right", width = 40, height = 40)
-```
-</td></tr>
-</table>
-```{r belastung_privat}
-belastungen_privat <- rule_extract_belastungen(df_privat$Gaps, strip_prefix = TRUE)
-rmd_display_belastungen_unzufriedenheiten(belastungen_privat,
-    color_strain = col_belastung(),
-    color_no_data = col_evaluation_comment())
-```
-
-
-
-<table>
-<tr><td style="white-space: nowrap"><h4>
-Unzufriedenheiten Privat&nbsp;&nbsp;
-</h4></td><td align="left" width="100%">
-```{r, echo=FALSE, results='asis'}
-rmd_display_icon(icon = icon_unzufriedenheit,  align = "right", width = 40, height = 40)
-```
-</td></tr>
-</table>
-
-```{r unzufriedenheiten_privat}
-unzufriedenheiten_privat <- rule_extract_unzufriedenheiten(df_privat$Gaps)
-rmd_display_belastungen_unzufriedenheiten(unzufriedenheiten_privat,
-    color_strain = col_belastung(),
-    color_no_data = col_evaluation_comment())
-```
-
-
-
 
 <!-- this section shows additional information for psychische Belastung -->
 <center>

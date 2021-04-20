@@ -17,10 +17,10 @@ rule_extract_gaps <- function(Alist, Glist, Gtypelist, filter_gaptype = "all", u
   assertthat::assert_that(nrow(Alist) == nrow(Glist))
   assertthat::assert_that(nrow(Glist) == nrow(Gtypelist))
   assertthat::assert_that(length(filter_gaptype) == 1)
-  assertthat::assert_that(filter_gaptype %in% c("all", "Arbeit", "Privat"))
+  assertthat::assert_that(filter_gaptype %in% c("all", "Ich", "Soz.Bez.", "Haushalt", "Beruf", "Gemeinwohl"))
 
   # Filter for Gaps of type "Arbeit" or "Privat" if necessary
-  if (filter_gaptype %in% c("Arbeit", "Privat")) {
+  if (filter_gaptype %in% c("Ich", "Soz.Bez.", "Haushalt", "Beruf", "Gemeinwohl")) {
     cond_filter <- grepl(pattern = filter_gaptype, x = Gtypelist$Gap1_type)
   } else {cond_filter <- rep(TRUE, nrow(Glist))}
 
@@ -30,6 +30,7 @@ rule_extract_gaps <- function(Alist, Glist, Gtypelist, filter_gaptype = "all", u
     gaps_user <- unique(gaps_user)
   }
   assertthat::is.string(gaps_user)
+  attr(gaps_user, "score") <- length(gaps_user)/sum(cond_filter)
   return(gaps_user)
 }
 

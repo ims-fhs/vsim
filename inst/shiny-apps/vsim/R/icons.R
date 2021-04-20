@@ -19,3 +19,5 @@ icon_unzufriedenheit <- "icon_unzufriedenheit.png"
 icon_vereinbarung <- "icon_vereinbarung.png"
 
 icon_zeitverwendung <- "icon_zeitverwendung.png"
+
+icon_blume_UND <- "icon_blume_UND.png"

@@ -4,11 +4,29 @@
 # this function is called in order to prepare variables for the next questionary
 # after this questionary has been completed
 questionaryPostProcessing <- function() {
+  # browser()
+
+  # If we set question_id to 31 in server.R, we can directly start at the "Zwischenauswertung"
+  # -> For this we need to load an already filled Alist (as constructed in output$save_results)
+  #    and treat is as the globally saved Alist from output$save_results
+  if (!is.null(input$file1)) {
+    Alist <- as.data.frame(readxl::read_excel(input$file1$datapath, 1), stringsAsFactors = FALSE)
+  } else if (input$use_default_excel) {
+    Alist <- import_from_excel(path = "data/outputs/Testcase_aeltere_Arbeitnehmer_Random_UND.xlsx", give_me = "QAG1")
+  }
+  Alist <- Alist[,c("Qnum", "Question", "Answer_given")]
+  names(Alist)[3] <- "Answer"
+  results <<- Alist$Answer # globally save the results (as if the questions had been filled in manually)
+  Alist <<- Alist  # globally save the Alist
+  result_coll$Alist <<- Alist
+
+
   Alist <- result_coll$Alist
   Data_summary_teil_1 <<- export_to_excel(Alist$Answer)
   Qlist_2a <<- calc_relevant_questions_2a(Alist)
   result_coll$Qlist_2a <<- Qlist_2a
   calc_survey_question_ids()
+  # browser()
   # ****** Data part 2a
   # Create an empty vector to hold survey results
   if (!exists("results2", envir = parent.env(environment()) )) {

@@ -24,7 +24,6 @@ Qlist_2c <- import_from_excel(give_me = "Q2c")
 Glist <- import_from_excel(give_me = "G1")
 Gtypelist <- import_from_excel(give_me = "Gtype")
 
-
 choices <- c(
   "viel weniger als bisher",
   "weniger als bisher",
@@ -63,7 +62,7 @@ function(input, output, session) {
   kommentare2c <- NULL
 
   # initialize question_id
-  question_id <- 0
+  question_id <- -1
 
   # prepare section-variables for question-id's
   calc_survey_question_ids <- function() {
@@ -93,9 +92,15 @@ function(input, output, session) {
   observeEvent(input$prev_button, {question_id <<- max(Survey_Sections$Teil1_intro, question_id - 1); renderMainPanel(); renderProgressbar()})
   # if previous-button is clicked, increment question-id and re-render mainpanel / progressbar panel
   observeEvent(input$next_button, {question_id <<- question_id + 1; renderMainPanel(); renderProgressbar()})
+  # If we have an Excel file we go to the "Zwischenauswertung"
+  observeEvent(input$start_from_beginning, {question_id <<- 0; renderMainPanel(); renderProgressbar()})
+  observeEvent(input$use_default_excel,    {question_id <<- Survey_Sections$Teil1_summary; renderMainPanel(); renderProgressbar()})
+  observeEvent(input$file1,                {question_id <<- Survey_Sections$Teil1_summary; renderMainPanel(); renderProgressbar()})
 
   renderMainPanel <- function() {
-    if (question_id <= Survey_Sections$Teil1_summary) {
+    if (question_id == -1) {
+      source("render_excel_import.R", encoding = file_encoding, local = TRUE)[1]
+    } else if (question_id <= Survey_Sections$Teil1_summary) {
       source("render_main_panel_1.R", encoding = file_encoding, local = TRUE)[1]
     } else if (question_id <= Survey_Sections$Teil2a_end_statement) {
       source("render_main_panel_2a.R", encoding = file_encoding, local = TRUE)[1]
@@ -131,7 +136,9 @@ function(input, output, session) {
 
   renderProgressbar <- function() {
       output$progressbar <- renderUI({
-        if (question_id <= Survey_Sections$Teil1_summary) {
+        if (question_id == -1) {
+        }
+        else if (question_id <= Survey_Sections$Teil1_summary) {
           shiny_render_navbar_entry(col_lebenslage(), icon_lebenslage,
                                     "Teil 1:", "Lebenslage", question_id,
                                     Survey_Sections$Teil3_final_evaluation)
