@@ -12,8 +12,12 @@ questionaryPostProcessing <- function() {
   if (!is.null(input$file1) | input$use_default_excel) {
     if (!is.null(input$file1)) {
       Alist <- as.data.frame(readxl::read_excel(input$file1$datapath, 1), stringsAsFactors = FALSE)
+      Gtypelist <<- Alist[ c(9,13)]
+      Data_summary_teil_1 <<- Alist
     } else if (input$use_default_excel) {
       Alist <- import_from_excel(path = "data/outputs/Testcase_aeltere_Arbeitnehmer_Random_UND.xlsx", give_me = "QAG1")
+      Gtypelist <<- Alist[ c(9,13)]
+      Data_summary_teil_1 <<- Alist
     }
     Alist <- Alist[,c("Qnum", "Question", "Answer_given")]
     names(Alist)[3] <- "Answer"
@@ -23,7 +27,9 @@ questionaryPostProcessing <- function() {
   }
 
   Alist <- result_coll$Alist
-  Data_summary_teil_1 <<- export_to_excel(Alist$Answer)
+  if (is.null(input$file1) & !input$use_default_excel) {
+    Data_summary_teil_1 <<- export_to_excel(Alist$Answer)
+  }
   Qlist_2a <<- calc_relevant_questions_2a(Alist)
   result_coll$Qlist_2a <<- Qlist_2a
   calc_survey_question_ids()
