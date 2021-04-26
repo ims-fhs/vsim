@@ -73,6 +73,59 @@ rmd_display_belastungen_unzufriedenheiten <- function(belastungen_oder_unzufried
   }
 }
 
+
+
+#' New version to display table of all gaps
+#'
+#' Create a table with three columns. 1. = gaptype (Lebensbereich - UND-Blume)
+#' 2. = score (Zufriedenheit), 3. = gaps (Baustellen)
+#'
+#' @param gaps A character vector with an attribute "score" in [0,1]
+#' @param gaptype A character
+#' @param color_strain
+#' @param color_no_data
+
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' gaps <- structure(c("Unzufriedenheit mit der beruflichen Zeitverwendung",
+#' "Unzufriedenheiten: Mangelnde Wertschätzung", "Belastung: Hoher Zeitdruck bei der Arbeit",
+#' "Belastung: Eigene Erwartungen an Hausarbeit/Betreuung von Angehörigen nicht erfüllen können ",
+#' "Belastung: Keine klar festgelegeten Arbeitszeiten (Flexibilisierung)",
+#' "Belastung: Organisierung des Alltags kompliziert"), score = 0.571428571428571)
+#'
+#' rmd_display_belastungen_unzufriedenheiten_2(gaps, "Beruf")
+rmd_display_belastungen_unzufriedenheiten_2 <- function(gaps, gaptype,
+                                                        color_no_data = "#FFFFFF") {
+  font_color <- "#000000"
+  my_colors <- get_color_ramp() # 1 = red / 50 = green
+  bg_color <- my_colors[round(1 + 49*attr(gaps, "score"))] # We map the score [0,1] to the color indexes [1,50]
+  if (length(gaps) == 0) {
+    gaps <- structure(c("Aktuell keine Belastung o. Unzufriedenheit"), score = 1)
+    bg_color <- color_no_data
+  }
+
+  # create the table to plot
+  n_gaps <- length(gaps); my_score <- attr(gaps, "score")
+  lebensbereich <- c(gaptype, rep("", n_gaps - 1))
+  # 0 - 0.33 -> Belastung "hoch" / 0.33 - 0.66 -> Belastung "mittel" / 0.66 - 1 -> Belastung "tief"
+  zufriedenheit <- ifelse(my_score > 0.33, ifelse(my_score > 0.66, "tief", "mittel"), no = "hoch")
+  zufriedenheit <- c(zufriedenheit, rep("", n_gaps -1))
+  df <- data.frame(lebensbereich = lebensbereich,
+                   zufriedenheit = zufriedenheit,
+                   baustellen = gaps)
+
+  kable(df, row.names = FALSE, format = "html",
+        col.names = c("Lebensbereich", "Unzufriedenheit/Belastung", "Baustellen")) %>%
+    kable_styling(bootstrap_options = c("striped", "hover"), full_width = T, position = "left") %>%
+    row_spec(1:n_gaps, background = bg_color, color = font_color)
+
+}
+
+
+
 #' rmd_display_vereinbarungen_chancen
 #' renders the vereinbarungen table based on the alist_2a provided
 #'

@@ -25,7 +25,7 @@ plot_summary_teil_1 <- function(QAGlist) {
   # plot the basic grafic
   par(mar = c(3,4,4,2) + 0.1) # default = c(5, 4, 4, 2) + 0.1.
   x <- seq(0,1,length.out = 50);
-  color <- colorRampPalette(c("red", "gold", "green4"))(50)
+  color <- get_color_ramp()
 
   plot(x, rep(1.5, length(x)), cex = 1.5, pch=15, col=color, main = "Belastungen und Unzufriedenheiten pro Lebensinhalt",
        cex.main = 1.3,
@@ -48,6 +48,17 @@ plot_summary_teil_1 <- function(QAGlist) {
     points(x = score, y = (n_gap_levels+1.5)-i, pch = 13, cex = 5, lwd = 2)
     # arrows(x0 = score, y0 = 1.25, x1 = score, y1 = 1.1, lwd = 2)
   }
+}
+
+
+#' create color ramp from red to green in 50 steps.
+#'
+#' @return a character vector (index 1 = red, index 50 = green)
+#' @export
+#'
+#' @examples
+get_color_ramp <- function() {
+  return(colorRampPalette(c("red", "gold", "green4"))(50))
 }
 
 

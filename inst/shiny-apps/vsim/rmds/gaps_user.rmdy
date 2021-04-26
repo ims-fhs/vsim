@@ -60,7 +60,7 @@ htmltools::plotTag(plot_summary_teil_1(Data_summary_teil_1), alt = "", width = 8
 
 </td><td align="left">
 ```{r regler_arbeit2, results='asis'}
-rmd_display_icon(icon = icon_blume_UND, align = "left", width = 300, height = 300)
+# rmd_display_icon(icon = icon_blume_UND, align = "left", width = 300, height = 300)
 ```
 </td>
 </tr>
@@ -104,7 +104,7 @@ rmd_display_icon(icon = icon_unzufriedenheit,  align = "left", width = 40, heigh
 
 <!-- ------------ Belastungen (new 20.04.2021) ----------- -->
 
-```{r belastung_arbeit}
+```{r belastung_arbeit, results='asis'}
 
 # # old version (Arbeit)
 # belastungen_arbeit <- rule_extract_belastungen(df_arbeit$Gaps, strip_prefix = TRUE)
@@ -112,12 +112,10 @@ rmd_display_icon(icon = icon_unzufriedenheit,  align = "left", width = 40, heigh
 #     color_strain = col_belastung(),
 #     color_no_data = col_evaluation_comment())
 
-
 for (i in my_gaps) {
-  cat("\n", i, "\n\n")
-  print(get(paste0("gaps_",i)))
+  cat(rmd_display_belastungen_unzufriedenheiten_2(gaps = get(paste0("gaps_",i)),
+                                                  gaptype = i))
 }
-
 
 ```
 
